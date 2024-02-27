@@ -1,3 +1,16 @@
 
+# R related project folders
 *.Rproj
 /.Rproj.user
+
+# raw data
+*.mat
+
+# raw data folders
+/data/raw/
+
+# codebook
+data/codebook/*.xlsx
+
+# temporary to prevent a mistake later
+/data/processed 
