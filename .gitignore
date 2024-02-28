@@ -15,3 +15,7 @@ data/codebook/*.csv
 
 # temporary to prevent a mistake later
 /data/processed 
+
+# R data files
+*.RData
+*.Rhistory
