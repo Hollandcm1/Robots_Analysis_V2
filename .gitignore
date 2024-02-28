@@ -7,7 +7,7 @@
 *.mat
 
 # raw data folders
-/data/raw/
+/data/raw/*/
 
 # codebook
 data/codebook/*.xlsx
