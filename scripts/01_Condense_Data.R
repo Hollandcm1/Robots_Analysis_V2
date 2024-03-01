@@ -52,4 +52,6 @@ for (p_num in 1:length(codes.participant_conditions$Participant)) {
   }
 }
 
-
+# save all_data
+compiled_data <- all_data
+save(compiled_data, file = here("data", "processed", "compiled", "compiled_data.RData"))
