@@ -99,9 +99,9 @@ for (p_num in names(compiled_data)) {
     
     # check if they need condition corrections
     correction_needed <- as.numeric(participant_full_number) > 100
-    if (correction_needed & !participant_warned) {
+    if (correction_needed & !participant_warned.names) {
       warning(paste('participant', participant_full_number, 'needs correction'))
-      participant_warned <- TRUE
+      participant_warned.names <- TRUE
     }
     
     # check if anyone has too much data
