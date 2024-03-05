@@ -1,0 +1,11 @@
+name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
+codebook|stem|13a0735fbb97ad8a|52248ed81e586d7a|bc66354c64aa2b53|30408179||t19787.8634391544s|ac227466d022b892|408|rds|local|vector|||0.24||
+codes|stem|13a0735fbb97ad8a|52248ed81e586d7a|bc66354c64aa2b53|49896712||t19787.9657549613s|ac227466d022b892|408|rds|local|vector|||0.211||
+codes_conditions|stem|17656ca132f3e9f7|4b9f3cb7a4134087|b16c155e03368196|-1842333379||t19787.9657550452s|a1c456b03adbfbf8|44|rds|local|vector|||0||
+codes_participant_conditions|stem|17656ca132f3e9f7|70525ee18a535352|b16c155e03368196|-1191489143||t19787.9657550642s|a1c456b03adbfbf8|44|rds|local|vector|||0||
+conditions|object|c9526a266010cb89|||||||||||||||
+environments|object|cbde5eff1e2d7af8|||||||||||||||
+import_codebook|function|7b13986b34c29bda|||||||||||||||
+maps|stem|5dbe3d603553729f|17590690ccf01c0e|a10cb56aa5342a40|-755393448||t19787.9668220683s|253a8b79276e1ed4|185|rds|local|vector|||0.562||
+pull_maps|function|3921dd947444b5b6|||||||||||||||
+rotations|object|b3e51bc7a718810f|||||||||||||||

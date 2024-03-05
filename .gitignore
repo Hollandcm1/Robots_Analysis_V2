@@ -19,3 +19,7 @@ data/codebook/*.csv
 # R data files
 *.RData
 *.Rhistory
+
+# Drake cache
+*.drake
+*.DS_Store
