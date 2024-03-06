@@ -9,7 +9,7 @@ library(targets)
 # Set target options:
 tar_option_set(
   packages = c("tibble", "R.matlab", "here", "openxlsx", "dplyr", "stringr", 
-               "ggplot2", "tidyr", "purrr") # Packages that your targets need for their tasks.
+               "ggplot2", "tidyr", "purrr") # Packages that your targets need
 )
 
 # Run the R scripts in the R/ folder with your custom functions:
@@ -17,6 +17,7 @@ tar_source(files = "R_targets_scripts")
 
 # Target List
 list(
+  # Codebook
   tar_target(
     name = codes,
     command = import_codebook()
@@ -24,29 +25,33 @@ list(
   # Separate targets to extract each element
   tar_target(
     name = codes_conditions,
-    command = codes$conditions
+    command = codes[[1]]
   ),
   tar_target(
     name = codes_participant_conditions,
-    command = codes$participant_conditions
+    command = codes[[2]]
   ),
+  # Maps
   tar_target(
     name = maps,
     command = pull_maps(codes_participant_conditions, codes_conditions, environments)
+  ),
+  tar_target(
+    name = maps_plotted,
+    command = plot_maps(maps),
+    #cue = tar_cue(mode = "always")
+  ),
+  # Condense Data
+  tar_target(
+    name = compiled_data,
+    command = condense_data(codes_participant_conditions)
+  ),
+  # Participant Error Correction
+  tar_target(
+    name = corrected_data,
+    command = participant_error_correction(compiled_data)
   )
-  # tar_target(
-  #   name = c(codes.conditions, codes.participant_conditions),
-  #   command = import_codebook()
-  #   # format = "qs" # Efficient storage for general data objects.
-  # )
-  # tar_target(
-  #   name = maps,
-  #   command = import_maps()
-  # )
-  # tar_target(
-  #   name = conditions_and_environments,
-  #   command = source(here('scripts', 'define_environments_and_conditions.R'))
-  # )
+  
 )
 
 # tar_manifest()
