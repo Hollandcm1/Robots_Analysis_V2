@@ -11,7 +11,7 @@
 plot_maps <- function(maps) {
   
   # this is jank to make the _targets work
-  maps <- NULL
+  # maps <- NULL
   
   # create path strings
   maps_filepath <- here('data', 'processed', 'maps')
@@ -36,5 +36,7 @@ plot_maps <- function(maps) {
     # clear map
     rm(map)
   }
+  
+  return(sys.time())
   
 }
