@@ -23,3 +23,4 @@ data/codebook/*.csv
 # Drake cache
 *.drake
 *.DS_Store
+*.png

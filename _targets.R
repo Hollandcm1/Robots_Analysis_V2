@@ -50,6 +50,11 @@ list(
   tar_target(
     name = corrected_data,
     command = participant_error_correction(compiled_data)
+  ),
+  # Plot All Trials
+  tar_target(
+    name = all_trials,
+    command = plot_all_trials(corrected_data)
   )
   
 )
