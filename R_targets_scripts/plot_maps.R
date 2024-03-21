@@ -37,6 +37,6 @@ plot_maps <- function(maps) {
     rm(map)
   }
   
-  return(sys.time())
+  return(Sys.time())
   
 }

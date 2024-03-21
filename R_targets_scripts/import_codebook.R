@@ -22,5 +22,6 @@ import_codebook <- function() {
   codes.participant_conditions <- codebook[, c("Participant", "first", "second", "third", "forth")]
   names(codes.participant_conditions) <- c("Participant", "First Condition", "Second Condition", "Third Condition", "Forth Condition")
   
+  Sys.time()
   return(list(codes.conditions, codes.participant_conditions))
 }
