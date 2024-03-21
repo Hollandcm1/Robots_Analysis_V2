@@ -53,12 +53,12 @@ list(
   ),
   # Plot All Trials
   tar_target(
-    name = all_trials,
+    name = all_trials_plots,
     command = plot_all_trials(corrected_data)
   )
   
 )
 
 # tar_manifest()
-#tar_visnetwork()
+# tar_visnetwork()
 # tar_make()
