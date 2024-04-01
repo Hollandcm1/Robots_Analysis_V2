@@ -1,5 +1,8 @@
 # build_data_long_force
 
+# peak force?
+# time by force matrix?
+
 build_data_long <- function(data) {
   
   print("Building data_long_force")
@@ -23,8 +26,15 @@ build_data_long <- function(data) {
       
       force <- as.data.frame(trial_data['force_input'])
       
+      if (nrow(force) == 0) {
+        warning(paste("Participant", participants[p_num], "Trial", trials[trial_num], "has no force data"))
+        next
+      }
+      
       # get magnitude of x and y force
       force$force_mag <- sqrt(force[,1]^2 + force[,2]^2)
+      
+      
       
       # plot force magnitude by time
       # ggplot(force, aes(x = 1:nrow(force), y = force_mag)) +
@@ -32,20 +42,12 @@ build_data_long <- function(data) {
       #   labs(title = paste("Participant", participants[p_num], "Trial", trials[trial_num])) +
       #   theme_classic()
       
-      # save force_mag to data_long
-      data_list <- list()
-      for (i in 1:nrow(force)) {
-        row <- tibble(participant = p_num, 
-                      trial = trial_num, 
-                      frame = i, 
-                      force_mag = force$force_mag[i])
-        #data_list[[i]] <- row
-        data_long <- rbind(data_long, row)
-      }
+      # add needed row information for long dataframe
+      dat <- force %>% 
+        mutate(participant = p_num, trial = trial_num, row = 1:nrow(force))
       
-      # peak force?
-      # time by force matrix?
-      # i still need to clean to be within the maze
+      # save force_mag to data_long
+      data_long <- rbind(data_long, dat)
       
       current_time <- Sys.time() - start_time
       print(current_time)
