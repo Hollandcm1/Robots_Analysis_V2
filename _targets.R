@@ -51,10 +51,20 @@ list(
     name = corrected_data,
     command = participant_error_correction(compiled_data)
   ),
+  # Mark Within Maze
+  tar_target(
+    name = within_maze_marked_data,
+    command = mark_within_maze(corrected_data)
+  ),
   # Plot All Trials
   tar_target(
     name = all_trials_plots,
     command = plot_all_trials(corrected_data)
+  ),
+  # Build Data Long
+  tar_target(
+    name = data_long,
+    command = build_data_long(within_maze_marked_data)
   )
   
 )
