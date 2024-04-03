@@ -3,7 +3,7 @@
 # peak force?
 # time by force matrix?
 
-build_data_long <- function(data) {
+build_data_long <- function(data, codes) {
   
   print("Building data_long_force")
   data_long <- data.frame()
@@ -40,9 +40,18 @@ build_data_long <- function(data) {
       #   labs(title = paste("Participant", participants[p_num], "Trial", trials[trial_num])) +
       #   theme_classic()
       
-      # add needed row information for long dataframe
-      dat <- force %>% 
-        mutate(participant = p_num, trial = trial_num, frame = 1:nrow(force))
+      # Initialize data frame (using force for length)
+      dat <- data.frame(participant = numeric(nrow(force)))
+      
+      # add basic participant information
+      dat$participant <- p_num
+      dat$trial <- trial_num
+      dat$frame <- 1:nrow(force)
+      
+      # Add force
+      dat$force_x <- force[,1]
+      dat$force_y <- force[,2]
+      dat$force_magnitude <- force$force_mag
       
       # within maze data
       within_maze <- as.data.frame(trial_data['within_maze'])
@@ -65,6 +74,22 @@ build_data_long <- function(data) {
       position <- as.data.frame(trial_data['position_leader'])
       dat$position_x_leader <- position$position_leader.1
       dat$position_y_leader <- position$position_leader.2
+      
+      # haptic data 
+      condition <- trial_data[['condition']]
+      haptic_row <- which(codes$Factor == 'Haptic')
+      visual_row <- which(codes$Factor == 'Visual')
+      column_name <- paste('Condition', condition)
+      haptic <- codes[haptic_row, column_name]
+      visual <- codes[visual_row, column_name]
+      haptic <- rep(haptic, nrow(position))
+      visual <- rep(visual, nrow(position))
+      dat$haptic <- haptic
+      dat$visual <- visual
+      
+      # condition as well
+      condition <- trial_data[['condition']]
+      dat$condition <- condition
       
       # save dat to data_long
       data_long <- rbind(data_long, dat)
