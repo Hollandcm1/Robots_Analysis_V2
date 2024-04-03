@@ -64,7 +64,7 @@ list(
   # Build Data Long
   tar_target(
     name = data_long,
-    command = build_data_long(within_maze_marked_data)
+    command = build_data_long(within_maze_marked_data, codes_conditions)
   )
   
 )
