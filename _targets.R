@@ -54,7 +54,7 @@ list(
   # Mark Within Maze
   tar_target(
     name = within_maze_marked_data,
-    command = mark_within_maze(corrected_data)
+    command = mark_within_maze(bad_trials_removed_data)
   ),
   # Plot All Trials
   tar_target(
@@ -65,6 +65,10 @@ list(
   tar_target(
     name = data_long,
     command = build_data_long(within_maze_marked_data, codes_conditions)
+  ), 
+  tar_target(
+    name = bad_trials_removed_data,
+    command = remove_bad_trials(corrected_data)
   )
   
 )

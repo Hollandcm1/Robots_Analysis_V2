@@ -15,19 +15,20 @@ plot_trial_by_velocity <- function(data, participant_number = 1, trial_number = 
   trial_data <- participant_data[[trial_number_long]]
   
   # get the velocity data
-  velocity_data <- as.data.frame(trial_data$velocity_robot)
-  names(velocity_data) <- c('velocity', 'NA1', 'NA2')
+  #velocity_data <- as.data.frame(trial_data$velocity_robot)
+  velocity_data <- as.data.frame(trial_data$linear_and_angular_velocity)
+  names(velocity_data) <- c('velocity', 'NA1')
   
   # get position data
   position_data <- as.data.frame(trial_data$position_robot)
-  names(position_data) <- c('pos_x', 'pos_y', 'NA3')
+  names(position_data) <- c('pos_x', 'pos_y', 'NA2')
   
   # combine the data
   combined_data <- cbind(velocity_data, position_data)
   
   # get map data
   map_data <- as.data.frame(trial_data$position_objects)
-  names(map_data) <- c('x', 'y', 'NA4')
+  names(map_data) <- c('x', 'y', 'NA3')
   
   # plot the position of the robot with colour as velocity
   g <- ggplot(combined_data, aes(x = pos_x, y = pos_y, colour = velocity)) + 
