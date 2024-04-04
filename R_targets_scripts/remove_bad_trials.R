@@ -72,7 +72,7 @@ remove_bad_trials <- function(data) {
           trials[trial_num] == "P17_24" |
           trials[trial_num] == "P18_3" |
           trials[trial_num] == "P18_16" |
-          trials[trial_num] == "P19_1" | # weird jump
+          #trials[trial_num] == "P19_1" | # weird jump
           trials[trial_num] == "P19_5" |
           trials[trial_num] == "P19_18" |
           trials[trial_num] == "P19_21" |
