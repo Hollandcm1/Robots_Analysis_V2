@@ -16,7 +16,7 @@ condense_data|function|d0d5a18033b48b07|||||||||||||||
 conditions|object|c9526a266010cb89|||||||||||||||
 corrected_data|stem|e0262df427e9496d|1d43ad33c9175af5|b9deba38943845f0|600236696||t19788.188287228s|c0d6d36f7f0eee30|682768586|rds|local|vector|||0.123||
 cpdes_participant_conditions|object|e89c6e258dd3216d|||||||||||||||
-data_long|stem|55a2a844b7985163|352bfb165c12f097|4ccdc9657d79668f|1218221069||t19816.5785627363s|144b2343787fa78c|255078117|rds|local|vector|||143.386||
+data_long|stem|a22173caa276ad94|af0bdcbf86ed9bb2|df7884ea735cec73|1218221069||t19816.5818187762s|4745c39bb9f8e66b|255134249|rds|local|vector|||152.587||
 data_long_compiled|stem||3a16f4a93e177bc6|de16f1ce918c8438|-2144245014||t19815.5319613668s||0|rds|local|vector|||0.004||could not find function build_data_long_force
 environments|object|cbde5eff1e2d7af8|||||||||||||||
 f|object|223519db110d910f|||||||||||||||
@@ -40,19 +40,4 @@ rename_list_element|function|6fb2aa788f900467|||||||||||||||
 rotations|object|b3e51bc7a718810f|||||||||||||||
 tmp_data|object|14eff1dd41c33f8f|||||||||||||||
 wiht_maze_marked_data|stem|ffbcaaa8ccbb1fb8|b62599fb7912db1c|610aef2c7abc8041|-1326337354||t19815.4834809609s|ced91bbbb3e5a78f|682770374|rds|local|vector|||0.739||
-within_maze_marked_data|stem|6ed9ca00b2573208|b62599fb7912db1c|82536dd98d6c0399|149797266||t19815.5147461963s|147df95ab28e1fc0|683019121|rds|local|vector|||0.684|Participant 5 Trial P5_27 has no position data. Participant 18 Trial P18_3 has no position data. Participant 20 Trial P20_29 has no position data. Participant 21 Trial P21_4 has no position data|
-environments|object|cbde5eff1e2d7af8
-plot_trial_by_velocity|function|dd6f717111af0554
-build_data_long|function|9c5890a100636e3c
-mark_within_maze|function|d679159606b2eb8f
-rename_list_element|function|6fb2aa788f900467
-conditions|object|c9526a266010cb89
-pull_maps|function|5e3df9e06e93b409
-rotations|object|b3e51bc7a718810f
-import_codebook|function|7d7a74ddda81f55a
-remove_bad_trials|function|7d02f4e644d6f92f
-plot_maps|function|8525349ec26b120c
-plot_all_trials|function|c78141b241b44f90
-participant_error_correction|function|6e7bc7d50748dea8
-condense_data|function|d0d5a18033b48b07
 within_maze_marked_data|stem|1e938d9c41c368a8|3e105a54198a310a|2dc4cdc51e2cf816|149797266||t19816.5799216685s|8b13a7f978621e79|608577511|rds|local|vector|||0.679||
