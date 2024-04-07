@@ -13,7 +13,7 @@ tar_option_set(
 )
 
 # Run the R scripts in the R/ folder with your custom functions:
-tar_source(files = "R_targets_scripts")
+tar_source(files = "R_targets_functions")
 
 # Target List
 list(
@@ -69,6 +69,14 @@ list(
   tar_target(
     name = bad_trials_removed_data,
     command = remove_bad_trials(corrected_data)
+  ), 
+  tar_target(
+    name = data_long_calculated,
+    command = data_long_calculations(data_long)
+  ),
+  tar_target(
+    name = average_force_ANVOA,
+    command = run_ANOVA_average_force(data_long_calculated)
   )
   
 )

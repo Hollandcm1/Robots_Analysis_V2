@@ -1,0 +1,10 @@
+Call:
+   aov(formula = average_force ~ condition_names, data = average_force_by_participant)
+
+Terms:
+                condition_names Residuals
+Sum of Squares         0.107874 16.521606
+Deg. of Freedom               3        94
+
+Residual standard error: 0.4192395
+Estimated effects may be unbalanced

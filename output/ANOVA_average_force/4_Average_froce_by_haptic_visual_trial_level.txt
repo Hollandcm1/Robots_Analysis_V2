@@ -1,0 +1,36 @@
+
+Call:
+aov(formula = average_force ~ haptic * visual + Error(participant/trial), 
+    data = average_force_by_trial_hv)
+
+Grand Mean: 0.8420773
+
+Stratum 1: participant
+
+Terms:
+                  haptic   visual haptic:visual Residuals
+Sum of Squares   0.76251  0.04697       7.48592  81.11175
+Deg. of Freedom        1        1             1        21
+
+Residual standard error: 1.965315
+Estimated effects may be unbalanced
+
+Stratum 2: participant:trial
+
+Terms:
+                   haptic    visual haptic:visual Residuals
+Sum of Squares  0.6292120 0.0057608     0.1070022 1.2823760
+Deg. of Freedom         1         1             1        22
+
+Residual standard error: 0.2414328
+Estimated effects may be unbalanced
+
+Stratum 3: Within
+
+Terms:
+                  haptic   visual haptic:visual Residuals
+Sum of Squares   0.34267  0.51072       0.10151  67.67894
+Deg. of Freedom        1        1             1       676
+
+Residual standard error: 0.3164124
+Estimated effects may be unbalanced
