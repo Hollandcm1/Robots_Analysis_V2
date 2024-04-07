@@ -97,9 +97,8 @@ ggplot(average_force_by_trial, aes(x = average_force, fill = haptic)) +
   geom_histogram(alpha = 0.5, position = "identity", binwidth = 0.1) + # Adjust binwidth as needed
   scale_fill_brewer(palette = "Set1") +  # Optional: Use a color palette for better visibility
   labs(title = "Overlapping Distribution of Average Force by Haptic Condition",
-       x = "Average Force",
+       x = "Vision",
        y = "Count") +
   theme_minimal() +
   facet_wrap(~visual, scales = "free_y") # Use "free_y" if each facet needs to have its own y scale
-
 
