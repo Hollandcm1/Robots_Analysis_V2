@@ -1,0 +1,14 @@
+Linear mixed model fit by REML ['lmerMod']
+Formula: time_through_maze ~ average_force + (1 | participant) + (1 |  
+    trial)
+   Data: data
+REML criterion at convergence: 21477053
+Random effects:
+ Groups      Name        Std.Dev.
+ trial       (Intercept)  6.565  
+ participant (Intercept)  5.213  
+ Residual                15.950  
+Number of obs: 2563799, groups:  trial, 32; participant, 25
+Fixed Effects:
+  (Intercept)  average_force  
+        59.56         -25.27  
