@@ -1,0 +1,10 @@
+Call:
+   aov(formula = max_force ~ condition_names, data = max_force_by_trial)
+
+Terms:
+                condition_names Residuals
+Sum of Squares           1.1781  290.5074
+Deg. of Freedom               3       725
+
+Residual standard error: 0.6330086
+Estimated effects may be unbalanced

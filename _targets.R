@@ -77,6 +77,14 @@ list(
   tar_target(
     name = average_force_ANVOA,
     command = run_ANOVA_average_force(data_long_calculated)
+  ), 
+  tar_target(
+    name = max_force_ANVOA,
+    command = run_ANOVA_max_force(data_long_calculated)
+  ), 
+  tar_target(
+    name = velocity_ANVOA,
+    command = run_ANOVA_velocity(data_long_calculated)
   )
   
 )

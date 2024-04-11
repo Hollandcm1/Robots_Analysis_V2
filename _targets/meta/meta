@@ -30,6 +30,7 @@ map_figures|stem|17656ca132f3e9f7|d9696f083d5c7fb0|4058570bbedee8fd|-1985196834|
 maps|stem|17656ca132f3e9f7|17590690ccf01c0e|032b09ff023c6882|-755393448||t19788.1114851019s|a1c456b03adbfbf8|44|rds|local|vector|||0.685||
 maps_plotted|stem|fae0cf47571a3d35|8afc91f0271e9881|d93fbd4efef9300d|678691449||t19802.1487818575s|41200f7f0df0ebd3|96|rds|local|vector|||0.969||
 mark_within_maze|function|d679159606b2eb8f|||||||||||||||
+max_force_ANVOA|stem|a90556be59204439|226a09d53648025f|8ff27d3824e64afc|1385852449||t19820.9613384288s|9712f9cb4307e5f0|183|rds|local|vector|||1.961||
 p_num|object|d62de3d7487789a8|||||||||||||||
 participant|object|dc381eda529141d0|||||||||||||||
 participant_error_correction|function|6e7bc7d50748dea8|||||||||||||||
@@ -42,6 +43,9 @@ remove_bad_trials|function|aae356e8bb540047|||||||||||||||
 rename_list_element|function|6fb2aa788f900467|||||||||||||||
 rotations|object|b3e51bc7a718810f|||||||||||||||
 run_ANOVA_average_force|function|7b51279e83450aff|||||||||||||||
+run_ANOVA_max_force|function|a08a0d8948d7c2e7|||||||||||||||
+run_ANOVA_velocity|function|ac12c59f56c82269|||||||||||||||
 tmp_data|object|14eff1dd41c33f8f|||||||||||||||
+velocity_ANVOA|stem|23d90bfa34627df8|86f352ffdc2b1cb5|a67276a19b24849e|186725231||t19821.0100260853s|11684eb95dbf8c0d|189|rds|local|vector|||2.275||
 wiht_maze_marked_data|stem|ffbcaaa8ccbb1fb8|b62599fb7912db1c|610aef2c7abc8041|-1326337354||t19815.4834809609s|ced91bbbb3e5a78f|682770374|rds|local|vector|||0.739||
 within_maze_marked_data|stem|7f5f4856745ccdd1|3e105a54198a310a|4b7fd683faabf83f|149797266||t19820.8222732126s|8b8adc2375b65fc8|610538430|rds|local|vector|||0.502||
