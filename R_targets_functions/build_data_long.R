@@ -91,6 +91,10 @@ build_data_long <- function(data, codes) {
       condition <- trial_data[['condition']]
       dat$condition <- condition
       
+      # map
+      map <- trial_data[['environment']]
+      dat$map <- map
+      
       # save dat to data_long
       data_long <- rbind(data_long, dat)
       
