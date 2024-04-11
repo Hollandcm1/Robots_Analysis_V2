@@ -1,0 +1,10 @@
+Call:
+   aov(formula = max_force ~ haptic * visual, data = max_force_by_trial_hv)
+
+Terms:
+                   haptic    visual haptic:visual Residuals
+Sum of Squares    0.27121   0.01271       0.89417 290.50740
+Deg. of Freedom         1         1             1       725
+
+Residual standard error: 0.6330086
+Estimated effects may be unbalanced

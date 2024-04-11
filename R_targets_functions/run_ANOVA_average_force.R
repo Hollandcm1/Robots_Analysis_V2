@@ -46,6 +46,10 @@ run_ANOVA_average_force <- function(data) {
   #mauchly_result <- mauchly(anova_results_hv)
   #print(mauchly_result)
   
+  ##############
+  ### ANOVAs ###
+  ##############
+  
   # ANOVA 1
   anova_results <- aov(average_force ~ condition_names, data = average_force_by_participant)
   summary(anova_results)
@@ -96,6 +100,7 @@ run_ANOVA_average_force <- function(data) {
   #################
   ### Visualize ###
   #################
+  
   g1 <- ggplot(average_force_by_participant, aes(x = condition_names, y = average_force, color=condition_names)) +
     geom_boxplot() +
     geom_jitter(width = 0.2) +
