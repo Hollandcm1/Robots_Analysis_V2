@@ -9,7 +9,7 @@ library(targets)
 # Set target options:
 tar_option_set(
   packages = c("tibble", "R.matlab", "here", "openxlsx", "dplyr", "stringr", 
-               "ggplot2", "tidyr", "purrr", "flexplot") # Packages that your targets need
+               "ggplot2", "tidyr", "purrr", "flexplot", "lme4", "sjPlot") # Packages that your targets need
 )
 
 # Run the R scripts in the R/ folder with your custom functions:
@@ -85,6 +85,14 @@ list(
   tar_target(
     name = velocity_ANVOA,
     command = run_ANOVA_velocity(data_long_calculated)
+  ), 
+  tar_target(
+    name = average_force_Regression,
+    command = run_Regression_average_force(data_long_calculated)
+  ),
+  tar_target(
+    name = max_force_Regression,
+    command = run_Regression_max_force(data_long_calculated)
   )
   
 )

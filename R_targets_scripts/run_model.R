@@ -3,18 +3,23 @@
 library(lme4)
 library(sjPlot)
 library(ggbeeswarm)
+library(dplyr)
+library(ggplot2)
+library(ggbeeswarm)
+library(lme4)
+
 
 data <- data_long
 
 # change type
-data$condition <- as.factor(data$condition)
+data$condition_num <- as.factor(data$condition_num)
 data$participant <- as.factor(data$participant)
 data$haptic <- as.factor(data$haptic)
 data$visual <- as.factor(data$visual)
 
 # Aggregate
 average_force_by_trial <- data %>%
-  group_by(participant, trial, condition, time_through_maze, max_force, path_length, haptic, visual) %>%
+  group_by(participant, trial, condition_nums, time_through_maze, max_force, path_length, haptic, visual) %>%
   summarise(average_force = mean(force_magnitude, na.rm = TRUE))
 
 ##############
@@ -70,15 +75,15 @@ ggplot(data = average_force_by_trial, aes(x = path_length, y = average_force)) +
   theme_minimal() +
   labs(title = "Average Force by Path Length", x = "Path Length", y = "Average Force")
 
-ggplot(data = average_force_by_trial, aes(x = haptic, y = average_force, group=condition, colour=visual)) +
+ggplot(data = average_force_by_trial, aes(x = haptic, y = average_force, group=visual, colour=visual)) +
   geom_boxplot() +
   geom_jitter(width = 0.2, height = 0) +
   theme_minimal() +
-  labs(title = "Average Force by Condition", x = "Condition", y = "Average Force") +
+  labs(title = "Average Force by Condition", x = "Haptic", y = "Average Force") +
   facet_wrap(~visual)
 
 # violin version 
-ggplot(data = average_force_by_trial, aes(x = haptic, y = average_force, group=condition, colour=visual)) +
+ggplot(data = average_force_by_trial, aes(x = haptic, y = average_force, group=condition_num, colour=visual)) +
   geom_violin() +
   geom_boxplot(width=0.2) +
   #geom_jitter(width = 0.2, height=0) +
