@@ -19,7 +19,7 @@ data$visual <- as.factor(data$visual)
 
 # Aggregate
 average_force_by_trial <- data %>%
-  group_by(participant, trial, condition_nums, time_through_maze, max_force, path_length, haptic, visual) %>%
+  group_by(participant, trial, condition_nums, time_through_maze, max_force, path_length, haptic, visual, map) %>%
   summarise(average_force = mean(force_magnitude, na.rm = TRUE))
 
 ##############
@@ -27,29 +27,29 @@ average_force_by_trial <- data %>%
 ##############
 
 # Model 1
-model1 <- lmer(time_through_maze ~ average_force * haptic * visual * max_force * path_length + (1|participant), data = data)
+model1 <- lmer(time_through_maze ~ average_force * haptic * visual * max_force * path_length * map + (1|participant) + (1|trial), data = average_force_by_trial)
 summary(model1)
 tab_model(model1)
 
-# Model 2
-model2 <- lmer(time_through_maze ~ average_force + (1|participant), data = data)
-summary(model2)
-tab_model(model2)
-
-# Model 3
-model3 <- lmer(time_through_maze ~ average_force + (1|participant) + (1|trial), data = data)
-summary(model3)
-tab_model(model3)
-
-# Model 4
-model4 <- lmer(path_length ~ average_force + (1|participant) + (1|trial), data = data)
-summary(model4)
-tab_model(model4)
-
-# Model 5
-model5 <- lmer(average_force ~ haptic * visual + (1|participant) + (1|trial), data = data)
-summary(model5)
-tab_model(model5)
+# # Model 2
+# model2 <- lmer(time_through_maze ~ average_force + (1|participant), data = data)
+# summary(model2)
+# tab_model(model2)
+# 
+# # Model 3
+# model3 <- lmer(time_through_maze ~ average_force + (1|participant) + (1|trial), data = data)
+# summary(model3)
+# tab_model(model3)
+# 
+# # Model 4
+# model4 <- lmer(path_length ~ average_force + (1|participant) + (1|trial), data = data)
+# summary(model4)
+# tab_model(model4)
+# 
+# # Model 5
+# model5 <- lmer(average_force ~ haptic * visual + (1|participant) + (1|trial), data = data)
+# summary(model5)
+# tab_model(model5)
 
 
 #################
@@ -106,4 +106,22 @@ ggplot(average_force_by_trial, aes(x = average_force, fill = haptic)) +
        y = "Count") +
   theme_minimal() +
   facet_wrap(~visual, scales = "free_y") # Use "free_y" if each facet needs to have its own y scale
+
+# ggplot(average_force_by_trial, aes(x = haptic, y=max_force)) +
+#   geom_histogram(alpha = 0.5, position = "identity", binwidth = 0.1) + # Adjust binwidth as needed
+#   scale_fill_brewer(palette = "Set1") +  # Optional: Use a color palette for better visibility
+#   labs(title = "Overlapping Distribution of Average Force by Visual Condition",
+#        x = "Haptic",
+#        y = "Count") +
+#   theme_minimal() +
+#   facet_wrap(~haptic, scales = "free_y") # Use "free_y" if each facet needs to have its own y scale)
+
+flexplot(data = average_force_by_trial, time_through_maze ~ max_force + path_length | haptic, method='lm')
+flexplot(data = average_force_by_trial, time_through_maze ~ average_force + path_length | haptic, method='lm')
+
+flexplot(data = average_force_by_trial, time_through_maze ~ haptic + path_length | max_force, method='lm')
+
+flexplot(data = average_force_by_trial, time_through_maze ~ path_length + max_force | haptic, method='lm')
+
+
 

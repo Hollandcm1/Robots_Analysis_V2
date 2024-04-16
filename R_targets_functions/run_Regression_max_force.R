@@ -4,6 +4,10 @@
 
 run_Regression_max_force <- function(data) {
   
+  # isolate for within maze
+  data <- data %>%
+    filter(within_maze == 1)
+  
   #################
   ### Aggragate ###
   #################

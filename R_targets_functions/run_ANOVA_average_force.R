@@ -135,6 +135,21 @@ run_ANOVA_average_force <- function(data) {
   print(g4)
   ggsave(g4, file = here('output','ANOVA_average_force','8_Average_froce_by_visual_trial_level.png'))
   
+  g5 <- ggplot(average_force_by_trial_hv, aes(x = visual, y = average_force, group=participant)) +
+    geom_line() +
+    geom_jitter(width = 0.2) +
+    theme_minimal() +
+    labs(title = "Average Force", x = "Vision", y = "Average Force") 
+  print(g5)
+  
+  g5 <- ggplot(average_force_by_participant_hv, aes(x = visual, y = average_force, group=participant)) +
+    geom_line() +
+    geom_jitter(width = 0.2) +
+    theme_minimal() +
+    labs(title = "Average Force", x = "Vision", y = "Average Force") 
+  print(g5)
+  
+  
   return(Sys.time())
   
 }

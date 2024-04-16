@@ -42,4 +42,10 @@ ggplot(data, aes(x=force_magnitude, fill = condition_nums)) +
   facet_wrap(~participant)
 
 
+ggplot(data, aes(x=force_magnitude, y=distance_since_prev_frame)) +
+  geom_point() +
+  theme_minimal() +
+  facet_wrap(~participant) +
+  ylim(0, 0.3)
+
 
