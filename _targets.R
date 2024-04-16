@@ -49,7 +49,7 @@ list(
   # Participant Error Correction
   tar_target(
     name = corrected_data,
-    command = participant_error_correction(compiled_data)
+    command = participant_error_correction(compiled_data, codes_participant_conditions)
   ),
   # Mark Within Maze
   tar_target(

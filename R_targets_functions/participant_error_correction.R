@@ -6,7 +6,7 @@
 #' @examples
 #' participant_error_correction(compiled_data)
 #' 
-participant_error_correction <- function(compiled_data){
+participant_error_correction <- function(compiled_data, codes_participant_conditions){
   
   # initialize corrected data
   corrected_data <- list()
@@ -166,6 +166,9 @@ participant_error_correction <- function(compiled_data){
       env_number <- as.numeric(gsub(".*env(\\d+).*", "\\1", name))
       # pull rotation number
       rot_number <- as.numeric(gsub(".*rot(\\d+).*", "\\1", name))
+      
+      # Correction based on participant counterbalancing
+      cond_number <- codes_participant_conditions[[cond_number+1]][as.numeric(p_num)]
       
       # add to list
       tmp[[name]]$condition <- cond_number
