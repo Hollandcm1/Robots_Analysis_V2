@@ -1,5 +1,8 @@
 # complex_model_1
 
+# add maps as a factor
+data$map <- as.factor(data$map)
+
 #################
 ### Aggregate ###
 #################
