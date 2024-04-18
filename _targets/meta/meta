@@ -26,7 +26,7 @@ data_long_compiled|stem||3a16f4a93e177bc6|de16f1ce918c8438|-2144245014||t19815.5
 environments|object|cbde5eff1e2d7af8|||||||||||||||
 f|object|223519db110d910f|||||||||||||||
 filenames|object|20590dec3dee57fe|||||||||||||||
-flag_possible_fighting|function|848996a9a8335882|||||||||||||||
+flag_possible_fighting|function|78a7a660e5caf061|||||||||||||||
 import_codebook|function|7d7a74ddda81f55a|||||||||||||||
 make_map_figures|function|cd4aa7c6992d1317|||||||||||||||
 map_figures|stem|17656ca132f3e9f7|d9696f083d5c7fb0|4058570bbedee8fd|-1985196834||t19788.0478917784s|a1c456b03adbfbf8|44|rds|local|vector|||1.183|The size argument of element_rect is deprecated as of ggplot2 3.4.0.ℹ Please use the linewidth argument instead.|
@@ -43,7 +43,7 @@ participant_filepath|object|8da3460be20282f7|||||||||||||||
 plot_all_trials|function|c78141b241b44f90|||||||||||||||
 plot_maps|function|8525349ec26b120c|||||||||||||||
 plot_trial_by_velocity|function|dd6f717111af0554|||||||||||||||
-possible_fighting_flagged|stem|17656ca132f3e9f7|7455597ef18eec66|31becdbe7fa4f66e|1706137611||t19830.0629173865s|a1c456b03adbfbf8|44|rds|local|vector|||69.566||
+possible_fighting_flagged|stem|17656ca132f3e9f7|7455597ef18eec66|dc96895f3719aec5|1706137611||t19830.7314700849s|a1c456b03adbfbf8|44|rds|local|vector|||69.686||
 pull_maps|function|5e3df9e06e93b409|||||||||||||||
 remove_bad_trials|function|aae356e8bb540047|||||||||||||||
 rename_list_element|function|6fb2aa788f900467|||||||||||||||

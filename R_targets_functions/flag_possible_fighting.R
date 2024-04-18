@@ -2,7 +2,8 @@
 
 flag_possible_fighting <- function(data) {
    
-  length_of_fight <- 1000 # in frames
+  
+  length_of_fight <- 999 # in frames
   # force_criteria <- 0.9593
   force_criteria <- summary(data$force_magnitude)[[5]][1] # 3rd quartile
   
