@@ -9,7 +9,8 @@ library(targets)
 # Set target options:
 tar_option_set(
   packages = c("tibble", "R.matlab", "here", "openxlsx", "dplyr", "stringr", 
-               "ggplot2", "tidyr", "purrr", "flexplot", "lme4", "sjPlot", "zoo") # Packages that your targets need
+               "ggplot2", "tidyr", "purrr", "flexplot", "lme4", "sjPlot", "zoo", 
+               "grid", "cowplot") # Packages that your targets need
 )
 
 # Run the R scripts in the R/ folder with your custom functions:
@@ -72,7 +73,7 @@ list(
   ), 
   tar_target(
     name = data_long_calculated,
-    command = data_long_calculations(data_long)
+    command = data_long_calculations(data_long, maps)
   ),
   tar_target(
     name = average_force_ANVOA,
@@ -95,8 +96,12 @@ list(
     command = run_Regression_max_force(data_long_calculated)
   ),
   tar_target(
-    name = possible_fighting_flagged,
+    name = possible_fighting_flagged_data,
     command = flag_possible_fighting(data_long_calculated)
+  ), 
+  tar_target(
+    name = all_trials_force_plots,
+    command = plot_all_trial_force(possible_fighting_flagged_data, maps)
   )
   
 )

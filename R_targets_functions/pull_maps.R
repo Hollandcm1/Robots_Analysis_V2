@@ -14,6 +14,7 @@ pull_maps <- function(codes_participant_conditions, codes_conditions, environmen
   
   # create environment list we can manipulate
   environments_left <- environments
+  maps <- list()
   
   # loop through all participants
   for (p_num in 1:length(codes_participant_conditions$Participant)) {
@@ -60,10 +61,14 @@ pull_maps <- function(codes_participant_conditions, codes_conditions, environmen
       environments_left <- environments_left[environments_left != as.numeric(str_extract(env_num, "\\d+"))]
       # send update to console
       print(paste0("Found ", env_num))
+      # store in maps variable
+      maps[[env_num]] <- map
       # clear temp_data and map
       rm(tmp_data, map, base, environments_to_check, env_num)
     }
     
   }
+  
+  return(maps)
   
 }

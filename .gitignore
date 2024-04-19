@@ -24,3 +24,5 @@ data/codebook/*.csv
 *.drake
 *.DS_Store
 *.png
+Rplots.pdf
+Rplots.pdf
