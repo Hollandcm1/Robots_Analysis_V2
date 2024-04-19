@@ -1,14 +1,16 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
 .Random.seed|object|70697cdbfb275472|||||||||||||||
+all|stem||26601ef8a9246fc3|4eb0a81c53506686|671959644||t19832.1610610366s||0|rds|local|vector|||0.003||could not find function plot_all_trial_force
 all_data|object|51ec3a63fc6485e3|||||||||||||||
 all_trials|stem|13f2d783768dceac|618daee7dae971bd|eb1d632074357212|-1731953210||t19802.5626745679s|41200f7f0df0ebd3|96|rds|local|vector|||293.513|Removed 188 rows containing missing values or values outside the scale rangegeom_point.. Removed 233 rows containing missing values or values outside the scale rangegeom_point.. Removed 283 rows containing missing values or values outside the scale rangegeom_point.. Removed 423 rows containing missing values or values outside the scale rangegeom_point.. Removed 472 rows containing missing values or values outside the scale rangegeom_point.. Removed 382 rows containing missing values or values outside the scale rangegeom_point.. Removed 510 rows containing missing values or values outside the scale rangegeom_point.. Removed 671 rows containing missing values or values outside the scale rangegeom_point.. Removed 835 rows containing missing values or values outside the scale rangegeom_point.. Removed 507 rows containing missing values or values outside the scale rangegeom_point.. Removed 539 rows containing missing values or values outside the scale rangegeom_point.. Removed 1071 rows containing missing values or values outside the scale rangegeom_point.. Removed 115 rows containing missing values or values outside the scale rangegeom_point.. Removed 287 rows containing missing values or values outside the scale rangegeom_point.. Removed 1080 rows containing missing values or values outside the scale rangegeom_point.. Removed 584 rows containing missing values or values outside the scale rangegeom_point.. Removed 3326 rows containing missing values or values outside the scale rangegeom_point.. Removed 899 rows containing missing values or values outside the scale rangegeom_point.. Removed 879 rows containing missing values or values outside the scale rangegeom_point.. Removed 512 rows containing missing values or values outside the scale rangegeom_point.. Removed 220 rows containing missing values or values outside the scale rangegeom_point.. Removed 84 rows containing mi|
+all_trials_force_plots|stem|17656ca132f3e9f7|64525d6e13a98b26|acff9722efe3c48b|1788925748||t19832.6864282666s|a1c456b03adbfbf8|44|rds|local|vector|||16132.529|Removed 4 rows containing missing values or values outside the scale rangegeom_point.. Removed 4 rows containing missing values or values outside the scale rangegeom_point.. Removed 4 rows containing missing values or values outside the scale rangegeom_point.. Removed 4 rows containing missing values or values outside the scale rangegeom_point.. Removed 4 rows containing missing values or values outside the scale rangegeom_point.. Removed 4 rows containing missing values or values outside the scale rangegeom_point.. Removed 4 rows containing missing values or values outside the scale rangegeom_point.. Removed 233 rows containing missing values or values outside the scale rangegeom_point.. Removed 4 rows containing missing values or values outside the scale rangegeom_point.. Removed 283 rows containing missing values or values outside the scale rangegeom_point.. Removed 188 rows containing missing values or values outside the scale rangegeom_point.. Removed 4 rows containing missing values or values outside the scale rangegeom_point.. Removed 4 rows containing missing values or values outside the scale rangegeom_point.. Removed 686 rows containing missing values or values outside the scale rangegeom_point.. Removed 4 rows containing missing values or values outside the scale rangegeom_point.. Removed 4 rows containing missing values or values outside the scale rangegeom_point.. Removed 4 rows containing missing values or values outside the scale rangegeom_point.. Removed 4 rows containing missing values or values outside the scale rangegeom_point.. Removed 1 row containing missing values or values outside the scale rangegeom_point.. Removed 376 rows containing missing values or values outside the scale rangegeom_point.. Removed 4 rows containing missing values or values outside the scale rangegeom_point.. Removed 4 rows containing missing values or values outside the sc|
 all_trials_plots|stem|b644bd98d66d686f|618daee7dae971bd|40865157fccc80a9|102458737||t19824.6242978886s|41200f7f0df0ebd3|96|rds|local|vector|||278.934|Removed 188 rows containing missing values or values outside the scale rangegeom_point.. Removed 233 rows containing missing values or values outside the scale rangegeom_point.. Removed 283 rows containing missing values or values outside the scale rangegeom_point.. Removed 423 rows containing missing values or values outside the scale rangegeom_point.. Removed 472 rows containing missing values or values outside the scale rangegeom_point.. Removed 382 rows containing missing values or values outside the scale rangegeom_point.. Removed 510 rows containing missing values or values outside the scale rangegeom_point.. Removed 671 rows containing missing values or values outside the scale rangegeom_point.. Removed 835 rows containing missing values or values outside the scale rangegeom_point.. Removed 507 rows containing missing values or values outside the scale rangegeom_point.. Removed 539 rows containing missing values or values outside the scale rangegeom_point.. Removed 1071 rows containing missing values or values outside the scale rangegeom_point.. Removed 115 rows containing missing values or values outside the scale rangegeom_point.. Removed 287 rows containing missing values or values outside the scale rangegeom_point.. Removed 1080 rows containing missing values or values outside the scale rangegeom_point.. Removed 584 rows containing missing values or values outside the scale rangegeom_point.. Removed 3326 rows containing missing values or values outside the scale rangegeom_point.. Removed 899 rows containing missing values or values outside the scale rangegeom_point.. Removed 879 rows containing missing values or values outside the scale rangegeom_point.. Removed 512 rows containing missing values or values outside the scale rangegeom_point.. Removed 220 rows containing missing values or values outside the scale rangegeom_point.. Removed 84 rows containing mi|
-average_force_ANVOA|stem|9a8d3504759b04ab|e0cbba89a6b1b882|71b964a8e9e0834f|-662371750||t19830.0629401538s|41200f7f0df0ebd3|96|rds|local|vector|||1.964|GG Corrections not yet working|
+average_force_ANVOA|stem|cce18f671c24108a|e0cbba89a6b1b882|9c93b01a41838ecf|-662371750||t19832.1660245367s|dfd0d40dc0c5171b|95|rds|local|vector|||1.884|GG Corrections not yet working|
 average_force_regression|stem|11a191eb2b6ca03e|9f4df7f351a300a1|16dfc3c1397a8f64|642336706||t19824.1673660843s|23174e8584d69801|187|rds|local|vector|||22.912||
-average_force_Regression|stem|11a191eb2b6ca03e|9f4df7f351a300a1|ba204c56097a3660|2005063396||t19824.6279568079s|23174e8584d69801|187|rds|local|vector|||23.455||
+average_force_Regression|stem|11a191eb2b6ca03e|9f4df7f351a300a1|5d90345ad09cbd72|2005063396||t19832.1610602375s|23174e8584d69801|187|rds|local|vector|||23.237||
 bad_trials_removed_data|stem|a5a54079c12f07a4|cdc4150054f31de7|8515d7ddac89473e|1518844584||t19824.6210675715s|f34fa99e8ac25300|610329401|rds|local|vector|||0.157|Removed 2 P2_9. Removed 2 P2_13. Removed 3 P3_2. Removed 3 P3_4. Removed 3 P3_7. Removed 3 P3_10. Removed 3 P3_14. Removed 3 P3_16. Removed 3 P3_18. Removed 3 P3_20. Removed 3 P3_23. Removed 5 P5_1. Removed 5 P5_5. Removed 5 P5_9. Removed 5 P5_13. Removed 5 P5_19. Removed 5 P5_23. Removed 5 P5_25. Removed 5 P5_27. Removed 5 P5_31. Removed 6 P6_2. Removed 6 P6_28. Removed 7 P7_2. Removed 7 P7_10. Removed 7 P7_20. Removed 7 P7_25. Removed 7 P7_26. Removed 7 P7_30. Removed 9 P9_22. Removed 10 P10_7. Removed 12 P12_2. Removed 12 P12_6. Removed 12 P12_10. Removed 12 P12_13. Removed 12 P12_22. Removed 12 P12_25. Removed 12 P12_30. Removed 14 P14_4. Removed 14 P14_5. Removed 14 P14_17. Removed 14 P14_32. Removed 15 P15_24. Removed 15 P15_27. Removed 16 P16_1. Removed 16 P16_20. Removed 16 P16_32. Removed 17 P17_24. Removed 18 P18_3. Removed 18 P18_16. Removed 19 P19_5|
 base|object|a149e4405ce27f35|||||||||||||||
-build_data_long|function|cfa4aed6aa5411d2|||||||||||||||
+build_data_long|function|4f91e729a94c9b37|||||||||||||||
 codebook|stem|13a0735fbb97ad8a|52248ed81e586d7a|bc66354c64aa2b53|30408179||t19787.8634391544s|ac227466d022b892|408|rds|local|vector|||0.24||
 codes|stem|13a0735fbb97ad8a|52248ed81e586d7a|06bcaba64e646541|49896712||t19802.6703472222s|ac227466d022b892|408|rds|local|vector|||0.292||
 codes_conditions|stem|5488af83816975aa|65fe4e654b0df260|b16c155e03368196|-1842333379||t19788.1107523148s|4a62745a16bcf9e1|179|rds|local|vector|||0||
@@ -19,32 +21,34 @@ condense_data|function|d0d5a18033b48b07|||||||||||||||
 conditions|object|c9526a266010cb89|||||||||||||||
 corrected_data|stem|236fda9c9c74f3b4|322ccac7e74bc61e|b0a3c8dd337429a6|600236696||t19824.6208259987s|8d3b4e2af2ddd3d4|682768751|rds|local|vector|||0.162||
 cpdes_participant_conditions|object|e89c6e258dd3216d|||||||||||||||
-data_long|stem|13894ccc5454642a|af0bdcbf86ed9bb2|2a9fe9dbe79aebb4|1218221069||t19824.6266229694s|4a9c947c3f4b678b|256029310|rds|local|vector|||167.19||
-data_long_calculated|stem|c6f7a5849bf42bde|4363c545a59d274f|0ded66865575cbdb|964209018||t19824.6272701521s|d2e39bfa69396713|348677744|rds|local|vector|||40.677||
+data_long|stem|1e8faf39867de377|af0bdcbf86ed9bb2|2c013475b5042aa2|1218221069||t19832.1598715434s|2e8694cc552caf38|256079065|rds|local|vector|||179.586||
+data_long_calculated|stem|c889188db28f647d|4363c545a59d274f|35b725bf76e5d47a|964209018||t19832.1605348573s|029c4364d86c930e|348725634|rds|local|vector|||41.432||
 data_long_calculations|function|e090730368371bd5|||||||||||||||
 data_long_compiled|stem||3a16f4a93e177bc6|de16f1ce918c8438|-2144245014||t19815.5319613668s||0|rds|local|vector|||0.004||could not find function build_data_long_force
 environments|object|cbde5eff1e2d7af8|||||||||||||||
 f|object|223519db110d910f|||||||||||||||
 filenames|object|20590dec3dee57fe|||||||||||||||
-flag_possible_fighting|function|78a7a660e5caf061|||||||||||||||
+flag_possible_fighting|function|67e3b64cea1f8e76|||||||||||||||
 import_codebook|function|7d7a74ddda81f55a|||||||||||||||
 make_map_figures|function|cd4aa7c6992d1317|||||||||||||||
 map_figures|stem|17656ca132f3e9f7|d9696f083d5c7fb0|4058570bbedee8fd|-1985196834||t19788.0478917784s|a1c456b03adbfbf8|44|rds|local|vector|||1.183|The size argument of element_rect is deprecated as of ggplot2 3.4.0.ℹ Please use the linewidth argument instead.|
-maps|stem|17656ca132f3e9f7|17590690ccf01c0e|032b09ff023c6882|-755393448||t19788.1114814815s|a1c456b03adbfbf8|44|rds|local|vector|||0.685||
-maps_plotted|stem|fae0cf47571a3d35|8afc91f0271e9881|d93fbd4efef9300d|678691449||t19802.1487731481s|41200f7f0df0ebd3|96|rds|local|vector|||0.969||
+maps|stem|3faa101b68457f27|17590690ccf01c0e|0e1534fbf816e868|-755393448||t19832.2037297665s|42329f28a198c9ff|1072|rds|local|vector|||0.923||
+maps_plotted|stem|a4506163facbed8c|8afc91f0271e9881|f25c8015cb36d371|678691449||t19832.2037436076s|41200f7f0df0ebd3|96|rds|local|vector|||0.959||
 mark_within_maze|function|d679159606b2eb8f|||||||||||||||
-max_force_ANVOA|stem|b819caedc936ae0e|226a09d53648025f|bf62cb45d63ce8eb|1385852449||t19824.6276853028s|334ec4c391c6746c|186|rds|local|vector|||1.778||
+max_force_ANVOA|stem|b819caedc936ae0e|226a09d53648025f|2e9a21e5aee516ef|1385852449||t19832.1607910296s|334ec4c391c6746c|186|rds|local|vector|||1.808||
 max_force_regression|stem|2400e012e72b06b0|78838e72742e55d8|235033176117f7e6|1866056691||t19824.1671008689s|3c3e0d6d1d399035|184|rds|local|vector|||35.015||
-max_force_Regression|stem|2400e012e72b06b0|78838e72742e55d8|f26108d73acb8537|148351005||t19830.061699513s|3c3e0d6d1d399035|184|rds|local|vector|||20.514||
+max_force_Regression|stem|2400e012e72b06b0|78838e72742e55d8|152b2ecf455bab80|148351005||t19832.1607692939s|3c3e0d6d1d399035|184|rds|local|vector|||20.12||
 p_num|object|d62de3d7487789a8|||||||||||||||
 participant|object|dc381eda529141d0|||||||||||||||
 participant_error_correction|function|250676fb0d59924f|||||||||||||||
 participant_filepath|object|8da3460be20282f7|||||||||||||||
+plot_all_trial_force|function|9e3ae741b447ff9b|||||||||||||||
 plot_all_trials|function|c78141b241b44f90|||||||||||||||
 plot_maps|function|8525349ec26b120c|||||||||||||||
 plot_trial_by_velocity|function|dd6f717111af0554|||||||||||||||
-possible_fighting_flagged|stem|17656ca132f3e9f7|7455597ef18eec66|dc96895f3719aec5|1706137611||t19830.7314700849s|a1c456b03adbfbf8|44|rds|local|vector|||69.686||
-pull_maps|function|5e3df9e06e93b409|||||||||||||||
+possible_fighting_flagged|stem|17656ca132f3e9f7|7455597ef18eec66|0710075ec1d09921|1706137611||t19832.1821505662s|a1c456b03adbfbf8|44|rds|local|vector|||421.313||
+possible_fighting_flagged_data|stem|4d90816fae846a1b|7455597ef18eec66|f25e7093c83d6f40|-1091193653||t19832.4711811222s|d9a69186b0a4cd8e|348829852|rds|local|vector|||425.289|no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max returning Inf. no nonmissing arguments to max return|
+pull_maps|function|3f3e66e766f52ef6|||||||||||||||
 remove_bad_trials|function|aae356e8bb540047|||||||||||||||
 rename_list_element|function|6fb2aa788f900467|||||||||||||||
 rotations|object|b3e51bc7a718810f|||||||||||||||
@@ -54,6 +58,29 @@ run_ANOVA_velocity|function|ac12c59f56c82269|||||||||||||||
 run_Regression_average_force|function|ce9cf4a43b31e15c|||||||||||||||
 run_Regression_max_force|function|5be10e6165536242|||||||||||||||
 tmp_data|object|14eff1dd41c33f8f|||||||||||||||
-velocity_ANVOA|stem|f914db946f5c3164|86f352ffdc2b1cb5|228cbe5b7282ae2a|186725231||t19824.6279944742s|458efa8352f0a1fc|195|rds|local|vector|||1.726||
+velocity_ANVOA|stem|f914db946f5c3164|86f352ffdc2b1cb5|073627b3abea5f5f|186725231||t19832.1660473766s|458efa8352f0a1fc|195|rds|local|vector|||1.959||
 wiht_maze_marked_data|stem|ffbcaaa8ccbb1fb8|b62599fb7912db1c|610aef2c7abc8041|-1326337354||t19815.4834809609s|ced91bbbb3e5a78f|682770374|rds|local|vector|||0.739||
 within_maze_marked_data|stem|8841c476d31c8fc2|3e105a54198a310a|66e1e450227d9233|149797266||t19824.6245516769s|9ae4822b19af3e3a|610538713|rds|local|vector|||0.589||
+environments|object|cbde5eff1e2d7af8
+plot_trial_by_velocity|function|dd6f717111af0554
+build_data_long|function|4f91e729a94c9b37
+mark_within_maze|function|d679159606b2eb8f
+rename_list_element|function|6fb2aa788f900467
+proximity_calculation|function|135592eccbb6c755
+run_Regression_max_force|function|5be10e6165536242
+conditions|object|c9526a266010cb89
+pull_maps|function|3f3e66e766f52ef6
+rotations|object|b3e51bc7a718810f
+run_ANOVA_average_force|function|0defcd929207ffa6
+run_ANOVA_velocity|function|ac12c59f56c82269
+run_Regression_average_force|function|ce9cf4a43b31e15c
+import_codebook|function|7d7a74ddda81f55a
+flag_possible_fighting|function|67e3b64cea1f8e76
+remove_bad_trials|function|aae356e8bb540047
+run_ANOVA_max_force|function|a08a0d8948d7c2e7
+plot_maps|function|8525349ec26b120c
+plot_all_trial_force|function|9e3ae741b447ff9b
+plot_all_trials|function|c78141b241b44f90
+participant_error_correction|function|250676fb0d59924f
+condense_data|function|d0d5a18033b48b07
+data_long_calculations|function|9fe5d2071b4bfb98

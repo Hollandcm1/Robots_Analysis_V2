@@ -7,7 +7,7 @@
 
 #data <- data_long
 
-data_long_calculations <- function(data) {
+data_long_calculations <- function(data, maps) {
 
   ########################
   ### Average Velocity ###
@@ -113,7 +113,13 @@ data_long_calculations <- function(data) {
   # remove old condition column
   data <- data %>%
     select(-condition)
-
+  
+  ###################################
+  ### Proximity to Nearest Object ###
+  ###################################
+  
+  data <- proximity_calculation(data, maps)
+  
   
   #############################
   ### Data Type Corrections ###
@@ -126,6 +132,116 @@ data_long_calculations <- function(data) {
 
   return(data)
 }
+
+
+
+proximity_calculation <- function(data, maps) {
+
+  print("Calculating Proximity to Nearest Objects")
+  
+  data$closest_object_distance <- NA
+  
+  for (p_num in unique(data$participant)) {
+    
+    print(paste("Participant", p_num))
+    participant_data <- data %>%
+      filter(participant == p_num)
+    
+    for (t_num in unique(participant_data$trial)) {
+      
+      print(paste("Trial", t_num))
+      trial_data <- participant_data %>%
+        filter(trial == t_num)
+      
+      # map data layer
+      map_num <- unique(trial_data$map)
+      map <- maps[[paste0('env', map_num)]]
+      rotation <- unique(trial_data$rotation)
+      # apply rotation around 0, 0
+      map <- map %>%
+        mutate(
+          rotation_radians = rotation * pi / 180,  # Convert degrees to radians
+          V1_new = V1 * cos(rotation_radians) - V2 * sin(rotation_radians),  # New x-coordinate
+          V2_new = V1 * sin(rotation_radians) + V2 * cos(rotation_radians)  # New y-coordinate
+        )
+      
+      # loop through all frames
+      for (f_num in unique(trial_data$frame)) {
+        
+        print(paste("Participant", p_num, "Frame", f_num))
+        frame_data <- trial_data %>%
+          filter(frame == f_num)
+        
+        # get the robot's position
+        robot_x <- unique(frame_data$position_x_robot)
+        robot_y <- unique(frame_data$position_y_robot)
+        
+        # calculate distance to all objects
+        map <- map %>%
+          mutate(
+            distance = sqrt((robot_x - V1_new)^2 + (robot_y - V2_new)^2)
+          )
+        
+        # get the closest object
+        closest_object <- map %>%
+          filter(distance == min(distance))
+        
+        # store the closest object
+        #data$closest_object[which(data$participant == p_num & data$trial == t_num & data$frame == f_num)] <- closest_object$object
+        data$closest_object_distance[which(data$participant == p_num & data$trial == t_num & data$frame == f_num)] <- closest_object$distance
+        
+      }
+      
+    }
+  }
+  
+  return(data)
+
+}
+
+
+
+library(data.table)
+
+proximity_calculation_dt <- function(data, maps) {
+  setDT(data) # Convert to data.table
+  
+  # Calculate radians once for each map
+  maps <- lapply(maps, function(map) {
+    map[, rotation_radians := unique(data$rotation) * pi / 180]
+    map[, V1_new := V1 * cos(rotation_radians) - V2 * sin(rotation_radians)]
+    map[, V2_new := V1 * sin(rotation_radians) + V2 * cos(rotation_radians)]
+    map
+  })
+  
+  # Add robot positions and calculate distances
+  data[, `:=` (closest_object_distance = Inf), by = .(participant, trial, frame)]
+  data[, `:=` (robot_x = unique(position_x_robot), robot_y = unique(position_y_robot)), by = .(participant, trial, frame)]
+  
+  # Calculate distances and update the closest distance in a more vectorized manner
+  data[, closest_object_distance := {
+    map <- maps[[paste0('env', unique(map))]]
+    sapply(seq_len(.N), function(i) {
+      min(sqrt((robot_x[i] - map$V1_new)^2 + (robot_y[i] - map$V2_new)^2))
+    })
+  }, by = .(participant, trial, frame)]
+  
+  return(data)
+}
+
+
+# try visualizing it to make sure it makes sense
+# p_num <- 1
+# t_num <- 1
+# participant_data <- data %>%
+#   filter(participant == p_num)
+# trial_data <- participant_data %>%
+#   filter(trial == t_num)
+# ggplot(data=trial_data, aes(x=position_x_robot, y=position_y_robot, colour=closest_object_distance)) +
+#   geom_point()
+
+
+
 
 # 
 # participants <- unique(data$participant)

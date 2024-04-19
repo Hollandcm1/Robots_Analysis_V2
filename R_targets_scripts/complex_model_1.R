@@ -21,9 +21,6 @@ tab_model(model1)
 capture.output(model1, file = here('output', 'Model_time_through_maze', 'model1.txt'))
 
 
-
-
-
 #####################
 ### Visualisation ###
 #####################
