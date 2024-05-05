@@ -102,6 +102,10 @@ list(
   tar_target(
     name = all_trials_force_plots,
     command = plot_all_trial_force(possible_fighting_flagged_data, maps)
+  ),
+  tar_target(
+    name = all_trials_force_by_proximity_plots,
+    command = plot_all_trial_force_by_proximity(possible_fighting_flagged_data, maps)
   )
   
 )

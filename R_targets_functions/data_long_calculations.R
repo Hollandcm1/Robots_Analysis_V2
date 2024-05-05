@@ -168,19 +168,24 @@ proximity_calculation <- function(data, maps) {
       # loop through all frames
       for (f_num in unique(trial_data$frame)) {
         
-        print(paste("Participant", p_num, "Frame", f_num))
+        #print(paste("Participant", p_num, "Trial", t_num, "Frame", f_num))
         frame_data <- trial_data %>%
           filter(frame == f_num)
         
         # get the robot's position
-        robot_x <- unique(frame_data$position_x_robot)
-        robot_y <- unique(frame_data$position_y_robot)
+        # robot_x <- frame_data$position_x_robot
+        # robot_y <- frame_data$position_y_robot
         
         # calculate distance to all objects
+        # map <- map %>%
+        #   mutate(
+        #     distance = sqrt((robot_x - V1_new)^2 + (robot_y - V2_new)^2)
+        #   )
         map <- map %>%
           mutate(
-            distance = sqrt((robot_x - V1_new)^2 + (robot_y - V2_new)^2)
+            distance = sqrt((frame_data$position_x_robot - V1_new)^2 + (frame_data$position_y_robot - V2_new)^2)
           )
+        
         
         # get the closest object
         closest_object <- map %>%
@@ -188,9 +193,15 @@ proximity_calculation <- function(data, maps) {
         
         # store the closest object
         #data$closest_object[which(data$participant == p_num & data$trial == t_num & data$frame == f_num)] <- closest_object$object
-        data$closest_object_distance[which(data$participant == p_num & data$trial == t_num & data$frame == f_num)] <- closest_object$distance
+        # data$closest_object_distance[which(data$participant == p_num & data$trial == t_num & data$frame == f_num)] <- closest_object$distance
+        
+        # store with trial data
+        trial_data$closest_object[which(trial_data$frame == f_num)] <- closest_object$distance
         
       }
+      
+      # add trial data back to data
+      data$closest_object_distance[which(data$participant == p_num & data$trial == t_num)] <- trial_data$closest_object
       
     }
   }
@@ -202,6 +213,7 @@ proximity_calculation <- function(data, maps) {
 
 
 library(data.table)
+library(dplyr)
 
 proximity_calculation_dt <- function(data, maps) {
   setDT(data) # Convert to data.table
@@ -228,6 +240,67 @@ proximity_calculation_dt <- function(data, maps) {
   
   return(data)
 }
+
+
+
+
+
+
+library(dplyr)
+library(purrr)
+
+proximity_calculation_v3 <- function(data, maps) {
+  print("Calculating Proximity to Nearest Objects")
+  
+  # Compute unique participants and trials outside the loop
+  participants <- unique(data$participant)
+  
+  results <- map_df(participants, function(p_num) {
+    print(paste("Participant", p_num))
+    participant_data <- data %>%
+      filter(participant == p_num)
+    
+    trials <- unique(participant_data$trial)
+    map_df(trials, function(t_num) {
+      print(paste("Trial", t_num))
+      
+      trial_data <- participant_data %>%
+        filter(trial == t_num)
+      map_num <- unique(trial_data$map)
+      rotation <- unique(trial_data$rotation) * pi / 180
+      map_env <- maps[[paste0('env', map_num)]]
+      
+      # Rotate map coordinates
+      map_env <- map_env %>%
+        mutate(
+          V1_new = V1 * cos(rotation) - V2 * sin(rotation),
+          V2_new = V1 * sin(rotation) + V2 * cos(rotation)
+        )
+      
+      frames <- unique(trial_data$frame)
+      map_df(frames, function(f_num) {
+        print(paste("Frame", f_num))
+        
+        frame_data <- trial_data %>%
+          filter(frame == f_num)
+        robot_x <- unique(frame_data$position_x_robot)
+        robot_y <- unique(frame_data$position_y_robot)
+        
+        # Calculate distances for all map objects
+        distances <- sqrt((robot_x - map_env$V1_new)^2 + (robot_y - map_env$V2_new)^2)
+        closest_distance <- min(distances)
+        
+        # Update closest object distance for the specific frame
+        data$closest_object_distance[data$participant == p_num & data$trial == t_num & data$frame == f_num] <- closest_distance
+        return(data.frame(closest_object_distance = closest_distance))
+      })
+    })
+  })
+  
+  return(data)
+}
+
+
 
 
 # try visualizing it to make sure it makes sense
