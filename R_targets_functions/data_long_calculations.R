@@ -211,96 +211,96 @@ proximity_calculation <- function(data, maps) {
 }
 
 
-
-library(data.table)
-library(dplyr)
-
-proximity_calculation_dt <- function(data, maps) {
-  setDT(data) # Convert to data.table
-  
-  # Calculate radians once for each map
-  maps <- lapply(maps, function(map) {
-    map[, rotation_radians := unique(data$rotation) * pi / 180]
-    map[, V1_new := V1 * cos(rotation_radians) - V2 * sin(rotation_radians)]
-    map[, V2_new := V1 * sin(rotation_radians) + V2 * cos(rotation_radians)]
-    map
-  })
-  
-  # Add robot positions and calculate distances
-  data[, `:=` (closest_object_distance = Inf), by = .(participant, trial, frame)]
-  data[, `:=` (robot_x = unique(position_x_robot), robot_y = unique(position_y_robot)), by = .(participant, trial, frame)]
-  
-  # Calculate distances and update the closest distance in a more vectorized manner
-  data[, closest_object_distance := {
-    map <- maps[[paste0('env', unique(map))]]
-    sapply(seq_len(.N), function(i) {
-      min(sqrt((robot_x[i] - map$V1_new)^2 + (robot_y[i] - map$V2_new)^2))
-    })
-  }, by = .(participant, trial, frame)]
-  
-  return(data)
-}
-
-
-
-
-
-
-library(dplyr)
-library(purrr)
-
-proximity_calculation_v3 <- function(data, maps) {
-  print("Calculating Proximity to Nearest Objects")
-  
-  # Compute unique participants and trials outside the loop
-  participants <- unique(data$participant)
-  
-  results <- map_df(participants, function(p_num) {
-    print(paste("Participant", p_num))
-    participant_data <- data %>%
-      filter(participant == p_num)
-    
-    trials <- unique(participant_data$trial)
-    map_df(trials, function(t_num) {
-      print(paste("Trial", t_num))
-      
-      trial_data <- participant_data %>%
-        filter(trial == t_num)
-      map_num <- unique(trial_data$map)
-      rotation <- unique(trial_data$rotation) * pi / 180
-      map_env <- maps[[paste0('env', map_num)]]
-      
-      # Rotate map coordinates
-      map_env <- map_env %>%
-        mutate(
-          V1_new = V1 * cos(rotation) - V2 * sin(rotation),
-          V2_new = V1 * sin(rotation) + V2 * cos(rotation)
-        )
-      
-      frames <- unique(trial_data$frame)
-      map_df(frames, function(f_num) {
-        print(paste("Frame", f_num))
-        
-        frame_data <- trial_data %>%
-          filter(frame == f_num)
-        robot_x <- unique(frame_data$position_x_robot)
-        robot_y <- unique(frame_data$position_y_robot)
-        
-        # Calculate distances for all map objects
-        distances <- sqrt((robot_x - map_env$V1_new)^2 + (robot_y - map_env$V2_new)^2)
-        closest_distance <- min(distances)
-        
-        # Update closest object distance for the specific frame
-        data$closest_object_distance[data$participant == p_num & data$trial == t_num & data$frame == f_num] <- closest_distance
-        return(data.frame(closest_object_distance = closest_distance))
-      })
-    })
-  })
-  
-  return(data)
-}
-
-
+# 
+# library(data.table)
+# library(dplyr)
+# 
+# proximity_calculation_dt <- function(data, maps) {
+#   setDT(data) # Convert to data.table
+#   
+#   # Calculate radians once for each map
+#   maps <- lapply(maps, function(map) {
+#     map[, rotation_radians := unique(data$rotation) * pi / 180]
+#     map[, V1_new := V1 * cos(rotation_radians) - V2 * sin(rotation_radians)]
+#     map[, V2_new := V1 * sin(rotation_radians) + V2 * cos(rotation_radians)]
+#     map
+#   })
+#   
+#   # Add robot positions and calculate distances
+#   data[, `:=` (closest_object_distance = Inf), by = .(participant, trial, frame)]
+#   data[, `:=` (robot_x = unique(position_x_robot), robot_y = unique(position_y_robot)), by = .(participant, trial, frame)]
+#   
+#   # Calculate distances and update the closest distance in a more vectorized manner
+#   data[, closest_object_distance := {
+#     map <- maps[[paste0('env', unique(map))]]
+#     sapply(seq_len(.N), function(i) {
+#       min(sqrt((robot_x[i] - map$V1_new)^2 + (robot_y[i] - map$V2_new)^2))
+#     })
+#   }, by = .(participant, trial, frame)]
+#   
+#   return(data)
+# }
+# 
+# 
+# 
+# 
+# 
+# 
+# library(dplyr)
+# library(purrr)
+# 
+# proximity_calculation_v3 <- function(data, maps) {
+#   print("Calculating Proximity to Nearest Objects")
+#   
+#   # Compute unique participants and trials outside the loop
+#   participants <- unique(data$participant)
+#   
+#   results <- map_df(participants, function(p_num) {
+#     print(paste("Participant", p_num))
+#     participant_data <- data %>%
+#       filter(participant == p_num)
+#     
+#     trials <- unique(participant_data$trial)
+#     map_df(trials, function(t_num) {
+#       print(paste("Trial", t_num))
+#       
+#       trial_data <- participant_data %>%
+#         filter(trial == t_num)
+#       map_num <- unique(trial_data$map)
+#       rotation <- unique(trial_data$rotation) * pi / 180
+#       map_env <- maps[[paste0('env', map_num)]]
+#       
+#       # Rotate map coordinates
+#       map_env <- map_env %>%
+#         mutate(
+#           V1_new = V1 * cos(rotation) - V2 * sin(rotation),
+#           V2_new = V1 * sin(rotation) + V2 * cos(rotation)
+#         )
+#       
+#       frames <- unique(trial_data$frame)
+#       map_df(frames, function(f_num) {
+#         print(paste("Frame", f_num))
+#         
+#         frame_data <- trial_data %>%
+#           filter(frame == f_num)
+#         robot_x <- unique(frame_data$position_x_robot)
+#         robot_y <- unique(frame_data$position_y_robot)
+#         
+#         # Calculate distances for all map objects
+#         distances <- sqrt((robot_x - map_env$V1_new)^2 + (robot_y - map_env$V2_new)^2)
+#         closest_distance <- min(distances)
+#         
+#         # Update closest object distance for the specific frame
+#         data$closest_object_distance[data$participant == p_num & data$trial == t_num & data$frame == f_num] <- closest_distance
+#         return(data.frame(closest_object_distance = closest_distance))
+#       })
+#     })
+#   })
+#   
+#   return(data)
+# }
+# 
+# 
 
 
 # try visualizing it to make sure it makes sense

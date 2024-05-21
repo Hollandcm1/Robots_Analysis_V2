@@ -1,5 +1,9 @@
 # complex_model_1
 
+library(lme4)
+library(sjPlot)
+library(flexplot)
+
 # add maps as a factor
 data$map <- as.factor(data$map)
 
@@ -7,7 +11,7 @@ data$map <- as.factor(data$map)
 ### Aggregate ###
 #################
 average_by_trial <- data %>%
-  group_by(participant, trial, condition_nums, time_through_maze, max_force, path_length, haptic, visual, map) %>%
+  group_by(participant, trial, condition_nums, time_through_maze, max_force, path_length, haptic, visual, map, strategic_both, strategic_either) %>%
   summarise(average_force = mean(force_magnitude, na.rm = TRUE))
 
 ##############
@@ -15,10 +19,35 @@ average_by_trial <- data %>%
 ##############
 
 # Model 1
-model1 <- lmer(time_through_maze ~ haptic * visual * average_force * path_length * map * max_force + (1|participant) + (1|trial), data = average_by_trial)
+model1 <- lmer(time_through_maze ~ haptic * visual * average_force * path_length * map * max_force * strategic_both + (1|participant) + (1|trial), data = average_by_trial)
 summary(model1)
 tab_model(model1)
 capture.output(model1, file = here('output', 'Model_time_through_maze', 'model1.txt'))
+
+# Model 1
+model1 <- lmer(time_through_maze ~ haptic * visual * average_force * path_length * max_force * strategic_both + (1|participant) + (1|trial), data = average_by_trial)
+summary(model1)
+tab_model(model1)
+capture.output(model1, file = here('output', 'Model_time_through_maze', 'model1.txt'))
+
+# Model 1
+model1 <- lmer(time_through_maze ~ strategic_both + (1|participant) + (1|trial), data = average_by_trial)
+summary(model1)
+tab_model(model1)
+capture.output(model1, file = here('output', 'Model_time_through_maze', 'model1.txt'))
+
+flexplot(data = average_by_trial, time_through_maze ~ strategic_both, method = 'lm')
+flexplot(data = average_by_trial, time_through_maze ~ strategic_both | haptic + visual, method = 'lm')
+
+
+# Model 1
+model1 <- lmer(time_through_maze ~ strategic_either + (1|participant) + (1|trial), data = average_by_trial)
+summary(model1)
+tab_model(model1)
+capture.output(model1, file = here('output', 'Model_time_through_maze', 'model1.txt'))
+
+flexplot(data = average_by_trial, time_through_maze ~ strategic_either, method = 'lm')
+flexplot(data = average_by_trial, time_through_maze ~ strategic_either | haptic + visual, method = 'lm')
 
 
 #####################
