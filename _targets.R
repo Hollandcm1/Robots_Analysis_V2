@@ -10,7 +10,7 @@ library(targets)
 tar_option_set(
   packages = c("tibble", "R.matlab", "here", "openxlsx", "dplyr", "stringr", 
                "ggplot2", "tidyr", "purrr", "flexplot", "lme4", "sjPlot", "zoo", 
-               "grid", "cowplot") # Packages that your targets need
+               "grid", "cowplot", "readxl") # Packages that your targets need
 )
 
 # Run the R scripts in the R/ folder with your custom functions:
@@ -106,6 +106,14 @@ list(
   tar_target(
     name = all_trials_force_by_proximity_plots,
     command = plot_all_trial_force_by_proximity(possible_fighting_flagged_data, maps)
+  ), 
+  tar_target(
+    name = strategic_data,
+    command = import_strategic_data()
+  ), 
+  tar_target(
+    name = strategic_data_appended,
+    command = append_strategic_behaviour(possible_fighting_flagged_data, strategic_data)
   )
   
 )
