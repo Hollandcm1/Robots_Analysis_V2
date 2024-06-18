@@ -7,10 +7,12 @@ import_strategic_data <- function(){
   # load Excel data
   data_1 <- read_excel(here("data", "strategic behaviours","Strategic Behaviour 1.xlsx"))
   data_2 <- read_excel(here("data", "strategic behaviours","Strategic Behaviour 2.xlsx"))
+  data_collaborative <- read_excel(here("data", "strategic behaviours","Agreed Scores.xlsx"))
   
   combined_data <- data_1[1:4]
   combined_data$S1 <- data_1$`haptic strategy`
   combined_data$S2 <- data_2$`haptic strategy`
+  combined_data$collaborative <- data_collaborative$`Agreed`
   
   # calculate agreement of S1 and S2
   combined_data$agreement <- ifelse(combined_data$S1 == combined_data$S2, 1, 0)

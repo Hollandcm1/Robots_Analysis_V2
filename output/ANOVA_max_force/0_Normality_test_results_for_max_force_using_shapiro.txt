@@ -2,5 +2,5 @@
 	Shapiro-Wilk normality test
 
 data:  max_force_by_trial_hv$max_force
-W = 0.9487, p-value = 3.239e-15
+W = 0.94891, p-value = 3.601e-15
 

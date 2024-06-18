@@ -2,5 +2,5 @@
 	Shapiro-Wilk normality test
 
 data:  average_force_by_trial_hv$average_force
-W = 0.9541, p-value = 2.681e-14
+W = 0.95394, p-value = 2.58e-14
 
