@@ -9,6 +9,8 @@ import_strategic_data <- function(){
   data_2 <- read_excel(here("data", "strategic behaviours","Strategic Behaviour 2.xlsx"))
   data_collaborative <- read_excel(here("data", "strategic behaviours","Agreed Scores.xlsx"))
   
+  # combine
+  TRUE
   combined_data <- data_1[1:4]
   combined_data$S1 <- data_1$`haptic strategy`
   combined_data$S2 <- data_2$`haptic strategy`
