@@ -61,11 +61,12 @@ remove_bad_trials <- function(data) {
           trials[trial_num] == "P14_4" |
           trials[trial_num] == "P14_5" |
           trials[trial_num] == "P14_17" |
-          trials[trial_num] == "P15_27" |
+          trials[trial_num] == "P14_27" |
           trials[trial_num] == "P14_32" |
           # trials[trial_num] == "P15_14" | # this one is close, but they don't actually enter the obeject
           trials[trial_num] == "P15_24" |
           trials[trial_num] == "P16_1" |
+          trials[trial_num] == "P16_14" |
           trials[trial_num] == "P16_20" |
           # trials[trial_num] == "P16_24" | # this one is close, but they don't actually enter the obeject
           trials[trial_num] == "P16_32" |

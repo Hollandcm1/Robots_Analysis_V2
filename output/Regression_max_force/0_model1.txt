@@ -1,13 +1,13 @@
 Linear mixed model fit by REML ['lmerMod']
 Formula: time_through_maze ~ max_force + (1 | participant) + (1 | trial)
    Data: data
-REML criterion at convergence: 21961898
+REML criterion at convergence: 21930651
 Random effects:
  Groups      Name        Std.Dev.
- trial       (Intercept)  6.931  
- participant (Intercept) 10.748  
- Residual                17.532  
-Number of obs: 2563799, groups:  trial, 32; participant, 25
+ trial       (Intercept)  6.994  
+ participant (Intercept) 10.827  
+ Residual                17.506  
+Number of obs: 2561048, groups:  trial, 32; participant, 25
 Fixed Effects:
 (Intercept)    max_force  
-     35.420        1.981  
+     35.026        2.221  

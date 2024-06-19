@@ -11,7 +11,7 @@ append_strategic_behaviour <- function(data, strategic_data) {
   
   # Select only the required columns from strategic_data
   strategic_data_selected <- strategic_data %>%
-    select(participant, trial, strategic_agreement, strategic_both, strategic_either)
+    select(participant, trial, strategic_agreement, strategic_both, strategic_either, collaborative)
   
   # Perform the merge
   merged_data <- data %>%

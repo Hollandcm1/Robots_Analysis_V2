@@ -19,7 +19,7 @@ average_by_trial <- data %>%
 ##############
 
 # Model 1
-model1 <- lmer(time_through_maze ~ haptic * visual * average_force * path_length * map * max_force * strategic_both + (1|participant) + (1|trial), data = average_by_trial)
+model1 <- lmer(time_through_maze ~ haptic * visual * average_force * path_length * map * strategic_both + (1|participant) + (1|trial), data = average_by_trial)
 summary(model1)
 tab_model(model1)
 capture.output(model1, file = here('output', 'Model_time_through_maze', 'model1.txt'))
@@ -38,6 +38,12 @@ capture.output(model1, file = here('output', 'Model_time_through_maze', 'model1.
 
 flexplot(data = average_by_trial, time_through_maze ~ strategic_both, method = 'lm')
 flexplot(data = average_by_trial, time_through_maze ~ strategic_both | haptic + visual, method = 'lm')
+
+
+# Rerun this after doign strategic again
+model1 <- lmer(time_through_maze ~ haptic * visual * strategic_either + (1|participant), data = average_by_trial)
+summary(model1)
+tab_model(model1)
 
 
 # Model 1

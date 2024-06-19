@@ -3,8 +3,8 @@ Call:
 
 Terms:
                    haptic    visual haptic:visual Residuals
-Sum of Squares    2.74622   0.00678      15.40194 273.53054
-Deg. of Freedom         1         1             1       725
+Sum of Squares    2.68580   0.01027      15.05121 273.06193
+Deg. of Freedom         1         1             1       724
 
-Residual standard error: 0.6142341
+Residual standard error: 0.6141314
 Estimated effects may be unbalanced
