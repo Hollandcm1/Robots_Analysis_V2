@@ -114,6 +114,10 @@ list(
   tar_target(
     name = strategic_data_appended,
     command = append_strategic_behaviour(possible_fighting_flagged_data, strategic_data)
+  ),
+  tar_target(
+    name = strategic_LME_analysis_results,
+    command = strategic_LME_analysis(strategic_data_appended)
   )
   
 )

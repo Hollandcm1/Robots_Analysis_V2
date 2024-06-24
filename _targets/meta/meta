@@ -33,7 +33,7 @@ f|object|223519db110d910f|||||||||||||||
 filenames|object|20590dec3dee57fe|||||||||||||||
 flag_possible_fighting|function|67e3b64cea1f8e76|||||||||||||||
 import_codebook|function|7d7a74ddda81f55a|||||||||||||||
-import_strategic_data|function|84dd698ba4ea1252|||||||||||||||
+import_strategic_data|function|c5e985eacfffa811|||||||||||||||
 make_map_figures|function|cd4aa7c6992d1317|||||||||||||||
 map_figures|stem|17656ca132f3e9f7|d9696f083d5c7fb0|4058570bbedee8fd|-1985196834||t19788.0478917784s|a1c456b03adbfbf8|44|rds|local|vector|||1.183|The size argument of element_rect is deprecated as of ggplot2 3.4.0.ℹ Please use the linewidth argument instead.|
 maps|stem|3faa101b68457f27|17590690ccf01c0e|0e1534fbf816e868|-755393448||t19832.2037297665s|42329f28a198c9ff|1072|rds|local|vector|||0.923||
@@ -66,8 +66,10 @@ run_ANOVA_max_force|function|a08a0d8948d7c2e7|||||||||||||||
 run_ANOVA_velocity|function|ac12c59f56c82269|||||||||||||||
 run_Regression_average_force|function|ce9cf4a43b31e15c|||||||||||||||
 run_Regression_max_force|function|5be10e6165536242|||||||||||||||
-strategic_data|stem|a9254ac2f0e172b9|a306df01f84e6aa9|6ade6a62a2fbc9d6|35737524||t19892.6005503818s|f6455ddbe86e06f5|2034|rds|local|vector|||1.033||
-strategic_data_appended|stem|d726e63a8f50296a|e2efbf754f1fcf5a|6f2ab1d161d476b9|93320221||t19892.6007908349s|0887a7489c69e64a|379798757|rds|local|vector|||0.926||
+strategic_data|stem|0894ce84fbec6d8b|a306df01f84e6aa9|070f9b4afa19b8c0|35737524||t19897.6593822853s|5e5dfa0d9a86b797|2032|rds|local|vector|||1.078||
+strategic_data_appended|stem|c40ef30503787930|e2efbf754f1fcf5a|460eb3aa8a88820c|93320221||t19897.6596241364s|f82cf36f0e28a009|379798301|rds|local|vector|||1.12||
+strategic_LME_analysis|function|0c4e9a5123ddb154|||||||||||||||
+strategic_LME_analysis_results|stem|c0edb6c695dbf095|a713b0e22bed79f2|f008b790927cbe27|664286812||t19897.6598354128s|0d4a71d5fd6cb90c|380762182|rds|local|vector|||0.932||
 tmp_data|object|14eff1dd41c33f8f|||||||||||||||
 velocity_ANVOA|stem|f914db946f5c3164|86f352ffdc2b1cb5|d68d062883b34fd3|186725231||t19891.7742866497s|458efa8352f0a1fc|195|rds|local|vector|||1.86||
 wiht_maze_marked_data|stem|ffbcaaa8ccbb1fb8|b62599fb7912db1c|610aef2c7abc8041|-1326337354||t19815.4834809609s|ced91bbbb3e5a78f|682770374|rds|local|vector|||0.739||

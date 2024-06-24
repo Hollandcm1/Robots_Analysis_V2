@@ -1,0 +1,62 @@
+Linear mixed model fit by REML ['lmerMod']
+Formula: 
+time_through_maze ~ haptic * visual * path_length * map * collaborative +  
+    (1 | participant)
+   Data: average_by_trial
+REML criterion at convergence: 5325.87
+Random effects:
+ Groups      Name        Std.Dev.
+ participant (Intercept) 7.866   
+ Residual                8.991   
+Number of obs: 728, groups:  participant, 25
+Fixed Effects:
+                          (Intercept)  
+                              7.36768  
+                              haptic1  
+                            190.60633  
+                              visual1  
+                            -17.51784  
+                          path_length  
+                              1.23270  
+                                  map  
+                             -0.66790  
+                        collaborative  
+                           -213.90609  
+                      haptic1:visual1  
+                           -190.49663  
+                  haptic1:path_length  
+                             -6.26736  
+                  visual1:path_length  
+                              0.18324  
+                          haptic1:map  
+                            -22.27825  
+                          visual1:map  
+                              2.87289  
+                      path_length:map  
+                              0.02247  
+                visual1:collaborative  
+                            207.11294  
+            path_length:collaborative  
+                              7.28303  
+                    map:collaborative  
+                             24.75612  
+          haptic1:visual1:path_length  
+                              6.50677  
+                  haptic1:visual1:map  
+                             20.53471  
+              haptic1:path_length:map  
+                              0.77881  
+              visual1:path_length:map  
+                             -0.09582  
+    visual1:path_length:collaborative  
+                             -7.04987  
+            visual1:map:collaborative  
+                            -22.63182  
+        path_length:map:collaborative  
+                             -0.85251  
+      haptic1:visual1:path_length:map  
+                             -0.72041  
+visual1:path_length:map:collaborative  
+                              0.75547  
+fit warnings:
+fixed-effect model matrix is rank deficient so dropping 8 columns / coefficients
