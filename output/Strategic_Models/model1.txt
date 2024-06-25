@@ -3,60 +3,36 @@ Formula:
 time_through_maze ~ haptic * visual * path_length * map * collaborative +  
     (1 | participant)
    Data: average_by_trial
-REML criterion at convergence: 5325.87
+REML criterion at convergence: 5266.66
 Random effects:
  Groups      Name        Std.Dev.
- participant (Intercept) 7.866   
- Residual                8.991   
+ participant (Intercept) 7.346   
+ Residual                8.640   
 Number of obs: 728, groups:  participant, 25
 Fixed Effects:
-                          (Intercept)  
-                              7.36768  
-                              haptic1  
-                            190.60633  
-                              visual1  
-                            -17.51784  
-                          path_length  
-                              1.23270  
-                                  map  
-                             -0.66790  
-                        collaborative  
-                           -213.90609  
-                      haptic1:visual1  
-                           -190.49663  
-                  haptic1:path_length  
-                             -6.26736  
-                  visual1:path_length  
-                              0.18324  
-                          haptic1:map  
-                            -22.27825  
-                          visual1:map  
-                              2.87289  
-                      path_length:map  
-                              0.02247  
-                visual1:collaborative  
-                            207.11294  
-            path_length:collaborative  
-                              7.28303  
-                    map:collaborative  
-                             24.75612  
-          haptic1:visual1:path_length  
-                              6.50677  
-                  haptic1:visual1:map  
-                             20.53471  
-              haptic1:path_length:map  
-                              0.77881  
-              visual1:path_length:map  
-                             -0.09582  
-    visual1:path_length:collaborative  
-                             -7.04987  
-            visual1:map:collaborative  
-                            -22.63182  
-        path_length:map:collaborative  
-                             -0.85251  
-      haptic1:visual1:path_length:map  
-                             -0.72041  
-visual1:path_length:map:collaborative  
-                              0.75547  
+                          (Intercept)                                haptic1  
+                            1.905e+00                              2.114e+02  
+                              visual1                            path_length  
+                           -8.177e+00                              1.442e+00  
+                                  map                          collaborative  
+                           -3.337e-02                             -2.271e+02  
+                      haptic1:visual1                    haptic1:path_length  
+                           -2.135e+02                             -7.423e+00  
+                  visual1:path_length                            haptic1:map  
+                           -1.483e-01                             -2.485e+01  
+                          visual1:map                        path_length:map  
+                            1.349e+00                              2.841e-03  
+                visual1:collaborative              path_length:collaborative  
+                            2.188e+02                              8.224e+00  
+                    map:collaborative            haptic1:visual1:path_length  
+                            2.641e+01                              7.758e+00  
+                  haptic1:visual1:map                haptic1:path_length:map  
+                            2.389e+01                              9.214e-01  
+              visual1:path_length:map      visual1:path_length:collaborative  
+                           -4.245e-02                             -7.906e+00  
+            visual1:map:collaborative          path_length:map:collaborative  
+                           -2.415e+01                             -9.697e-01  
+      haptic1:visual1:path_length:map  visual1:path_length:map:collaborative  
+                           -8.915e-01                              8.579e-01  
 fit warnings:
 fixed-effect model matrix is rank deficient so dropping 8 columns / coefficients

@@ -36,7 +36,7 @@ mark_within_maze <- function(data) {
       
       # The logic of this next bit kinda sucks to follow, but the idea is that it will
       # iterate through every frame of a trial, first looking for when the robot
-      # has moved into the maze. One it has, it will jump forward 500 frames to prevent
+      # has moved into the maze. Once it has, it will jump forward 500 frames to prevent
       # an accidental exit (i.e. they immediately leave). Then it will continue to mark
       # frames as being inside the maze until the robot leaves the maze. Once the robot
       # leaves the maze, it will stop marking frames. within = 1, outside = 0.
@@ -46,7 +46,7 @@ mark_within_maze <- function(data) {
       inside_maze <- rep(0, nrow(position_data))
       for (counter_frame in 1:nrow(position_data)) {
         
-        # jump 500 when start is found - this is to prevent issues with people entering
+        # jump 50 when start is found - this is to prevent issues with people entering
         # and accidentally leaving breifly. The data for those 500 frames is still recorded
         if (jumps_left > 0) {
           jumps_left <- jumps_left - 1
@@ -74,7 +74,7 @@ mark_within_maze <- function(data) {
           # mark that the start has been found and provide jumps 
           if (sum(inside_maze == 0)) {
             start_found <- 1
-            jumps_left <- 500
+            jumps_left <- 0
           }
           
         }

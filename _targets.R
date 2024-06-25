@@ -118,6 +118,10 @@ list(
   tar_target(
     name = strategic_LME_analysis_results,
     command = strategic_LME_analysis(strategic_data_appended)
+  ),
+  tar_target(
+    name = within_maze_plotted,
+    command = plot_within_maze(within_maze_marked_data)
   )
   
 )
