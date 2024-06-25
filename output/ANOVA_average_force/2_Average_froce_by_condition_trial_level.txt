@@ -3,8 +3,8 @@ Call:
 
 Terms:
                 condition_names Residuals
-Sum of Squares         15.93522 144.02137
+Sum of Squares         16.37028 147.28512
 Deg. of Freedom               3       724
 
-Residual standard error: 0.4460096
+Residual standard error: 0.4510349
 Estimated effects may be unbalanced
