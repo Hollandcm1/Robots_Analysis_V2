@@ -1,5 +1,5 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
-.Random.seed|object|70697cdbfb275472|||||||||||||||
+.Random.seed|object|e75f3cfb81153322|||||||||||||||
 all|stem||26601ef8a9246fc3|4eb0a81c53506686|671959644||t19832.1610610366s||0|rds|local|vector|||0.003||could not find function plot_all_trial_force
 all_data|object|51ec3a63fc6485e3|||||||||||||||
 all_trials|stem|13f2d783768dceac|618daee7dae971bd|eb1d632074357212|-1731953210||t19802.5626745679s|41200f7f0df0ebd3|96|rds|local|vector|||293.513|Removed 188 rows containing missing values or values outside the scale rangegeom_point.. Removed 233 rows containing missing values or values outside the scale rangegeom_point.. Removed 283 rows containing missing values or values outside the scale rangegeom_point.. Removed 423 rows containing missing values or values outside the scale rangegeom_point.. Removed 472 rows containing missing values or values outside the scale rangegeom_point.. Removed 382 rows containing missing values or values outside the scale rangegeom_point.. Removed 510 rows containing missing values or values outside the scale rangegeom_point.. Removed 671 rows containing missing values or values outside the scale rangegeom_point.. Removed 835 rows containing missing values or values outside the scale rangegeom_point.. Removed 507 rows containing missing values or values outside the scale rangegeom_point.. Removed 539 rows containing missing values or values outside the scale rangegeom_point.. Removed 1071 rows containing missing values or values outside the scale rangegeom_point.. Removed 115 rows containing missing values or values outside the scale rangegeom_point.. Removed 287 rows containing missing values or values outside the scale rangegeom_point.. Removed 1080 rows containing missing values or values outside the scale rangegeom_point.. Removed 584 rows containing missing values or values outside the scale rangegeom_point.. Removed 3326 rows containing missing values or values outside the scale rangegeom_point.. Removed 899 rows containing missing values or values outside the scale rangegeom_point.. Removed 879 rows containing missing values or values outside the scale rangegeom_point.. Removed 512 rows containing missing values or values outside the scale rangegeom_point.. Removed 220 rows containing missing values or values outside the scale rangegeom_point.. Removed 84 rows containing mi|
@@ -34,6 +34,7 @@ filenames|object|20590dec3dee57fe|||||||||||||||
 flag_possible_fighting|function|67e3b64cea1f8e76|||||||||||||||
 import_codebook|function|7d7a74ddda81f55a|||||||||||||||
 import_strategic_data|function|c5e985eacfffa811|||||||||||||||
+LME_report|stem||e1bf67249f5910c9|ef46db3751d8e999|101461558||t19902.9251768359s||0|rds|local|vector|||0.143||could not find function tar_render
 make_map_figures|function|cd4aa7c6992d1317|||||||||||||||
 map_figures|stem|17656ca132f3e9f7|d9696f083d5c7fb0|4058570bbedee8fd|-1985196834||t19788.0478917784s|a1c456b03adbfbf8|44|rds|local|vector|||1.183|The size argument of element_rect is deprecated as of ggplot2 3.4.0.ℹ Please use the linewidth argument instead.|
 maps|stem|3faa101b68457f27|17590690ccf01c0e|0e1534fbf816e868|-755393448||t19832.2037297665s|42329f28a198c9ff|1072|rds|local|vector|||0.923||
@@ -61,6 +62,7 @@ proximity_calculation_v3|function|a245aaa8421705bf|||||||||||||||
 pull_maps|function|3f3e66e766f52ef6|||||||||||||||
 remove_bad_trials|function|2b5a1f6a06f72c39|||||||||||||||
 rename_list_element|function|6fb2aa788f900467|||||||||||||||
+report|stem||704edde4b44b2ef0|ef46db3751d8e999|787668912||t19902.9257845946s||0|rds|local|vector|||0.14|no nonmissing arguments to max returning Inf|could not find packages tarchetypes in library paths
 rotations|object|b3e51bc7a718810f|||||||||||||||
 run_ANOVA_average_force|function|0defcd929207ffa6|||||||||||||||
 run_ANOVA_max_force|function|a08a0d8948d7c2e7|||||||||||||||
@@ -68,9 +70,11 @@ run_ANOVA_velocity|function|ac12c59f56c82269|||||||||||||||
 run_Regression_average_force|function|ce9cf4a43b31e15c|||||||||||||||
 run_Regression_max_force|function|5be10e6165536242|||||||||||||||
 strategic_data|stem|0894ce84fbec6d8b|a306df01f84e6aa9|070f9b4afa19b8c0|35737524||t19897.6593822853s|5e5dfa0d9a86b797|2032|rds|local|vector|||1.078||
-strategic_data_appended|stem|bdfd176afe1235d2|e2efbf754f1fcf5a|151aff5fe3d85d6f|93320221||t19899.6416942713s|8d9e4cf514d86229|379799742|rds|local|vector|||0.451||
-strategic_LME_analysis|function|0c4e9a5123ddb154|||||||||||||||
-strategic_LME_analysis_results|stem|a9558fca33d4fbd1|a713b0e22bed79f2|8785dbc68c378720|664286812||t19899.6419051994s|211b571e39dd3f16|380821522|rds|local|vector|||0.777||
+strategic_data_appended|stem|bdfd176afe1235d2|e2efbf754f1fcf5a|151aff5fe3d85d6f|93320221||t19904.7331709303s|8d9e4cf514d86229|379799742|rds|local|vector|||0.926||
+strategic_LME_analysis|function|28605a60841d5001|||||||||||||||
+strategic_LME_analysis_only_haptic|function|9031ab780e73f94c|||||||||||||||
+strategic_LME_analysis_only_haptic_results|stem|2347249c34c923ee|020d032660f45073|87f5987427ec02a4|389923158||t19904.7577724935s|060fa3b20a1a3fa7|380417377|rds|local|vector|||19.848|the standard deviation is zero|
+strategic_LME_analysis_results|stem|bcf3caaa31532c82|a713b0e22bed79f2|c65ba3236d8c2385|664286812||t19904.7573433134s|7fde9ee1de071efb|381196160|rds|local|vector|||21.32||
 tmp_data|object|14eff1dd41c33f8f|||||||||||||||
 velocity_ANVOA|stem|f914db946f5c3164|86f352ffdc2b1cb5|d3dbb48073a730e8|186725231||t19899.6337047047s|458efa8352f0a1fc|195|rds|local|vector|||2.003||
 wiht_maze_marked_data|stem|ffbcaaa8ccbb1fb8|b62599fb7912db1c|610aef2c7abc8041|-1326337354||t19815.4834809609s|ced91bbbb3e5a78f|682770374|rds|local|vector|||0.739||

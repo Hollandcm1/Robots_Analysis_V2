@@ -10,7 +10,7 @@ library(targets)
 tar_option_set(
   packages = c("tibble", "R.matlab", "here", "openxlsx", "dplyr", "stringr", 
                "ggplot2", "tidyr", "purrr", "flexplot", "lme4", "sjPlot", "zoo", 
-               "grid", "cowplot", "readxl") # Packages that your targets need
+               "grid", "cowplot", "readxl","lmerTest") # Packages that your targets need
 )
 
 # Run the R scripts in the R/ folder with your custom functions:
@@ -122,7 +122,17 @@ list(
   tar_target(
     name = within_maze_plotted,
     command = plot_within_maze(within_maze_marked_data)
-  )
+  ),
+  tar_target(
+    name = strategic_LME_analysis_only_haptic_results,
+    command = strategic_LME_analysis_only_haptic(strategic_data_appended)
+  )#, 
+  #tar_target(
+  #  report,
+  #  tar_render("report.Rmd")
+    #name = LME_report,
+    #command = tar_render("create_LME_report.RMD")
+  #)
   
 )
 

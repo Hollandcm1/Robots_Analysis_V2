@@ -35,7 +35,7 @@ strategic_LME_analysis <- function(data) {
   average_by_trial$haptic_num <- as.numeric(average_by_trial$haptic)
   average_by_trial$visual_num <- as.numeric(average_by_trial$visual)
   average_by_trial$collaborative <- as.numeric(average_by_trial$collaborative)
-  cor(average_by_trial[, c("haptic_num", "visual_num", "path_length", "map", "collaborative")])
+  #cor(average_by_trial[, c("haptic_num", "visual_num", "path_length", "map", "collaborative")])
   
   
   # Model Buidling
@@ -85,12 +85,25 @@ strategic_LME_analysis <- function(data) {
   tab_model(model_11)
   flexplot(time_through_maze ~ visual + collaborative | path_length, data = average_by_trial)
   
+  model_12 <- lmer(path_length ~ haptic * visual * map_factor + (1|participant), data = average_by_trial) # YES)
+  tab_model(model_12)
   
+  
+  # put all models in single variable
+  models <- list(model1, model_0, model_1, model_2, model_3, model_4, model_5, model_6, model_7, model_8, model_9, model_10, model_11, model_12)
+  
+  # save the models
+  save(models, file = here('output', 'Strategic_Models', 'all_models.RData'))
+  
+  # save the data
+  save(average_by_trial, file = here('output', 'Strategic_Models', 'all_average_by_trial.RData'))
+  
+  return(models)
 
 }
 
 
 # Testing
-ggplot(average_by_trial, aes(x=time_through_maze, y=participant)) +
-  geom_point()
+#ggplot(average_by_trial, aes(x=time_through_maze, y=participant)) +
+#  geom_point()
 
