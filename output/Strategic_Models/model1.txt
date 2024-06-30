@@ -1,38 +1,185 @@
-Linear mixed model fit by REML ['lmerMod']
-Formula: 
-time_through_maze ~ haptic * visual * path_length * map * collaborative +  
-    (1 | participant)
+Linear mixed model fit by REML ['lmerModLmerTest']
+Formula: time_through_maze ~ haptic * visual * path_length * map_factor *  
+    collaborative + (1 | participant)
    Data: average_by_trial
-REML criterion at convergence: 5266.66
+REML criterion at convergence: 4883.343
 Random effects:
  Groups      Name        Std.Dev.
- participant (Intercept) 7.346   
- Residual                8.640   
+ participant (Intercept) 7.459   
+ Residual                8.243   
 Number of obs: 728, groups:  participant, 25
 Fixed Effects:
-                          (Intercept)                                haptic1  
-                            1.905e+00                              2.114e+02  
-                              visual1                            path_length  
-                           -8.177e+00                              1.442e+00  
-                                  map                          collaborative  
-                           -3.337e-02                             -2.271e+02  
-                      haptic1:visual1                    haptic1:path_length  
-                           -2.135e+02                             -7.423e+00  
-                  visual1:path_length                            haptic1:map  
-                           -1.483e-01                             -2.485e+01  
-                          visual1:map                        path_length:map  
-                            1.349e+00                              2.841e-03  
-                visual1:collaborative              path_length:collaborative  
-                            2.188e+02                              8.224e+00  
-                    map:collaborative            haptic1:visual1:path_length  
-                            2.641e+01                              7.758e+00  
-                  haptic1:visual1:map                haptic1:path_length:map  
-                            2.389e+01                              9.214e-01  
-              visual1:path_length:map      visual1:path_length:collaborative  
-                           -4.245e-02                             -7.906e+00  
-            visual1:map:collaborative          path_length:map:collaborative  
-                           -2.415e+01                             -9.697e-01  
-      haptic1:visual1:path_length:map  visual1:path_length:map:collaborative  
-                           -8.915e-01                              8.579e-01  
+                                  (Intercept)  
+                                      32.3188  
+                                      haptic1  
+                                    -257.5415  
+                                      visual1  
+                                     -51.4562  
+                                  path_length  
+                                       0.6303  
+                                  map_factor5  
+                                     -34.0696  
+                                  map_factor6  
+                                     -97.3423  
+                                  map_factor7  
+                                     -23.8858  
+                                  map_factor8  
+                                     -28.2112  
+                                  map_factor9  
+                                     -14.9715  
+                                 map_factor10  
+                                     -44.7803  
+                                 map_factor11  
+                                     -36.2380  
+                                collaborative  
+                                     187.2782  
+                              haptic1:visual1  
+                                     146.4459  
+                          haptic1:path_length  
+                                       8.8241  
+                          visual1:path_length  
+                                       1.1349  
+                          haptic1:map_factor5  
+                                      89.5881  
+                          haptic1:map_factor6  
+                                     314.3551  
+                          haptic1:map_factor7  
+                                     347.5462  
+                          haptic1:map_factor8  
+                                     252.8637  
+                          haptic1:map_factor9  
+                                     200.8315  
+                         haptic1:map_factor10  
+                                       6.7871  
+                         haptic1:map_factor11  
+                                     163.4854  
+                          visual1:map_factor5  
+                                     115.0380  
+                          visual1:map_factor6  
+                                      98.8859  
+                          visual1:map_factor7  
+                                      48.1079  
+                          visual1:map_factor8  
+                                      66.1888  
+                          visual1:map_factor9  
+                                       5.8919  
+                         visual1:map_factor10  
+                                      85.0153  
+                         visual1:map_factor11  
+                                      12.9284  
+                      path_length:map_factor5  
+                                       0.8866  
+                      path_length:map_factor6  
+                                       3.9825  
+                      path_length:map_factor7  
+                                       0.5473  
+                      path_length:map_factor8  
+                                       0.7143  
+                      path_length:map_factor9  
+                                       0.2789  
+                     path_length:map_factor10  
+                                       1.4675  
+                     path_length:map_factor11  
+                                       1.0244  
+                        visual1:collaborative  
+                                     -69.1251  
+                    path_length:collaborative  
+                                      -6.4881  
+                    map_factor5:collaborative  
+                                     -30.4038  
+                    map_factor6:collaborative  
+                                    -154.7653  
+                    map_factor7:collaborative  
+                                    -279.1145  
+                    map_factor8:collaborative  
+                                    -201.4081  
+                    map_factor9:collaborative  
+                                    -155.0666  
+                   map_factor10:collaborative  
+                                      58.1416  
+                   map_factor11:collaborative  
+                                    -101.7577  
+                  haptic1:visual1:path_length  
+                                      -4.7714  
+                  haptic1:visual1:map_factor5  
+                                     -90.0697  
+                  haptic1:visual1:map_factor6  
+                                    -211.9380  
+                  haptic1:visual1:map_factor7  
+                                    -243.9264  
+                  haptic1:visual1:map_factor8  
+                                    -166.8903  
+                  haptic1:visual1:map_factor9  
+                                     -72.1828  
+                 haptic1:visual1:map_factor10  
+                                      -1.5093  
+                 haptic1:visual1:map_factor11  
+                                     -34.7255  
+              haptic1:path_length:map_factor5  
+                                      -1.1174  
+              haptic1:path_length:map_factor6  
+                                     -12.4691  
+              haptic1:path_length:map_factor7  
+                                     -12.2819  
+              haptic1:path_length:map_factor8  
+                                      -8.2249  
+              haptic1:path_length:map_factor9  
+                                      -5.7751  
+             haptic1:path_length:map_factor10  
+                                       3.3199  
+             haptic1:path_length:map_factor11  
+                                      -4.8848  
+              visual1:path_length:map_factor5  
+                                      -4.8087  
+              visual1:path_length:map_factor6  
+                                      -3.7262  
+              visual1:path_length:map_factor7  
+                                      -1.3918  
+              visual1:path_length:map_factor8  
+                                      -2.2909  
+              visual1:path_length:map_factor9  
+                                       0.8168  
+             visual1:path_length:map_factor10  
+                                      -3.2040  
+             visual1:path_length:map_factor11  
+                                       0.2332  
+            visual1:path_length:collaborative  
+                                       2.3530  
+            visual1:map_factor7:collaborative  
+                                      27.5495  
+            visual1:map_factor8:collaborative  
+                                      72.6255  
+            visual1:map_factor9:collaborative  
+                                      22.5053  
+        path_length:map_factor5:collaborative  
+                                      -0.4153  
+        path_length:map_factor6:collaborative  
+                                       6.0504  
+        path_length:map_factor7:collaborative  
+                                      10.2956  
+        path_length:map_factor8:collaborative  
+                                       7.1824  
+        path_length:map_factor9:collaborative  
+                                       4.7787  
+       path_length:map_factor10:collaborative  
+                                      -5.1926  
+       path_length:map_factor11:collaborative  
+                                       3.1276  
+      haptic1:visual1:path_length:map_factor5  
+                                       3.0620  
+      haptic1:visual1:path_length:map_factor6  
+                                       8.8699  
+      haptic1:visual1:path_length:map_factor7  
+                                       8.7685  
+      haptic1:visual1:path_length:map_factor8  
+                                       5.5443  
+      haptic1:visual1:path_length:map_factor9  
+                                       0.7636  
+     haptic1:visual1:path_length:map_factor10  
+                                      -1.5777  
+     haptic1:visual1:path_length:map_factor11  
+                                       0.1444  
+visual1:path_length:map_factor8:collaborative  
+                                      -2.5591  
 fit warnings:
-fixed-effect model matrix is rank deficient so dropping 8 columns / coefficients
+fixed-effect model matrix is rank deficient so dropping 42 columns / coefficients
