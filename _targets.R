@@ -18,6 +18,11 @@ tar_source(files = "R_targets_functions")
 
 # Target List
 list(
+  
+  ####################
+  ### EXperiment 1 ###
+  ####################
+  
   # Codebook
   tar_target(
     name = codes,
@@ -126,13 +131,38 @@ list(
   tar_target(
     name = strategic_LME_analysis_only_haptic_results,
     command = strategic_LME_analysis_only_haptic(strategic_data_appended)
-  )#, 
+  ),#, 
   #tar_target(
   #  report,
   #  tar_render("report.Rmd")
     #name = LME_report,
     #command = tar_render("create_LME_report.RMD")
   #)
+  
+  
+  ####################
+  ### Experiment 2 ###
+  ####################
+  
+  # Codebook
+  tar_target(
+    name = codes_exp2,
+    command = import_codebook_exp2()
+  ),
+  # Separate targets to extract each element
+  tar_target(
+    name = codes_conditions_exp2,
+    command = codes_exp2[[1]]
+  ),
+  tar_target(
+    name = codes_participant_conditions_exp2,
+    command = codes_exp2[[2]]
+  ),
+  # Condense Data
+  tar_target(
+    name = compiled_data_exp2,
+    command = condense_data_exp2(codes_participant_conditions_exp2)
+  )
   
 )
 
