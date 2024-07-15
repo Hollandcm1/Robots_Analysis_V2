@@ -12,6 +12,7 @@
 # codebook
 data/codebook/*.xlsx
 data/codebook/*.csv
+data/codebook_exp2/*.xlsx
 
 # temporary to prevent a mistake later
 /data/processed 
