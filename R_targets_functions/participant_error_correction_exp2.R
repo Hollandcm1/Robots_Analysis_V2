@@ -6,15 +6,16 @@
 #' @examples
 #' participant_error_correction(compiled_data)
 #' 
-participant_error_correction <- function(compiled_data, codes_participant_conditions){
+participant_error_correction_exp2 <- function(compiled_data, codes_participant_conditions){
   
+  FALSE
   # initialize corrected data
   corrected_data <- list()
   
   # go through all participants to correct their namings and other data issues
   for (p_num in names(compiled_data)) {
     print(paste("Correcting participant ", p_num))
-    tmp <- compiled_data[[p_num]]
+    tmp <- compiled_data[[as.character(p_num)]]
     list_names <- names(tmp)
     
     participant_warned.names <- FALSE # track if name warning already presented
@@ -36,18 +37,20 @@ participant_error_correction <- function(compiled_data, codes_participant_condit
     
     if (p_num == 34) {
       tmp[["participant34_env9_rot180_cond2.mat"]] <- NULL
-      # tmp[["participant34_env5_rot270_cond1.mat"]] <- NULL
-      # tmp[["participant34_env6_rot270_cond1.mat"]] <- NULL
-      # tmp[["participant34_env7_rot0_cond1.mat"]] <- NULL
-      # tmp[["participant34_env8_rot270_cond1.mat"]] <- NULL
-      # tmp[["participant34_env9_rot180_cond2.mat"]] <- NULL
-      # tmp[["participant34_env9_rot270_cond1.mat"]] <- NULL
-      #list_names <- names(tmp)
     }
-    # 
-    # if (p_num == 4) {
-    #   #browser()
-    # }
+
+    if (p_num == 35) {
+      tmp[["participant35_env9_rot180_cond2.mat"]] <- NULL
+    }
+    
+    if (p_num == 43) {
+      tmp[["participant43_env3_rot90_cond1.mat"]] <- NULL
+      tmp[["participant43_env6_rot270_cond1.mat"]] <- NULL
+      tmp[["participant43_env8_rot270_cond1.mat"]] <- NULL
+      tmp[["participant43_env9_rot270_cond1.mat"]] <- NULL
+      tmp[["participant43_env10_rot0_cond1.mat"]] <- NULL
+      tmp[["participant43_env11_rot270_cond1.mat"]] <- NULL
+    }
     
     for (name in list_names) {
       
@@ -64,20 +67,21 @@ participant_error_correction <- function(compiled_data, codes_participant_condit
       }
       
       participant_full_number <- sub(".*participant(\\d+).*", "\\1", name)
-      participant_number <- substr(participant_full_number, nchar(participant_full_number), nchar(participant_full_number))
+      participant_number <- substr(participant_full_number, 2, nchar(participant_full_number))
       
-      if (as.numeric(participant_number) == 3 & as.numeric(participant_full_number) > 100) {
+      if (as.numeric(participant_number) == 33 & as.numeric(participant_full_number) > 100) {
         # participant101 cond1 becomes participant1 cond3
         # participant101 cond2 becomes participant1 cond4
         # build new name from original name
         add_to_cond = 0 # how much to correct this participant
-        new_name <- sub("participant\\d*(\\d)", "participant\\1", name)
+        new_name <- sub("participant\\d*(\\d{2})", "participant\\1", name)
         cond_number <- as.numeric(gsub(".*cond(\\d+).*", "\\1", new_name))
         new_name <- sub(paste0("cond", cond_number), paste0("cond", cond_number + add_to_cond), new_name)
         tmp <- rename_list_element(tmp, name, new_name)
         # reasign for testing measures later
         participant_full_number <- sub(".*participant(\\d+).*", "\\1", new_name)
-        participant_number <- substr(participant_full_number, nchar(participant_full_number), nchar(participant_full_number))
+        participant_number <- participant_full_number
+        #participant_number <- substr(participant_full_number, nchar(participant_full_number), nchar(participant_full_number))
 
       }
       
@@ -92,28 +96,42 @@ participant_error_correction <- function(compiled_data, codes_participant_condit
         # participant101 cond2 becomes participant1 cond4
         # build new name from original name
         add_to_cond = 1 # how much to correct this participant
-        new_name <- sub("participant\\d*(\\d)", "participant\\1", name)
+        new_name <- sub("participant\\d*(\\d{2})", "participant\\1", name)
         cond_number <- as.numeric(gsub(".*cond(\\d+).*", "\\1", new_name))
         new_name <- sub(paste0("cond", cond_number), paste0("cond", cond_number + add_to_cond), new_name)
         tmp <- rename_list_element(tmp, name, new_name)
         # reasign for testing measures later
         participant_full_number <- sub(".*participant(\\d+).*", "\\1", new_name)
-        participant_number <- substr(participant_full_number, nchar(participant_full_number), nchar(participant_full_number))
+        participant_number <- participant_full_number
       }
       
-      # if (as.numeric(participant_number) == 4 & as.numeric(participant_full_number) > 100) {
-      #   # participant101 cond1 becomes participant1 cond3
-      #   # participant101 cond2 becomes participant1 cond4
-      #   # build new name from original name
-      #   add_to_cond = 3 # how much to correct this participant
-      #   new_name <- sub("participant\\d*(\\d)", "participant\\1", name)
-      #   cond_number <- as.numeric(gsub(".*cond(\\d+).*", "\\1", new_name))
-      #   new_name <- sub(paste0("cond", cond_number), paste0("cond", cond_number + add_to_cond), new_name)
-      #   tmp <- rename_list_element(tmp, name, new_name)
-      #   # reasign for testing measures later
-      #   participant_full_number <- sub(".*participant(\\d+).*", "\\1", new_name)
-      #   participant_number <- substr(participant_full_number, nchar(participant_full_number), nchar(participant_full_number))
-      # }
+      if (as.numeric(participant_number) == 35 & as.numeric(participant_full_number) > 100) {
+        # participant101 cond1 becomes participant1 cond3
+        # participant101 cond2 becomes participant1 cond4
+        # build new name from original name
+        add_to_cond = 1 # how much to correct this participant
+        new_name <- sub("participant\\d*(\\d{2})", "participant\\1", name)
+        cond_number <- as.numeric(gsub(".*cond(\\d+).*", "\\1", new_name))
+        new_name <- sub(paste0("cond", cond_number), paste0("cond", cond_number + add_to_cond), new_name)
+        tmp <- rename_list_element(tmp, name, new_name)
+        # reasign for testing measures later
+        participant_full_number <- sub(".*participant(\\d+).*", "\\1", new_name)
+        participant_number <- participant_full_number
+      }
+      
+      if (as.numeric(participant_number) == 43 & as.numeric(participant_full_number) > 100) {
+        # participant101 cond1 becomes participant1 cond3
+        # participant101 cond2 becomes participant1 cond4
+        # build new name from original name
+        add_to_cond = 0 # how much to correct this participant
+        new_name <- sub("participant\\d*(\\d{2})", "participant\\1", name)
+        cond_number <- as.numeric(gsub(".*cond(\\d+).*", "\\1", new_name))
+        new_name <- sub(paste0("cond", cond_number), paste0("cond", cond_number + add_to_cond), new_name)
+        tmp <- rename_list_element(tmp, name, new_name)
+        # reasign for testing measures later
+        participant_full_number <- sub(".*participant(\\d+).*", "\\1", new_name)
+        participant_number <- participant_full_number
+      }
       
       
       
