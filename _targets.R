@@ -162,6 +162,16 @@ list(
   tar_target(
     name = compiled_data_exp2,
     command = condense_data_exp2(codes_participant_conditions_exp2)
+  ),
+  # Participant Error Correction
+  tar_target(
+    name = corrected_data_exp2,
+    command = participant_error_correction_exp2(compiled_data_exp2, codes_participant_conditions_exp2)
+  ),
+  # plot
+  tar_target(
+    name = all_trials_plots_exp2,
+    command = plot_all_trials(corrected_data_exp2)
   )
   
 )
