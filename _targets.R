@@ -172,6 +172,26 @@ list(
   tar_target(
     name = all_trials_plots_exp2,
     command = plot_all_trials(corrected_data_exp2)
+  ),
+  tar_target(
+    name = bad_trials_removed_exp2,
+    command = remove_bad_trials_exp2(corrected_data_exp2)
+  ),
+  tar_target(
+    name = within_maze_marked_data_exp2,
+    command = mark_within_maze_exp2(bad_trials_removed_exp2)
+  ),
+  tar_target(
+    name = within_maze_plotted_exp2,
+    command = plot_within_maze(within_maze_marked_data_exp2)
+  ),
+  tar_target(
+    name = data_long_exp2,
+    command = build_data_long_exp2(within_maze_marked_data_exp2, codes_conditions_exp2)
+  ),
+  tar_target(
+    name = data_long_calculated_exp2,
+    command = data_long_calculations(data_long_exp2, maps)
   )
   
 )
