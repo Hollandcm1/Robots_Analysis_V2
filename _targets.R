@@ -192,6 +192,14 @@ list(
   tar_target(
     name = data_long_calculated_exp2,
     command = data_long_calculations(data_long_exp2, maps)
+  ), 
+  tar_target(
+    name = LME_analysis_results_exp2,
+    command = LME_analysis_exp2(data_long_calculated_exp2)
+  ),
+  tar_target(
+    name = combined_analysis_results,
+    command = combined_analysis(strategic_data_appended, data_long_calculated_exp2)
   )
   
 )
