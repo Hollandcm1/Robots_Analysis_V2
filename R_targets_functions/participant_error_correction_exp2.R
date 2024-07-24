@@ -194,7 +194,8 @@ participant_error_correction_exp2 <- function(compiled_data, codes_participant_c
       rot_number <- as.numeric(gsub(".*rot(\\d+).*", "\\1", name))
       
       # Correction based on participant counterbalancing
-      cond_number <- codes_participant_conditions[[cond_number+1]][as.numeric(p_num)]
+      #cond_number <- codes_participant_conditions[[cond_number+1]][as.numeric(p_num)]
+      cond_number <- codes_participant_conditions[[cond_number + 1]][which(codes_participant_conditions$Participant == as.numeric(p_num))]
       
       # add to list
       tmp[[name]]$condition <- cond_number

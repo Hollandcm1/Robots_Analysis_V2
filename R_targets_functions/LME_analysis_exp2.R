@@ -1,0 +1,59 @@
+# LME_Analysis_exp2 
+
+# library(lme4)
+# library(sjPlot)
+# library(flexplot)
+# library(here)
+# library(dplyr)
+# library(ggplot2)
+# data<- tar_read(data_long_calculated_exp2)
+
+LME_analysis_exp2 <- function(data){
+
+  #################
+  ### Aggregate ###
+  #################
+  average_by_trial <- data %>%
+    group_by(participant, trial, condition_nums, time_through_maze, max_force, path_length, haptic, visual, map) %>%
+    summarise(average_force = mean(force_magnitude, na.rm = TRUE))
+  
+  # convert 
+  average_by_trial$map_factor <- as.factor(average_by_trial$map)
+  
+  ##############
+  ### Models ###
+  ##############
+  
+  # Model 1
+  model1 <- lmer(time_through_maze ~ haptic * visual * path_length * map_factor + (1|participant), data = average_by_trial)
+  summary(model1)
+  tab_model(model1)
+  
+  #convert haptic and visual to numeric
+  average_by_trial$haptic_num <- as.numeric(average_by_trial$haptic)
+  average_by_trial$visual_num <- as.numeric(average_by_trial$visual)
+  #cor(average_by_trial[, c("haptic_num", "visual_num", "path_length", "map", "collaborative")])
+  
+  # Model Buidling
+  model_0 <- lmer(time_through_maze ~ 1 + (1|participant), data = average_by_trial)
+  model_1 <- lmer(time_through_maze ~ haptic + (1|participant), data = average_by_trial) # YES
+  tab_model(model_1)
+  flexplot(time_through_maze ~ haptic, data = average_by_trial)
+  model_2 <- lmer(time_through_maze ~ visual + (1|participant), data = average_by_trial) # YES
+  tab_model(model_2)
+  flexplot(time_through_maze ~ visual, data = average_by_trial)
+  model_3 <- lmer(time_through_maze ~ haptic * visual + (1|participant), data = average_by_trial) # YES, haptic*visual
+  tab_model(model_3)
+  flexplot(time_through_maze ~ visual + haptic, data = average_by_trial)
+  
+  model_6 <- lmer(time_through_maze ~ haptic * visual * path_length + (1|participant), data = average_by_trial) # YES
+  tab_model(model_6)
+  flexplot(time_through_maze ~ haptic + visual | path_length, data = average_by_trial)
+  flexplot(time_through_maze ~ path_length, data = average_by_trial, method='lm')
+  flexplot(time_through_maze ~ path_length + visual, data = average_by_trial, method='lm')
+  flexplot(time_through_maze ~ path_length + haptic, data = average_by_trial, method='lm')
+
+}
+
+
+
