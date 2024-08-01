@@ -44,6 +44,11 @@ combined_analysis <- function(data_exp1, data_exp2){
     summary(model1)
     tab_model(model1)
     
+    flexplot(time_through_maze ~ haptic + path_length | experiment, data = average_by_trial)
+    flexplot(time_through_maze ~ haptic | experiment + path_length, data = average_by_trial)
+    flexplot(time_through_maze ~ path_length + haptic | experiment, data = average_by_trial, method = 'lm')
+    
+    
     # Model Buidling
     model_0 <- lmer(time_through_maze ~ 1 + (1|participant), data = average_by_trial)
     model_1 <- lmer(time_through_maze ~ haptic + (1|participant), data = average_by_trial) # YES

@@ -29,6 +29,12 @@ LME_analysis_exp2 <- function(data){
   summary(model1)
   tab_model(model1)
   
+  model2 <- lmer(time_through_maze ~ haptic * visual * path_length + (1|participant), data = average_by_trial)
+  summary(model2)
+  tab_model(model2)
+  flexplot(time_through_maze ~ haptic + path_length, data = average_by_trial)
+  flexplot(time_through_maze ~ path_length + haptic, data = average_by_trial, method = 'lm')
+  
   #convert haptic and visual to numeric
   average_by_trial$haptic_num <- as.numeric(average_by_trial$haptic)
   average_by_trial$visual_num <- as.numeric(average_by_trial$visual)
@@ -39,6 +45,11 @@ LME_analysis_exp2 <- function(data){
   model_1 <- lmer(time_through_maze ~ haptic + (1|participant), data = average_by_trial) # YES
   tab_model(model_1)
   flexplot(time_through_maze ~ haptic, data = average_by_trial)
+  # ggplot version
+  ggplot(average_by_trial, aes(x = haptic, y = time_through_maze)) +
+    geom_boxplot() +
+    geom_jitter(width = 0.2) +
+    theme_minimal()
   model_2 <- lmer(time_through_maze ~ visual + (1|participant), data = average_by_trial) # YES
   tab_model(model_2)
   flexplot(time_through_maze ~ visual, data = average_by_trial)

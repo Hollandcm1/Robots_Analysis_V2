@@ -33,3 +33,19 @@ ggplot(average_by_trial, aes(x = condition_nums, fill = collaborative, group = c
        x = "Condition",
        y = "Count") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+# remove condition 3 and 4
+average_by_trial <- average_by_trial %>%
+  filter(condition_nums_num != 3 & condition_nums_num != 4)
+
+# make collaborative a factor
+average_by_trial$collaborative <- as.factor(average_by_trial$collaborative)
+
+# plot again 
+ggplot(average_by_trial, aes(x = condition_nums, fill = collaborative, group = collaborative)) +
+  geom_bar(position = "dodge") +
+  theme_minimal() +
+  labs(title = "Chi-Square Analysis of Collaborative and Condition",
+       x = "Conditi",
+       y = "Count") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
