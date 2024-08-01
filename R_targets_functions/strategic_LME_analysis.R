@@ -1,11 +1,12 @@
 # Model
 
-library(lme4)
-library(sjPlot)
-library(flexplot)
-library(here)
-library(dplyr)
-library(ggplot2)
+# library(lme4)
+# library(sjPlot)
+# library(flexplot)
+# library(here)
+# library(dplyr)
+# library(ggplot2)
+# data <- tar_read(strategic_data_appended)
 
 # data <- strategic_data_appended
 
@@ -37,13 +38,27 @@ strategic_LME_analysis <- function(data) {
   average_by_trial$collaborative <- as.numeric(average_by_trial$collaborative)
   #cor(average_by_trial[, c("haptic_num", "visual_num", "path_length", "map", "collaborative")])
   
+  model2 <- lmer(time_through_maze ~ haptic * visual * path_length * collaborative + (1|participant), data = average_by_trial)
+  summary(model2)
+  tab_model(model2)
+  flexplot(time_through_maze ~ visual + path_length, data = average_by_trial)
+  flexplot(time_through_maze ~path_length + visual, data = average_by_trial, method ='lm')
+  flexplot(time_through_maze ~ path_length, data = average_by_trial, method ='lm')
   
   # Model Buidling
   model_0 <- lmer(time_through_maze ~ 1 + (1|participant), data = average_by_trial)
   model_1 <- lmer(time_through_maze ~ haptic + (1|participant), data = average_by_trial) # YES
   tab_model(model_1)
+  # haptic to facotor, ordered 0 1
+  average_by_trial$haptic <- factor(average_by_trial$haptic, levels = c(0, 1))
   flexplot(time_through_maze ~ haptic, data = average_by_trial)
-  model_2 <- lmer(time_through_maze ~ visual + (1|participant), data = average_by_trial) # YES
+  # ggplot version 
+  ggplot(average_by_trial, aes(x=haptic, y=time_through_maze)) +
+    geom_boxplot() +
+    geom_jitter(width = 0.2) + 
+    theme_minimal()
+    
+model_2 <- lmer(time_through_maze ~ visual + (1|participant), data = average_by_trial) # YES
   tab_model(model_2)
   flexplot(time_through_maze ~ visual, data = average_by_trial)
   model_3 <- lmer(time_through_maze ~ haptic * visual + (1|participant), data = average_by_trial) # YES, haptic*visual

@@ -1,11 +1,12 @@
 # Model
 
-library(lme4)
-library(sjPlot)
-library(flexplot)
-library(here)
-library(dplyr)
-library(ggplot2)
+# library(lme4)
+# library(sjPlot)
+# library(flexplot)
+# library(here)
+# library(dplyr)
+# library(ggplot2)
+# data <- tar_read(strategic_data_appended)
 
 # data <- strategic_data_appended
 
@@ -34,11 +35,17 @@ strategic_LME_analysis_only_haptic <- function(data) {
   tab_model(model1)
   #capture.output(model1, file = here('output', 'Strategic_Models', 'model1.txt'))
   
+  
+  
   #convert haptic and visual to numeric
   average_by_trial$haptic_num <- as.numeric(average_by_trial$haptic)
   average_by_trial$visual_num <- as.numeric(average_by_trial$visual)
   average_by_trial$collaborative <- as.numeric(average_by_trial$collaborative)
   cor(average_by_trial[, c("haptic_num", "visual_num", "path_length", "map", "collaborative")])
+  
+  model2 <- lmer(time_through_maze ~ visual * path_length * collaborative + (1|participant), data = average_by_trial)
+  summary(model2)
+  tab_model(model)
   
   
   # Model Buidling
@@ -84,6 +91,11 @@ strategic_LME_analysis_only_haptic <- function(data) {
   tab_model(model_14)
   flexplot(path_length ~ collaborative | visual, data = average_by_trial)
   
+  
+  
+  model_15 <- lmer(time_through_maze ~ collaborative + visual + (1|participant), data = average_by_trial) # YES
+  tab_model(model_15)
+  flexplot(time_through_maze ~ visual | collaborative, data = average_by_trial)
   
   # combine all models into a single variable
   models <- list(model1, model_0, model_2, model_4, model_5, model_6, model_7, model_8, model_12, model_13, model_14)
