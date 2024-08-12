@@ -14,8 +14,12 @@ LME_analysis_exp2 <- function(data){
   ### Aggregate ###
   #################
   average_by_trial <- data %>%
-    group_by(participant, trial, condition_nums, time_through_maze, max_force, path_length, haptic, visual, map) %>%
+    group_by(participant, trial, condition_nums, time_through_maze, max_force, path_length, haptic, visual, map, average_velocity) %>%
     summarise(average_force = mean(force_magnitude, na.rm = TRUE))
+  
+  # export to csv
+  # write.csv(average_by_trial, here('output', "average_by_trial.csv"))
+  # flexplot(data = average_by_trial, time_through_maze ~ average_velocity + path_length, method = 'lm')
   
   # convert 
   average_by_trial$map_factor <- as.factor(average_by_trial$map)

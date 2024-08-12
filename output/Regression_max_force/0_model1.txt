@@ -1,4 +1,4 @@
-Linear mixed model fit by REML ['lmerMod']
+Linear mixed model fit by REML ['lmerModLmerTest']
 Formula: time_through_maze ~ max_force + (1 | participant) + (1 | trial)
    Data: data
 REML criterion at convergence: 20452946

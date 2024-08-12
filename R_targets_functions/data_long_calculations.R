@@ -120,6 +120,21 @@ data_long_calculations <- function(data, maps) {
   
   data <- proximity_calculation(data, maps)
   
+  #########################
+  ### Average Proximity ###
+  #########################
+  
+  print("Calculating Average Proximity")
+  
+  # calculate average proximity by participant and trial
+  average_proximity_by_trial <- data %>%
+    group_by(participant, trial) %>%
+    filter(within_maze == 1) %>%
+    summarise(average_proximity = mean(closest_object_distance, na.rm = TRUE))
+  
+  # merge back to original data
+  data <- merge(data, average_proximity_by_trial, by = c("participant", "trial"))
+  
   
   #############################
   ### Data Type Corrections ###
