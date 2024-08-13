@@ -14,7 +14,7 @@ LME_analysis_exp2 <- function(data){
   ### Aggregate ###
   #################
   average_by_trial <- data %>%
-    group_by(participant, trial, condition_nums, time_through_maze, max_force, path_length, haptic, visual, map, average_velocity) %>%
+    group_by(participant, trial, condition_nums, time_through_maze, max_force, path_length, haptic, visual, map, average_velocity, average_proximity) %>%
     summarise(average_force = mean(force_magnitude, na.rm = TRUE))
   
   # export to csv
