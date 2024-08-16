@@ -18,7 +18,15 @@ LME_analysis_exp2 <- function(data){
     summarise(average_force = mean(force_magnitude, na.rm = TRUE))
   
   # export to csv
-  # write.csv(average_by_trial, here('output', "average_by_trial.csv"))
+  # average by conditions for each participant
+  average_by_conditions <- average_by_trial %>%
+    group_by(participant, haptic, visual, condition_nums) %>%
+    summarise(average_time_through_maze = mean(time_through_maze, na.rm = TRUE),
+              average_path_length = mean(path_length, na.rm = TRUE),
+              average_velocity = mean(average_velocity, na.rm = TRUE),
+              average_proximity = mean(average_proximity, na.rm = TRUE))
+  write.csv(average_by_conditions, here('output', "average_by_conditions.csv"))
+  write.csv(average_by_trial, here('output', "average_by_trial.csv"))
   # flexplot(data = average_by_trial, time_through_maze ~ average_velocity + path_length, method = 'lm')
   
   # convert 
