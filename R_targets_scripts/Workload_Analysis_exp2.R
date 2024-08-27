@@ -4,7 +4,7 @@ library(here)
 library(ggplot2)
 
 # load data
-data <- read.csv(here("data", "NASA-TLX", "Workload_exp2.csv"))
+data <- read.csv(here("data", "NASA-TLX", "Workload_exp_1_and_2.csv"))
 codes_participant_conditions <- tar_read(codes_participant_conditions_exp2)
 
 # remove participants 1-25

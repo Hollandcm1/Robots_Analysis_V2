@@ -18,7 +18,7 @@ combined_analysis <- function(data_exp1, data_exp2){
     #################
     data <- data_exp1
     average_by_trial <- data %>%
-      group_by(participant, condition_nums, time_through_maze, max_force, path_length, haptic, visual, map) %>%
+      group_by(participant, condition_nums, time_through_maze, max_force, path_length, haptic, visual, map, average_velocity, average_proximity, average_force) %>%
       summarise(average_force = mean(force_magnitude, na.rm = TRUE))
     # add experiment column
     average_by_trial$experiment <- 1
@@ -26,7 +26,7 @@ combined_analysis <- function(data_exp1, data_exp2){
     
     data <- data_exp2
     average_by_trial <- data %>%
-      group_by(participant, condition_nums, time_through_maze, max_force, path_length, haptic, visual, map) %>%
+      group_by(participant, condition_nums, time_through_maze, max_force, path_length, haptic, visual, map, average_velocity, average_proximity, average_force) %>%
       summarise(average_force = mean(force_magnitude, na.rm = TRUE))
     # add experiment column
     average_by_trial$experiment <- 2
@@ -38,6 +38,15 @@ combined_analysis <- function(data_exp1, data_exp2){
     all_data <- rbind(tmp_exp1, tmp_exp2)
     average_by_trial <- all_data
     
+    # export to csv (for standard figures)
+    average_by_conditions <- average_by_trial %>%
+      group_by(participant, haptic, visual, condition_nums, experiment) %>%
+      summarise(average_time_through_maze = mean(time_through_maze, na.rm = TRUE),
+                average_path_length = mean(path_length, na.rm = TRUE),
+                average_velocity = mean(average_velocity, na.rm = TRUE),
+                average_proximity = mean(average_proximity, na.rm = TRUE),
+                average_force = mean(average_force, na.rm = TRUE))
+    write.csv(average_by_conditions, here('output', "average_by_conditions_all_data.csv"))
     
     # Large model
     model1 <- lmer(time_through_maze ~ haptic * visual * path_length * experiment + (1|participant), data = average_by_trial)
