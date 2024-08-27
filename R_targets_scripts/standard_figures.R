@@ -24,22 +24,7 @@ codes <- as.data.frame(codes)
 data$visual <- factor(data$visual, levels = c(0, 1), labels = c("Flickering Vision", "Full Vision"))
 
 # relabel haptic, where 1 = Haptic and 0 = No Haptic in data
-data$haptic <- factor(data$haptic, levels = c(0, 1), labels = c("No Haptic", "Haptic"))
-
-# # relabel condition_nums where 1 = VH 2 = H, 3 = V, 4 = nothing
-# data$condition_nums <- factor(data$condition_nums, levels = c(1, 2, 3, 4), labels = c("VH", "H", "V", "nothing"))
-# 
-# # reorder condition_nums as nothing, H, V, VH
-# data$condition_nums <- factor(data$condition_nums, levels = c("nothing", "H", "V", "VH"))
-# 
-# # plot average_time_through_maze by condition
-# ggplot(data, aes(x=condition_nums, y=average_time_through_maze, fill=condition_nums)) +
-#   geom_boxplot() +
-#   geom_jitter(width = 0.3, height = 0, alpha = 0.5) +
-#   theme_minimal() +
-#   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-#   labs(title="Average Time Through Maze by Condition", x="Condition", y="Average Time Through Maze (s)")
-
+data$haptic <- factor(data$haptic, levels = c(0, 1), labels = c("No Haptic Feedback", "Haptic Feedback"))
 
 ########################################
 ### Time Through Maze (Bar + Points) ###
@@ -59,48 +44,33 @@ colnames(means) <- c("condition", "mean", "sd")
 means$visual <- codes$Visual
 means$haptic <- codes$Haptic
 
-# # convert to integers
-# means$visual <- as.integer(means$visual)
-# means$haptic <- as.integer(means$haptic)
-
 # relabel visual, where 1 = Full Vision and 0 = Flickering Vision
 means$visual <- factor(means$visual, levels = c(0, 1), labels = c("Flickering Vision", "Full Vision"))
 
 # relabel haptic, where 1 = Haptic and 0 = No Haptic
-means$haptic <- factor(means$haptic, levels = c(0, 1), labels = c("No Haptic", "Haptic"))
+means$haptic <- factor(means$haptic, levels = c(0, 1), labels = c("No Haptic Feedback", "Haptic Feedback"))
 
-data$condition <- data$condition_nums
-library(ggbeeswarm)
-
+# create the scatter plot jitter
 data$visual_jitter <- as.numeric(data$visual) + 
-  ifelse(data$haptic == "Haptic", 0.2, 
-         ifelse(data$haptic == "No Haptic", -0.2, -0.2))
+  ifelse(data$haptic == "Haptic Feedback", 0.2, 
+         ifelse(data$haptic == "No Haptic Feedback", -0.2, -0.2))
 
-ggplot(means, aes(x=visual, y=mean, fill=haptic)) +
+g1 <- ggplot(means, aes(x=visual, y=mean, fill=haptic)) +
   geom_bar(stat="identity", position = position_dodge2(padding = 0.05)) +
   geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), position = position_dodge2(padding = 0.7)) +
   theme_classic() +
-  labs(title="Average Time Through Maze by Condition", x="Condition", y="Average Time Through Maze") +
+  labs(title="Average Time Through Maze by Condition", x="Condition", y="Average Time Through Maze (seconds)") +
   guides(fill=guide_legend(title=NULL)) + 
+  # move legend
+  theme(legend.position = c(0.6, 0.8), # adjust these values as needed
+        legend.justification = c(0, 1)) +
   # add scatter plot data on top of this
-  # Use geom_quasirandom to jitter the points
   geom_quasirandom(data=data, aes(x=visual_jitter, y=average_time_through_maze), 
                    alpha=0.9, cex=1.8, width = 0.15)
-  # geom_beeswarm(data=data, aes(x=visual, y=average_time_through_maze, group=haptic), 
-  #               position=position_dodge2(width = 0.75, padding = 0.05), 
-  #               alpha=0.9, cex=1.8) 
 
+print(g1)
 
-  
-
-# ggplot() +
-#   geom_beeswarm(data=data, aes(x=visual, y=average_time_through_maze, group=haptic), alpha=0.9, cex=1.8) +
-#   theme(legend.position = "none")
-
-# save the plot
-ggsave(here('output', 'standard_figures', 'average_time_through_maze.png'), width=8, height=6)
-
-
+save(g1, file = here('output', 'standard_figures', 'average_time_through_maze.RData'), width=6, height=8)
 
 
 
