@@ -10,7 +10,7 @@ library(targets)
 tar_option_set(
   packages = c("tibble", "R.matlab", "here", "openxlsx", "dplyr", "stringr", 
                "ggplot2", "tidyr", "purrr", "flexplot", "lme4", "sjPlot", "zoo", 
-               "grid", "cowplot", "readxl","lmerTest") # Packages that your targets need
+               "grid", "cowplot", "readxl","lmerTest", "ggbeeswarm") # Packages that your targets need
 )
 
 # Run the R scripts in the R/ folder with your custom functions:
@@ -197,9 +197,18 @@ list(
     name = LME_analysis_results_exp2,
     command = LME_analysis_exp2(data_long_calculated_exp2)
   ),
+  
+  ################
+  ### Combined ###
+  ################
+  
   tar_target(
     name = combined_analysis_results,
     command = combined_analysis(strategic_data_appended, data_long_calculated_exp2)
+  ),
+  tar_target(
+    name = standard_figures,
+    command = create_standard_figures(combined_analysis_results, codes_conditions, codes_participant_conditions, codes_participant_conditions_exp2)
   )
   
 )

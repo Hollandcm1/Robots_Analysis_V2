@@ -183,9 +183,36 @@ print(g3)
 
 
 
+#################################
+### Verification From Scratch ###
+#################################
 
+data <- read.csv(here('output', 'Sierra_Verrifications', 'Robots_data_long.csv'))
 
+average_by_trial <- data
 
+average_by_conditions <- average_by_trial %>%
+  group_by(participant_number, haptic, vision, condition) %>%
+  summarise(average_velocity = mean(average_velocity, na.rm = TRUE),
+            average_time_through_maze = mean(time_through_maze, na.rm = TRUE),
+            average_path_length = mean(path_length, na.rm = TRUE))
+
+# convert haptic and vision to factors
+average_by_conditions$haptic <- factor(average_by_conditions$haptic, levels = c(0, 1), labels = c("No Haptic Feedback", "Haptic Feedback"))
+average_by_conditions$vision <- factor(average_by_conditions$vision, levels = c(0, 1), labels = c("Flickering Vision", "Full Vision"))
+
+# plot scatter plot of average velocity by condition
+g1 <- ggplot(average_by_conditions, aes(x=haptic, y=average_velocity)) +
+  geom_point() +
+  labs(title="Average Velocity by Condition (Experiment 1)", x="Condition", y="Average Velocity (units/second)") +
+  theme_classic()
+print(g1)
+
+g2 <- ggplot(average_by_conditions, aes(x=vision, y=average_velocity)) +
+  geom_point() +
+  labs(title="Average Velocity by Condition (Experiment 1)", x="Condition", y="Average Velocity (units/second)") +
+  theme_classic()
+print(g2)
 
 
 

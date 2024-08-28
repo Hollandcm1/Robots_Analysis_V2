@@ -58,7 +58,7 @@ strategic_LME_analysis <- function(data) {
     geom_jitter(width = 0.2) + 
     theme_minimal()
     
-model_2 <- lmer(time_through_maze ~ visual + (1|participant), data = average_by_trial) # YES
+  model_2 <- lmer(time_through_maze ~ visual + (1|participant), data = average_by_trial) # YES
   tab_model(model_2)
   flexplot(time_through_maze ~ visual, data = average_by_trial)
   model_3 <- lmer(time_through_maze ~ haptic * visual + (1|participant), data = average_by_trial) # YES, haptic*visual

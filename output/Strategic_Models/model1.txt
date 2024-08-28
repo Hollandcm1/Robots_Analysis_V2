@@ -1,6 +1,5 @@
-Linear mixed model fit by REML ['lmerMod']
-Formula: 
-time_through_maze ~ haptic * visual * path_length * map_factor *  
+Linear mixed model fit by REML ['lmerModLmerTest']
+Formula: time_through_maze ~ haptic * visual * path_length * map_factor *  
     collaborative + (1 | participant)
    Data: average_by_trial
 REML criterion at convergence: 4883.343

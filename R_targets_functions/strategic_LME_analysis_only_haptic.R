@@ -45,7 +45,7 @@ strategic_LME_analysis_only_haptic <- function(data) {
   
   model2 <- lmer(time_through_maze ~ visual * path_length * collaborative + (1|participant), data = average_by_trial)
   summary(model2)
-  tab_model(model)
+  tab_model(model2)
   
   
   # Model Buidling

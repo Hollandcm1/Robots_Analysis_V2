@@ -46,7 +46,7 @@ combined_analysis <- function(data_exp1, data_exp2){
                 average_velocity = mean(average_velocity, na.rm = TRUE),
                 average_proximity = mean(average_proximity, na.rm = TRUE),
                 average_force = mean(average_force, na.rm = TRUE))
-    write.csv(average_by_conditions, here('output', "average_by_conditions_all_data.csv"))
+    # write.csv(average_by_conditions, here('output', "average_by_conditions_all_data.csv"))
     
     # Large model
     model1 <- lmer(time_through_maze ~ haptic * visual * path_length * experiment + (1|participant), data = average_by_trial)
@@ -77,5 +77,8 @@ combined_analysis <- function(data_exp1, data_exp2){
     model_5 <- lmer(time_through_maze ~ haptic * visual * experiment + (1|participant), data = average_by_trial) #
     tab_model(model_5)
     flexplot(time_through_maze ~ haptic + visual | experiment, data = average_by_trial)
+    
+    
+    return(average_by_conditions)
     
 }
