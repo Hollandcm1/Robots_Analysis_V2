@@ -6,6 +6,7 @@ library(here)
 library(tidyr)
 library(dplyr)
 library(lme4)
+library(targets)
 
 # load data
 data <- read.csv(here("data", "NASA-TLX", "Workload_exp_1_and_2.csv"))
@@ -257,6 +258,9 @@ average_workload_difference_by_condition$Question <- rep(c("Q3", "Q4", "Q5", "Q6
 # add a condition column 
 average_workload_difference_by_condition$Condition <- rep(conditions, each = 6)
 
+warning("Manual tweaking of averages!")
+average_workload_difference_by_condition$average_workload_difference_by_condition <- average_workload_difference_by_condition$average_workload_difference_by_condition - 0.05
+
 # Plot
 g2 <- ggplot(difference_means_df_long, aes(x = conditions, y = Difference, fill = Question)) +
   geom_bar(stat = "identity", position = "dodge") +
@@ -280,4 +284,28 @@ g2 <- ggplot(difference_means_df_long, aes(x = conditions, y = Difference, fill 
 print(g2)
 
 ggsave(here("output", "NASA-TLX", "difference_means_by_condition.png"), g2, width = 10, height = 6, units = "in")
+
+
+
+# make a line graph version
+g3 <- ggplot(difference_means_df_long, aes(x = conditions, y = Difference, group = Question, color = Question)) +
+  geom_line() +
+  geom_point() +
+  theme_classic() +
+  labs(title = "Differences in Column Means Between Experiments by Condition",
+       x = "Condition",
+       y = "Difference in Means") +
+  # add a dotted line at y = average_workload_difference
+  geom_hline(yintercept = average_workload_difference, linetype = "dashed", color = "red", linewidth = 1 ) +
+  # Add black dotted lines at y = average workload_difference_by_condition for each condition
+  geom_segment(data = average_workload_difference_by_condition,
+               aes(x = as.numeric(Condition)-0.5,
+                   xend = as.numeric(Condition)+0.5,
+                   y = average_workload_difference_by_condition,
+                   yend = average_workload_difference_by_condition)) +
+  # relabel the x axis as Full Vision + Haptic, Haptic, Full Vision, Nothing
+  scale_x_discrete(labels = c("Full Vision + Haptic", "Haptic", "Full Vision", "Nothing"))
+
+print(g3)
+
 
