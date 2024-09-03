@@ -1,14 +1,50 @@
-# workload analysis
+# Workload LME Analysis
 
+library(lme4)
+library(sjPlot)
 library(here)
-library(ggplot2)
+library(dplyr)
+library(flexplot)
 
 # load data
 data <- read.csv(here("data", "NASA-TLX", "Workload_exp_1_and_2.csv"))
-codes_participant_conditions <- tar_read(codes_participant_conditions_exp2)
+codes_participant_conditions_exp1 <- tar_read('codes_participant_conditions')
+codes_participant_conditions_exp2 <- tar_read('codes_participant_conditions_exp2')
+
+
+codes <- tar_read('codes_conditions')
+
+codes <- t(codes)
+
+# use 'Factor' row as column labels
+colnames(codes) <- codes["Factor",]
+
+# remove the 'Factor' row
+codes <- codes[-1,]
+
+# convert to dataframe
+codes <- as.data.frame(codes)
+
+
+#####################
+### Data Cleaning ###
+#####################
+
+# combine the codes
+codes_participant_conditions <- rbind(codes_participant_conditions_exp1, codes_participant_conditions_exp2)
 
 # remove participants 1-25
-data <- data[!data$Q1 %in% 1:25,]
+# data <- data[!data$Q1 %in% 1:25,]
+
+# add new column called experiment, where if participant == 1 through 25 the value is 1, if not 2
+data$experiment <- ifelse(data$Q1 %in% 1:25, 1, 2)
+
+# convert to factor
+data$experiment <- as.factor(data$experiment)
+
+# remove participants if they don't have 4 of their values in the participant column
+data <- data[data$Q1 %in% data$Q1[duplicated(data$Q1)],]
+
 
 # relabel column Q1 as Participant
 data <- data.frame(data, Participant = data$Q1)
@@ -30,7 +66,6 @@ for (i in 1:nrow(data)) {
   # Correction based on participant counterbalancing
   #corrected_cond_number <- codes_participant_conditions[[cond_number+1]][as.numeric(p_num)]
   corrected_cond_number <- codes_participant_conditions[[cond_number + 1]][which(codes_participant_conditions$Participant == as.numeric(p_num))]
-  
   
   # add to list
   data$Corrected_Condition[i] <- corrected_cond_number
@@ -80,31 +115,48 @@ data$Visual <- ifelse(data$Condition %in% c(1, 3), 1, 0)
 # convert to factor
 data$Visual <- as.factor(data$Visual)
 
-# plot the data 
-ggplot(data, aes(x = Condition, y = Workload100, fill = Haptic)) +
-  geom_boxplot() +
-  geom_jitter(width = 0.1) +
-  labs(title = "Workload by Condition", x = "Condition", y = "Workload (out of 100)") +
-  theme_classic()
 
-# make the same figure, but where to order of conditions of the x axis is
-data$Condition <- factor(data$Condition, levels = c(4, 2, 3, 1))
-ggplot(data, aes(x = Condition, y = WorkloadSum, fill = Haptic)) +
-  geom_boxplot() +
-  geom_jitter(width = 0.1) +
-  labs(title = "Workload by Condition", x = "Condition", y = "Workload (out of 60)") +
-  theme_classic() +
-  scale_x_discrete(labels = c("Flickering Vision", "Flickering Vision + Haptic", "Full Vision", "Full Vision + Haptic")) +
-  ylim(0, 60)
+########################
+### data Corrections ###
+########################
 
-# strip columns "RespondentId", "StartDate", "CompletedDate", "LanguageCode"
-data$RespondentId <- NULL
-data$StartDate <- NULL
-data$CompletedDate <- NULL
-data$LanguageCode <- NULL
+# relabel visual, where 1 = Full Vision and 0 = Flickering Vision in data
+data$visual <- factor(data$Visual, levels = c(0, 1), labels = c("Flickering Vision", "Full Vision"))
+# remove Visual column
+data$Visual <- NULL
 
-# save the data
-write.csv(data, here("output", "workload_data_exp2.csv"))
+# relabel haptic, where 1 = Haptic and 0 = No Haptic in data
+data$haptic <- factor(data$Haptic, levels = c(0, 1), labels = c("No Haptic Feedback", "Haptic Feedback"))
+# remove Haptic column
+data$Haptic <- NULL
 
 
+
+##############################################
+### Renaming and Selecting Subsets of Data ###
+##############################################
+
+# make new variable that contains all data
+data_all <- data
+
+
+
+####################
+### LME Analysis ###
+####################
+
+# pull from unedited data
+data <- data_all
+
+
+# create LME model
+model <- lmer(WorkloadSum ~ visual * haptic * experiment + (1|Participant), data = data)
+tab_model(model)
+p1 <- flexplot(WorkloadSum ~ haptic + experiment, data = data)
+flexplot(WorkloadSum ~ experiment + haptic, data = data)
+p2 <- flexplot(WorkloadSum ~ visual, data = data)
+
+# save plots
+ggsave(here("output", "NASA-TLX", "WorkloadSum_haptic_experiment.png"), p1, width = 10, height = 6)
+ggsave(here("output", "NASA-TLX", "WorkloadSum_visual.png"), p2, width = 10, height = 6)
 
