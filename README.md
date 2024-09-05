@@ -17,6 +17,7 @@ This analysis pipeline makes use of the targets package to keep track of analysi
 Run the sript < _targets.R > 
 in the command line, run the following
 > tar_make()
+
 > tar_visnetwork()
 
 example of output (you version you will be able to zoom and explore the various nodes):
