@@ -304,8 +304,44 @@ g3 <- ggplot(difference_means_df_long, aes(x = conditions, y = Difference, group
                    y = average_workload_difference_by_condition,
                    yend = average_workload_difference_by_condition)) +
   # relabel the x axis as Full Vision + Haptic, Haptic, Full Vision, Nothing
-  scale_x_discrete(labels = c("Full Vision + Haptic", "Haptic", "Full Vision", "Nothing"))
+  scale_x_discrete(labels = c("Full Vision + Haptic", "Haptic", "Full Vision", "Nothing")) 
 
 print(g3)
 
+ggsave(here("output", "NASA-TLX", "difference_means_by_condition_line.png"), g3, width = 10, height = 6, units = "in")
+
+
+# convert to long format
+column_means_exp1_long <- gather(column_means_exp1, Question, Workload, -Condition)
+column_means_exp2_long <- gather(column_means_exp2, Question, Workload, -Condition)
+
+# plot column_means_exp1 as a line graph
+g4 <- ggplot(column_means_exp1_long, aes(x = Condition, y = Workload, group = Question, color = Question)) +
+  geom_line() +
+  geom_point() +
+  theme_classic() +
+  labs(title = "Workload by Condition in Experiment 1",
+       x = "Condition",
+       y = "Workload") +
+  scale_x_discrete(labels = c("Full Vision + Haptic", "Haptic", "Full Vision", "Nothing")) +
+  ylim(1, 10)
+
+print(g4)
+
+ggsave(here("output", "NASA-TLX", "workload_by_condition_exp1.png"), g4, width = 10, height = 6, units = "in")
+
+# plot column_means_exp2 as a line graph
+g5 <- ggplot(column_means_exp2_long, aes(x = Condition, y = Workload, group = Question, color = Question)) +
+  geom_line() +
+  geom_point() +
+  theme_classic() +
+  labs(title = "Workload by Condition in Experiment 2",
+       x = "Condition",
+       y = "Workload") +
+  scale_x_discrete(labels = c("Full Vision + Haptic", "Haptic", "Full Vision", "Nothing")) +
+  ylim(1, 10)
+
+print(g5)
+
+ggsave(here("output", "NASA-TLX", "workload_by_condition_exp2.png"), g5, width = 10, height = 6, units = "in")
 
