@@ -3,6 +3,9 @@
 # # libraries
 # library(ggplot2)
 # library(here)
+# library(ggbeeswarm)
+# library(RColorBrewer)
+# 
 # 
 # # load the data
 # data <- read.csv(here('output', 'average_by_conditions_all_data.csv'))
@@ -27,6 +30,55 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
   
   # relabel haptic, where 1 = Haptic and 0 = No Haptic in data
   data$haptic <- factor(data$haptic, levels = c(0, 1), labels = c("No Haptic Feedback", "Haptic Feedback"))
+  
+  ##########################################################
+  ####################### GreyScale Option 1 ###############
+  ##########################################################
+  
+  # # Define a grayscale fill color palette
+  # grayscale_palette <- c("gray30", "gray70", "gray90")
+  # 
+  # g1 <- ggplot(means, aes(x=visual, y=mean, fill=haptic)) +
+  #   geom_bar(stat="identity", position=position_dodge2(padding=0.05), color="black") + 
+  #   scale_fill_manual(values=grayscale_palette) + 
+  #   geom_errorbar(aes(ymin=mean-se, ymax=mean+se), position=position_dodge2(padding=0.7), size=1, linetype="dashed") + 
+  #   theme_classic() + 
+  #   labs(title="Average Time Through Maze by Condition (Experiment 1)", x="Condition", y="Average Time Through Maze (seconds)") + 
+  #   guides(fill=guide_legend(title=NULL)) + 
+  #   theme(legend.position='top', legend.justification=c(0.5, 1)) + 
+  #   geom_quasirandom(data=data, aes(x=visual_jitter, y=average_time_through_maze, shape=haptic), alpha=0.7, size=3, width=0.15) + 
+  #   scale_shape_manual(values=c(21, 22, 23)) + 
+  #   ylim(0, 400)
+  
+  ##########################################################
+  ##########################################################
+  ##########################################################
+  
+  
+  ##########################################################
+  ####################### GreyScale Option 2 ###############
+  ##########################################################
+  
+  # # Use a colorblind-friendly palette that converts well to grayscale
+  # color_palette <- brewer.pal(n = 3, name = "Set1")
+  # 
+  # g1 <- ggplot(means, aes(x=visual, y=mean, fill=haptic)) +
+  #   geom_bar(stat="identity", position=position_dodge2(padding=0.05), color="black") +
+  #   scale_fill_manual(values=color_palette) +
+  #   geom_errorbar(aes(ymin=mean-se, ymax=mean+se), position=position_dodge2(padding=0.7), linewidth=1) +
+  #   theme_classic() +
+  #   labs(title="Average Time Through Maze by Condition (Experiment 1)", x="Condition", y="Average Time Through Maze (seconds)") +
+  #   guides(fill=guide_legend(title=NULL)) + 
+  #   theme(legend.position='top', legend.justification=c(0.5, 1)) + 
+  #   geom_quasirandom(data=data, aes(x=visual_jitter, y=average_time_through_maze), alpha=0.7, width=0.15) + 
+  #   ylim(0, 400)
+  # 
+  # print(g1)
+  
+  ##########################################################
+  ##########################################################
+  ##########################################################
+  
   
   ################################################################################
   #################################### Exp 1 #####################################
@@ -740,6 +792,11 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
   print(g12)
   
   ggsave(g12, file = here('output', 'standard_figures', 'average_workload_exp_2.png'), width=6, height=8)
+  
+  
+  
+  
+  
 
 }
 
