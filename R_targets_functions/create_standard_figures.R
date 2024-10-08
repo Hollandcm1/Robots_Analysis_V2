@@ -31,6 +31,17 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
   # relabel haptic, where 1 = Haptic and 0 = No Haptic in data
   data$haptic <- factor(data$haptic, levels = c(0, 1), labels = c("No Haptic Feedback", "Haptic Feedback"))
   
+  ###############
+  ### Colours ###
+  ###############
+  
+  text_size.title <- 24
+  text_size.x_title <- 24
+  text_size.y_title <- 24
+  text_size.x_text <- 20
+  text_size.y_text <- 20
+  text_size.legend_text <- 18
+  
   ##########################################################
   ####################### GreyScale Option 1 ###############
   ##########################################################
@@ -154,13 +165,22 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     geom_bar(stat="identity", position = position_dodge2(padding = 0.05)) +
     geom_errorbar(aes(ymin=mean-se, ymax=mean+se), position = position_dodge2(padding = 0.7), linewidth=1) +
     theme_classic() +
-    labs(title="Average Time Through Maze by Condition (Experiment 1)", x="Condition", y="Average Time Through Maze (seconds)") +
+    labs(#title="Average Time Through Maze by Condition (Experiment 1)",
+         x="Condition", y="Average Time Through Maze (seconds)",
+         title = "Experiment 1") +
     guides(fill=guide_legend(title=NULL)) + 
     # move legend
     # theme(legend.position = c(0.6, 0.8), # adjust these values as needed
     #       legend.justification = c(0, 1)) +
     theme(legend.position = 'top', # adjust these values as needed
-          legend.justification = c(0.5, 1)) +
+          legend.justification = c(0.5, 1),
+          plot.title = element_text(size=text_size.title, hjust=0.5),         # Set title text size
+          axis.title.x = element_text(size=text_size.x_title),                    # Set x-axis label text size
+          axis.title.y = element_text(size=text_size.y_title),                     # Set y-axis label text size
+          axis.text.x = element_text(size=text_size.x_text),                  # Set x-axis tick mark text size
+          axis.text.y = element_text(size=text_size.y_text),
+          legend.text = element_text(size=text_size.legend_text)
+          ) +
     # add scatter plot data on top of this
     geom_quasirandom(data=data, aes(x=visual_jitter, y=average_time_through_maze), 
                      alpha=0.7, cex=1.8, width = 0.15) +
@@ -202,11 +222,20 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     geom_bar(stat="identity", position = position_dodge2(padding = 0.05)) +
     geom_errorbar(aes(ymin=mean-se, ymax=mean+se), position = position_dodge2(padding = 0.7), linewidth=1) +
     theme_classic() +
-    labs(title="Average Path Length by Condition (Experiment 1)", x="Condition", y="Average Path Length (units)") +
+    labs(#title="Average Path Length by Condition (Experiment 1)", 
+      x="Condition", y="Average Path Length (units)",
+      title = "Experiment 1") +
     guides(fill=guide_legend(title=NULL)) + 
     # move legend
     theme(legend.position = 'top', # adjust these values as needed
-          legend.justification = c(0.5, 1)) +
+          legend.justification = c(0.5, 1),
+          plot.title = element_text(size=text_size.title, hjust=0.5),         # Set title text size
+          axis.title.x = element_text(size=text_size.x_title),                    # Set x-axis label text size
+          axis.title.y = element_text(size=text_size.y_title),                     # Set y-axis label text size
+          axis.text.x = element_text(size=text_size.x_text),                  # Set x-axis tick mark text size
+          axis.text.y = element_text(size=text_size.y_text),
+          legend.text = element_text(size=text_size.legend_text)
+          ) +
     # add scatter plot data on top of this
     geom_quasirandom(data=data, aes(x=visual_jitter, y=average_path_length), 
                      alpha=0.7, cex=1.8, width = 0.15) +
@@ -246,11 +275,20 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     geom_bar(stat="identity", position = position_dodge2(padding = 0.05)) +
     geom_errorbar(aes(ymin=mean-se, ymax=mean+se), position = position_dodge2(padding = 0.7), linewidth=1) +
     theme_classic() +
-    labs(title="Average Velocity by Condition (Experiment 1)", x="Condition", y="Average Velocity (units/second)") +
+    labs(#title="Average Velocity by Condition (Experiment 1)", 
+      x="Condition", y="Average Velocity (units/second)",
+      title = "Experiment 1") +
     guides(fill=guide_legend(title=NULL)) + 
     # move legend
     theme(legend.position = 'top', # adjust these values as needed
-          legend.justification = c(0.5, 1)) +
+          legend.justification = c(0.5, 1),
+          plot.title = element_text(size=text_size.title, hjust=0.5),         # Set title text size
+          axis.title.x = element_text(size=text_size.x_title),                    # Set x-axis label text size
+          axis.title.y = element_text(size=text_size.y_title),                     # Set y-axis label text size
+          axis.text.x = element_text(size=text_size.x_text),                  # Set x-axis tick mark text size
+          axis.text.y = element_text(size=text_size.y_text),
+          legend.text = element_text(size=text_size.legend_text)
+          ) +
     # add scatter plot data on top of this
     geom_quasirandom(data=data, aes(x=visual_jitter, y=average_velocity), 
                      alpha=0.7, cex=1.8, width = 0.15) +
@@ -292,11 +330,19 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     geom_bar(stat="identity", position = position_dodge2(padding = 0.05)) +
     geom_errorbar(aes(ymin=mean-se, ymax=mean+se), position = position_dodge2(padding = 0.7), linewidth=1) +
     theme_classic() +
-    labs(title="Average Proximity by Condition (Experiment 1)", x="Condition", y="Average Proximity (units)") +
+    labs(#title="Average Proximity by Condition (Experiment 1)", 
+      x="Condition", y="Average Proximity (units)",
+      title = "Experiment 1") +
     guides(fill=guide_legend(title=NULL)) + 
     # move legend
     theme(legend.position = 'top', # adjust these values as needed
-          legend.justification = c(0.5, 1)) +
+          legend.justification = c(0.5, 1),
+          plot.title = element_text(size=text_size.title, hjust=0.5),         # Set title text size
+          axis.title.x = element_text(size=text_size.x_title),                    # Set x-axis label text size
+          axis.title.y = element_text(size=text_size.y_title),                     # Set y-axis label text size
+          axis.text.x = element_text(size=text_size.x_text),                  # Set x-axis tick mark text size
+          axis.text.y = element_text(size=text_size.y_text),
+          legend.text = element_text(size=text_size.legend_text)) +
     # add scatter plot data on top of this
     geom_quasirandom(data=data, aes(x=visual_jitter, y=average_proximity), 
                      alpha=0.7, cex=1.8, width = 0.15) +
@@ -337,11 +383,20 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     geom_bar(stat="identity", position = position_dodge2(padding = 0.05)) +
     geom_errorbar(aes(ymin=mean-se, ymax=mean+se), position = position_dodge2(padding = 0.7), linewidth=1) +
     theme_classic() +
-    labs(title="Average Force by Condition (Experiment 1)", x="Condition", y="Average Force (N)") +
+    labs(#title="Average Force by Condition (Experiment 1)", 
+      x="Condition", y="Average Force (N)",
+      title = "Experiment 1") +
     guides(fill=guide_legend(title=NULL)) + 
     # move legend
     theme(legend.position = 'top', # adjust these values as needed
-          legend.justification = c(0.5, 1)) +
+          legend.justification = c(0.5, 1),
+          plot.title = element_text(size=text_size.title, hjust=0.5),         # Set title text size
+          axis.title.x = element_text(size=text_size.x_title),                    # Set x-axis label text size
+          axis.title.y = element_text(size=text_size.y_title),                     # Set y-axis label text size
+          axis.text.x = element_text(size=text_size.x_text),                  # Set x-axis tick mark text size
+          axis.text.y = element_text(size=text_size.y_text),
+          legend.text = element_text(size=text_size.legend_text)
+          ) +
     # add scatter plot data on top of this
     geom_quasirandom(data=data, aes(x=visual_jitter, y=average_force), 
                      alpha=0.7, cex=1.8, width = 0.15) +
@@ -385,11 +440,20 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     geom_bar(stat="identity", position = position_dodge2(padding = 0.05)) +
     geom_errorbar(aes(ymin=mean-se, ymax=mean+se), position = position_dodge2(padding = 0.7), linewidth=1) +
     theme_classic() +
-    labs(title="Average Time Through Maze by Condition (Experiment 2)", x="Condition", y="Average Time Through Maze (seconds)") +
+    labs(#title="Average Time Through Maze by Condition (Experiment 2)", 
+      x="Condition", y="Average Time Through Maze (seconds)",
+      title = "Experiment 2") +
     guides(fill=guide_legend(title=NULL)) + 
     # move legend
     theme(legend.position = 'top', # adjust these values as needed
-          legend.justification = c(0.5, 1)) +
+          legend.justification = c(0.5, 1),
+          plot.title = element_text(size=text_size.title, hjust=0.5),         # Set title text size
+          axis.title.x = element_text(size=text_size.x_title),                    # Set x-axis label text size
+          axis.title.y = element_text(size=text_size.y_title),                     # Set y-axis label text size
+          axis.text.x = element_text(size=text_size.x_text),                  # Set x-axis tick mark text size
+          axis.text.y = element_text(size=text_size.y_text),
+          legend.text = element_text(size=text_size.legend_text)
+          ) +
     # add scatter plot data on top of this
     geom_quasirandom(data=data, aes(x=visual_jitter, y=average_time_through_maze), 
                      alpha=0.7, cex=1.8, width = 0.15) +
@@ -430,11 +494,20 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     geom_bar(stat="identity", position = position_dodge2(padding = 0.05)) +
     geom_errorbar(aes(ymin=mean-se, ymax=mean+se), position = position_dodge2(padding = 0.7), linewidth=1) +
     theme_classic() +
-    labs(title="Average Path Length by Condition (Experiment 2)", x="Condition", y="Average Path Length (units)") +
+    labs(#title="Average Path Length by Condition (Experiment 2)", 
+      x="Condition", y="Average Path Length (units)",
+      title = "Experiment 2") +
     guides(fill=guide_legend(title=NULL)) + 
     # move legend
     theme(legend.position = 'top', # adjust these values as needed
-          legend.justification = c(0.5, 1)) +
+          legend.justification = c(0.5, 1),
+          plot.title = element_text(size=text_size.title, hjust=0.5),         # Set title text size
+          axis.title.x = element_text(size=text_size.x_title),                    # Set x-axis label text size
+          axis.title.y = element_text(size=text_size.y_title),                     # Set y-axis label text size
+          axis.text.x = element_text(size=text_size.x_text),                  # Set x-axis tick mark text size
+          axis.text.y = element_text(size=text_size.y_text),
+          legend.text = element_text(size=text_size.legend_text)
+          ) +
     # add scatter plot data on top of this
     geom_quasirandom(data=data, aes(x=visual_jitter, y=average_path_length), 
                      alpha=0.7, cex=1.8, width = 0.15) +
@@ -474,11 +547,19 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     geom_bar(stat="identity", position = position_dodge2(padding = 0.05)) +
     geom_errorbar(aes(ymin=mean-se, ymax=mean+se), position = position_dodge2(padding = 0.7), linewidth=1) +
     theme_classic() +
-    labs(title="Average Velocity by Condition (Experiment 2)", x="Condition", y="Average Velocity (units/second)") +
+    labs(#title="Average Velocity by Condition (Experiment 2)", 
+      x="Condition", y="Average Velocity (units/second)",
+      title = "Experiment 2") +
     guides(fill=guide_legend(title=NULL)) + 
     # move legend
     theme(legend.position = 'top', # adjust these values as needed
-          legend.justification = c(0.5, 1)) +
+          legend.justification = c(0.5, 1),
+          plot.title = element_text(size=text_size.title, hjust=0.5),         # Set title text size
+          axis.title.x = element_text(size=text_size.x_title),                    # Set x-axis label text size
+          axis.title.y = element_text(size=text_size.y_title),                     # Set y-axis label text size
+          axis.text.x = element_text(size=text_size.x_text),                  # Set x-axis tick mark text size
+          axis.text.y = element_text(size=text_size.y_text),
+          legend.text = element_text(size=text_size.legend_text)) +
     # add scatter plot data on top of this
     geom_quasirandom(data=data, aes(x=visual_jitter, y=average_velocity), 
                      alpha=0.7, cex=1.8, width = 0.15) +
@@ -519,11 +600,20 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     geom_bar(stat="identity", position = position_dodge2(padding = 0.05)) +
     geom_errorbar(aes(ymin=mean-se, ymax=mean+se), position = position_dodge2(padding = 0.7), linewidth=1) +
     theme_classic() +
-    labs(title="Average Proximity by Condition (Experiment 2)", x="Condition", y="Average Proximity (units)") +
+    labs(#title="Average Proximity by Condition (Experiment 2)", 
+      x="Condition", y="Average Proximity (units)",
+      title = "Experiment 2") +
     guides(fill=guide_legend(title=NULL)) + 
     # move legend
     theme(legend.position = 'top', # adjust these values as needed
-          legend.justification = c(0.5, 1)) +
+          legend.justification = c(0.5, 1),
+          plot.title = element_text(size=text_size.title, hjust=0.5),         # Set title text size
+          axis.title.x = element_text(size=text_size.x_title),                    # Set x-axis label text size
+          axis.title.y = element_text(size=text_size.y_title),                     # Set y-axis label text size
+          axis.text.x = element_text(size=text_size.x_text),                  # Set x-axis tick mark text size
+          axis.text.y = element_text(size=text_size.y_text),
+          legend.text = element_text(size=text_size.legend_text)
+          ) +
     # add scatter plot data on top of this
     geom_quasirandom(data=data, aes(x=visual_jitter, y=average_proximity), 
                      alpha=0.7, cex=1.8, width = 0.15) +
@@ -564,11 +654,19 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     geom_bar(stat="identity", position = position_dodge2(padding = 0.05)) +
     geom_errorbar(aes(ymin=mean-se, ymax=mean+se), position = position_dodge2(padding = 0.7), linewidth=1) +
     theme_classic() +
-    labs(title="Average Force by Condition (Experiment 2)", x="Condition", y="Average Force (N)") +
+    labs(#title="Average Force by Condition (Experiment 2)", 
+      x="Condition", y="Average Force (N)",
+      title = "Experiment 2") +
     guides(fill=guide_legend(title=NULL)) + 
     # move legend
     theme(legend.position = 'top', # adjust these values as needed
-          legend.justification = c(0.5, 1)) +
+          legend.justification = c(0.5, 1),
+          plot.title = element_text(size=text_size.title, hjust=0.5),         # Set title text size
+          axis.title.x = element_text(size=text_size.x_title),                    # Set x-axis label text size
+          axis.title.y = element_text(size=text_size.y_title),                     # Set y-axis label text size
+          axis.text.x = element_text(size=text_size.x_text),                  # Set x-axis tick mark text size
+          axis.text.y = element_text(size=text_size.y_text),
+          legend.text = element_text(size=text_size.legend_text)) +
     # add scatter plot data on top of this
     geom_quasirandom(data=data, aes(x=visual_jitter, y=average_force), 
                      alpha=0.7, cex=1.8, width = 0.15) +
@@ -734,11 +832,19 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     geom_bar(stat="identity", position = position_dodge2(padding = 0.05)) +
     geom_errorbar(aes(ymin=mean-se, ymax=mean+se), position = position_dodge2(padding = 0.7), linewidth=1) +
     theme_classic() +
-    labs(title="Average Workload by Condition (Experiment 1)", x="Condition", y="Average Workload") +
+    labs(#title="Average Workload by Condition (Experiment 1)", 
+      x="Condition", y="Average Workload",
+      title = "Experiment 1") +
     guides(fill=guide_legend(title=NULL)) + 
     # move legend
     theme(legend.position = 'top', # adjust these values as needed
-          legend.justification = c(0.5, 1)) +
+          legend.justification = c(0.5, 1),
+          plot.title = element_text(size=text_size.title, hjust=0.5),         # Set title text size
+          axis.title.x = element_text(size=text_size.x_title),                    # Set x-axis label text size
+          axis.title.y = element_text(size=text_size.y_title),                     # Set y-axis label text size
+          axis.text.x = element_text(size=text_size.x_text),                  # Set x-axis tick mark text size
+          axis.text.y = element_text(size=text_size.y_text),
+          legend.text = element_text(size=text_size.legend_text)) +
     # add scatter plot data on top of this
     geom_quasirandom(data=data, aes(x=Visual_jitter, y=WorkloadSum), 
                      alpha=0.7, cex=1.8, width = 0.15) +
@@ -779,11 +885,20 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     geom_bar(stat="identity", position = position_dodge2(padding = 0.05)) +
     geom_errorbar(aes(ymin=mean-se, ymax=mean+se), position = position_dodge2(padding = 0.7), linewidth=1) +
     theme_classic() +
-    labs(title="Average Workload by Condition (Experiment 2)", x="Condition", y="Average Workload") +
+    labs(#title="Average Workload by Condition (Experiment 2)", 
+      x="Condition", y="Average Workload",
+      title = "Experiment 2") +
     guides(fill=guide_legend(title=NULL)) + 
     # move legend
     theme(legend.position = 'top', # adjust these values as needed
-          legend.justification = c(0.5, 1)) +
+          legend.justification = c(0.5, 1),
+          plot.title = element_text(size=text_size.title, hjust=0.5),         # Set title text size
+          axis.title.x = element_text(size=text_size.x_title),                    # Set x-axis label text size
+          axis.title.y = element_text(size=text_size.y_title),                     # Set y-axis label text size
+          axis.text.x = element_text(size=text_size.x_text),                  # Set x-axis tick mark text size
+          axis.text.y = element_text(size=text_size.y_text),
+          legend.text = element_text(size=text_size.legend_text)
+          ) +
     # add scatter plot data on top of this
     geom_quasirandom(data=data, aes(x=Visual_jitter, y=WorkloadSum), 
                      alpha=0.7, cex=1.8, width = 0.15) +
