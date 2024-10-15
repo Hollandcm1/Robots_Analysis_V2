@@ -151,27 +151,52 @@ flexplot(data = tmp_exp2, average_force ~ visual + haptic)
 
 model <- lmer(time_through_maze ~ visual*haptic + (1|participant), data = tmp_exp1_trial)
 summary(model)
-tab_model(model)
+tab_model(model, 
+          show.est = TRUE,         # Show estimates
+          show.se = TRUE,          # Show standard errors
+          show.stat = TRUE,        # We need to identify what t-value corresponds to
+          show.p = TRUE,           # Show p-values
+          show.ci = FALSE)           
 flexplot(data = tmp_exp1_trial, time_through_maze ~ visual + haptic)
 
 model <- lmer(path_length ~ visual*haptic + (1|participant), data = tmp_exp1_trial)
 summary(model)
-tab_model(model)
+tab_model(model, 
+          show.est = TRUE,         # Show estimates
+          show.se = TRUE,          # Show standard errors
+          show.stat = TRUE,        # We need to identify what t-value corresponds to
+          show.p = TRUE,           # Show p-values
+          show.ci = FALSE)  
 flexplot(data = tmp_exp1_trial, path_length ~ visual + haptic)
 
 model <- lmer(average_velocity ~ visual*haptic + (1|participant), data = tmp_exp1_trial)
 summary(model)
-tab_model(model)
+tab_model(model, 
+          show.est = TRUE,         # Show estimates
+          show.se = TRUE,          # Show standard errors
+          show.stat = TRUE,        # We need to identify what t-value corresponds to
+          show.p = TRUE,           # Show p-values
+          show.ci = FALSE)  
 flexplot(data = tmp_exp1_trial, average_velocity ~ visual + haptic)
 
 model <- lmer(average_proximity ~ visual*haptic + (1|participant), data = tmp_exp1_trial)
 summary(model)
-tab_model(model)
+tab_model(model, 
+          show.est = TRUE,         # Show estimates
+          show.se = TRUE,          # Show standard errors
+          show.stat = TRUE,        # We need to identify what t-value corresponds to
+          show.p = TRUE,           # Show p-values
+          show.ci = FALSE)  
 flexplot(data = tmp_exp1_trial, average_proximity ~ visual + haptic)
 
 model <- lmer(average_force ~ visual*haptic + (1|participant), data = tmp_exp1_trial)
 summary(model)
-tab_model(model)
+tab_model(model, 
+          show.est = TRUE,         # Show estimates
+          show.se = TRUE,          # Show standard errors
+          show.stat = TRUE,        # We need to identify what t-value corresponds to
+          show.p = TRUE,           # Show p-values
+          show.ci = FALSE)  
 flexplot(data = tmp_exp1_trial, average_force ~ visual + haptic)
 
 
@@ -181,27 +206,52 @@ flexplot(data = tmp_exp1_trial, average_force ~ visual + haptic)
 
 model <- lmer(time_through_maze ~ visual*haptic + (1|participant), data = tmp_exp2_trial)
 summary(model)
-tab_model(model)
+tab_model(model, 
+          show.est = TRUE,         # Show estimates
+          show.se = TRUE,          # Show standard errors
+          show.stat = TRUE,        # We need to identify what t-value corresponds to
+          show.p = TRUE,           # Show p-values
+          show.ci = FALSE)  
 flexplot(data = tmp_exp2_trial, time_through_maze ~ visual + haptic)
 
 model <- lmer(path_length ~ visual*haptic + (1|participant), data = tmp_exp2_trial)
 summary(model)
-tab_model(model)
+tab_model(model, 
+          show.est = TRUE,         # Show estimates
+          show.se = TRUE,          # Show standard errors
+          show.stat = TRUE,        # We need to identify what t-value corresponds to
+          show.p = TRUE,           # Show p-values
+          show.ci = FALSE)  
 flexplot(data = tmp_exp2_trial, path_length ~ visual + haptic)
 
 model <- lmer(average_velocity ~ visual*haptic + (1|participant), data = tmp_exp2_trial)
 summary(model)
-tab_model(model)
+tab_model(model, 
+          show.est = TRUE,         # Show estimates
+          show.se = TRUE,          # Show standard errors
+          show.stat = TRUE,        # We need to identify what t-value corresponds to
+          show.p = TRUE,           # Show p-values
+          show.ci = FALSE)  
 flexplot(data = tmp_exp2_trial, average_velocity ~ visual + haptic)
 
 model <- lmer(average_proximity ~ visual*haptic + (1|participant), data = tmp_exp2_trial)
 summary(model)
-tab_model(model)
+tab_model(model, 
+          show.est = TRUE,         # Show estimates
+          show.se = TRUE,          # Show standard errors
+          show.stat = TRUE,        # We need to identify what t-value corresponds to
+          show.p = TRUE,           # Show p-values
+          show.ci = FALSE)  
 flexplot(data = tmp_exp2_trial, average_proximity ~ visual + haptic)
 
 model <- lmer(average_force ~ visual*haptic + (1|participant), data = tmp_exp2_trial)
 summary(model)
-tab_model(model)
+tab_model(model, 
+          show.est = TRUE,         # Show estimates
+          show.se = TRUE,          # Show standard errors
+          show.stat = TRUE,        # We need to identify what t-value corresponds to
+          show.p = TRUE,           # Show p-values
+          show.ci = FALSE)  
 flexplot(data = tmp_exp2_trial, average_force ~ visual + haptic)
 
 
