@@ -160,3 +160,26 @@ p2 <- flexplot(WorkloadSum ~ visual, data = data)
 ggsave(here("output", "NASA-TLX", "WorkloadSum_haptic_experiment.png"), p1, width = 10, height = 6)
 ggsave(here("output", "NASA-TLX", "WorkloadSum_visual.png"), p2, width = 10, height = 6)
 
+
+# pull subset of data where experiment == 1
+data_exp1 <- data[data$experiment == 1,]
+data_exp2 <- data[data$experiment == 2,]
+
+
+model <- lmer(WorkloadSum ~ visual * haptic + (1|Participant), data = data_exp1)
+tab_model(model, 
+          show.est = TRUE,         # Show estimates
+          show.se = TRUE,          # Show standard errors
+          show.stat = TRUE,        # We need to identify what t-value corresponds to
+          show.p = TRUE,           # Show p-values
+          show.ci = FALSE)  
+flexplot(WorkloadSum ~ visual + haptic, data = data_exp1)
+
+model <- lmer(WorkloadSum ~ visual * haptic + (1|Participant), data = data_exp2)
+tab_model(model, 
+          show.est = TRUE,         # Show estimates
+          show.se = TRUE,          # Show standard errors
+          show.stat = TRUE,        # We need to identify what t-value corresponds to
+          show.p = TRUE,           # Show p-values
+          show.ci = FALSE)  
+flexplot(WorkloadSum ~ visual + haptic, data = data_exp2)
