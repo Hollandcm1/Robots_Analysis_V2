@@ -38,6 +38,9 @@ combined_analysis <- function(data_exp1, data_exp2){
     all_data <- rbind(tmp_exp1, tmp_exp2)
     average_by_trial <- all_data
     
+    # convert experiment to factor
+    average_by_trial$experiment <- as.factor(average_by_trial$experiment)
+    
     # export to csv (for standard figures)
     average_by_conditions <- average_by_trial %>%
       group_by(participant, haptic, visual, condition_nums, experiment) %>%

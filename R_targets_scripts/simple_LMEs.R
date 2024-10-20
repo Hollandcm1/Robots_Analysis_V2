@@ -260,5 +260,3 @@ flexplot(data = tmp_exp2_trial, average_force ~ visual + haptic)
 
 
 
-
-
