@@ -24,3 +24,5 @@ in the command line, run the following
 example of output (you version you will be able to zoom and explore the various nodes):
 
 <img width="797" alt="Screenshot 2024-09-05 at 8 09 48 AM" src="https://github.com/user-attachments/assets/b54e9dfe-d52b-46c4-9615-288347caee1a">
+
+
