@@ -17,6 +17,7 @@ data/codebook_exp2/*.xlsx
 # temporary to prevent a mistake later
 /data/processed 
 /data
+/output
 
 # R data files
 *.RData
