@@ -35,12 +35,12 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
   ### Colours ###
   ###############
   
-  text_size.title <- 24
-  text_size.x_title <- 24
-  text_size.y_title <- 24
-  text_size.x_text <- 20
-  text_size.y_text <- 20
-  text_size.legend_text <- 18
+  text_size.title <- 0
+  text_size.x_title <- 16
+  text_size.y_title <- 16
+  text_size.x_text <- 14
+  text_size.y_text <- 14
+  text_size.legend_text <- 14
   
   ##########################################################
   ####################### GreyScale Option 1 ###############
