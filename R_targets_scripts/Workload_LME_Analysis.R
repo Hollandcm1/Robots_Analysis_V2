@@ -151,7 +151,7 @@ data <- data_all
 
 # create LME model
 model <- lmer(WorkloadSum ~ visual * haptic * experiment + (1|Participant), data = data)
-tab_model(model)
+tab_model(model, show.se = TRUE, show.stat = TRUE)
 p1 <- flexplot(WorkloadSum ~ haptic + experiment, data = data)
 flexplot(WorkloadSum ~ experiment + haptic, data = data)
 p2 <- flexplot(WorkloadSum ~ visual, data = data)

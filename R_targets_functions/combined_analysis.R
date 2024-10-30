@@ -41,6 +41,10 @@ combined_analysis <- function(data_exp1, data_exp2){
     # convert experiment to factor
     average_by_trial$experiment <- as.factor(average_by_trial$experiment)
     
+    # convert haptic and visual to factor
+    average_by_trial$haptic <- as.factor(average_by_trial$haptic)
+    average_by_trial$visual <- as.factor(average_by_trial$visual)
+    
     # export to csv (for standard figures)
     average_by_conditions <- average_by_trial %>%
       group_by(participant, haptic, visual, condition_nums, experiment) %>%
@@ -80,6 +84,24 @@ combined_analysis <- function(data_exp1, data_exp2){
     model_5 <- lmer(time_through_maze ~ haptic * visual * experiment + (1|participant), data = average_by_trial) #
     tab_model(model_5)
     flexplot(time_through_maze ~ haptic + visual | experiment, data = average_by_trial)
+    
+    
+    
+    # time model 
+    model <- lmer(time_through_maze ~ haptic * visual * experiment + (1|participant), data = average_by_trial)
+    tab_model(model, show.se = TRUE, show.stat = TRUE)
+    
+    # velocity model
+    model <- lmer(average_velocity ~ haptic * visual * experiment + (1|participant), data = average_by_trial)
+    tab_model(model, show.se = TRUE, show.stat = TRUE)
+    
+    # path length model
+    model <- lmer(path_length ~ haptic * visual * experiment + (1|participant), data = average_by_trial)
+    tab_model(model, show.se = TRUE, show.stat = TRUE)
+    
+    # proximity model 
+    model <- lmer(average_proximity ~ haptic * visual * experiment + (1|participant), data = average_by_trial)
+    tab_model(model, show.se = TRUE, show.stat = TRUE)
     
     
     return(average_by_conditions)
