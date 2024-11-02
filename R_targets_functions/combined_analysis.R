@@ -34,6 +34,9 @@ combined_analysis <- function(data_exp1, data_exp2){
     average_by_trial$participant <- as.numeric(average_by_trial$participant)
     tmp_exp2 <- average_by_trial
     
+    # relabel participants values as 26+
+    tmp_exp2$participant <- tmp_exp2$participant + 25
+    
     # combine
     all_data <- rbind(tmp_exp1, tmp_exp2)
     average_by_trial <- all_data
@@ -87,22 +90,26 @@ combined_analysis <- function(data_exp1, data_exp2){
     
     
     
+    
     # time model 
-    model <- lmer(time_through_maze ~ haptic * visual * experiment + (1|participant), data = average_by_trial)
+    model <- lmer(time_through_maze ~ haptic * visual * experiment + (1 + haptic * visual|participant), data = average_by_trial)
     tab_model(model, show.se = TRUE, show.stat = TRUE)
+    flexplot(time_through_maze ~ haptic + visual | experiment, data = average_by_trial)
     
     # velocity model
-    model <- lmer(average_velocity ~ haptic * visual * experiment + (1|participant), data = average_by_trial)
+    model <- lmer(average_velocity ~ haptic * visual * experiment + (1 + haptic * visual|participant), data = average_by_trial)
     tab_model(model, show.se = TRUE, show.stat = TRUE)
+    flexplot(average_velocity ~ haptic + visual | experiment, data = average_by_trial)
     
     # path length model
-    model <- lmer(path_length ~ haptic * visual * experiment + (1|participant), data = average_by_trial)
+    model <- lmer(path_length ~ haptic * visual * experiment + (1 + haptic * visual|participant), data = average_by_trial)
     tab_model(model, show.se = TRUE, show.stat = TRUE)
+    flexplot(path_length ~ haptic + visual | experiment, data = average_by_trial)
     
     # proximity model 
-    model <- lmer(average_proximity ~ haptic * visual * experiment + (1|participant), data = average_by_trial)
+    model <- lmer(average_proximity ~ haptic * visual * experiment + (1 + haptic * visual|participant), data = average_by_trial)
     tab_model(model, show.se = TRUE, show.stat = TRUE)
-    
+    flexplot(average_proximity ~ haptic + visual | experiment, data = average_by_trial)
     
     return(average_by_conditions)
     
