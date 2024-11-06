@@ -1,6 +1,6 @@
 
 
-# 
+# library(targets)
 # library(lme4)
 # library(sjPlot)
 # library(flexplot)
@@ -95,21 +95,26 @@ combined_analysis <- function(data_exp1, data_exp2){
     model <- lmer(time_through_maze ~ haptic * visual * experiment + (1 + haptic * visual|participant), data = average_by_trial)
     tab_model(model, show.se = TRUE, show.stat = TRUE)
     flexplot(time_through_maze ~ haptic + visual | experiment, data = average_by_trial)
+    flexplot(time_through_maze ~ visual + haptic | experiment, data = average_by_trial)
     
     # velocity model
     model <- lmer(average_velocity ~ haptic * visual * experiment + (1 + haptic * visual|participant), data = average_by_trial)
     tab_model(model, show.se = TRUE, show.stat = TRUE)
     flexplot(average_velocity ~ haptic + visual | experiment, data = average_by_trial)
+    flexplot(average_velocity ~ visual + haptic | experiment, data = average_by_trial)
+    flexplot(average_velocity ~ experiment, data = average_by_trial)
     
     # path length model
     model <- lmer(path_length ~ haptic * visual * experiment + (1 + haptic * visual|participant), data = average_by_trial)
     tab_model(model, show.se = TRUE, show.stat = TRUE)
     flexplot(path_length ~ haptic + visual | experiment, data = average_by_trial)
+    flexplot(path_length ~ haptic + experiment, data = average_by_trial)
     
     # proximity model 
     model <- lmer(average_proximity ~ haptic * visual * experiment + (1 + haptic * visual|participant), data = average_by_trial)
     tab_model(model, show.se = TRUE, show.stat = TRUE)
     flexplot(average_proximity ~ haptic + visual | experiment, data = average_by_trial)
+    flexplot(average_proximity ~ visual + haptic | experiment, data = average_by_trial)
     
     return(average_by_conditions)
     
