@@ -3,6 +3,7 @@ library(ggplot2)
 library(here)
 library(tidyr)
 library(dplyr)
+library(ggbeeswarm)
 
 
 # load data
