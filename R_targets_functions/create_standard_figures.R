@@ -5,6 +5,7 @@
 # library(here)
 # library(ggbeeswarm)
 # library(RColorBrewer)
+# library(gridExtra)
 # 
 # 
 # # load the data
@@ -405,6 +406,17 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
   print(g5)
   
   ggsave(g5, file = here('output', 'standard_figures', 'average_force_exp_1.png'), width=6, height=8)
+
+
+  ###############
+  ### Combine ###
+  ###############
+
+  # Combine all the plots, putting them into a single png
+
+  g_combined <- grid.arrange(g1, g2, g3, g4, g5, ncol=2)
+  ggsave(g_combined, file = here('output', 'standard_figures', 'combined_exp_1.png'), width=12, height=16)
+
   
   ################################################################################
   #################################### Exp 2 #####################################
