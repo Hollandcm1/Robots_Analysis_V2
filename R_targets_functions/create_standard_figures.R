@@ -6,6 +6,7 @@
 # library(ggbeeswarm)
 # library(RColorBrewer)
 # library(gridExtra)
+# library(ggpubr)
 
 
 # # load the data
@@ -166,8 +167,8 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     geom_bar(stat="identity", position = position_dodge2(padding = 0.05)) +
     geom_errorbar(aes(ymin=mean-se, ymax=mean+se), position = position_dodge2(padding = 0.7), linewidth=1) +
     theme_classic() +
-    labs(#title="Average Time Through Maze by Condition (Experiment 1)",
-         x="Condition", y="Average Time Through Maze (seconds)",
+    labs(
+         y="Average Time (seconds)",
          title = "Experiment 1") +
     guides(fill=guide_legend(title=NULL)) + 
     # move legend
@@ -176,7 +177,7 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     theme(legend.position = 'top', # adjust these values as needed
           legend.justification = c(0.5, 1),
           plot.title = element_text(size=text_size.title, hjust=0.5),         # Set title text size
-          axis.title.x = element_text(size=text_size.x_title),                    # Set x-axis label text size
+          axis.title.x = element_blank(),                    # Remove x-axis label
           axis.title.y = element_text(size=text_size.y_title),                     # Set y-axis label text size
           axis.text.x = element_text(size=text_size.x_text),                  # Set x-axis tick mark text size
           axis.text.y = element_text(size=text_size.y_text),
@@ -188,9 +189,17 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     ylim(0, 400)
   
   print(g1)
-  
+
   # save
   ggsave(g1, file = here('output', 'standard_figures', 'average_time_through_maze_exp_1.png'), width=6, height=8)
+
+  # Function to extract legend from a ggplot
+  get_legend <- function(myplot) {
+    tmp <- ggplotGrob(myplot)
+    leg <- gtable::gtable_filter(tmp, "guide-box")
+    return(leg)
+  }
+  legend <- get_legend(g1)  # for Exp 1
   
   
   
@@ -223,15 +232,15 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     geom_bar(stat="identity", position = position_dodge2(padding = 0.05)) +
     geom_errorbar(aes(ymin=mean-se, ymax=mean+se), position = position_dodge2(padding = 0.7), linewidth=1) +
     theme_classic() +
-    labs(#title="Average Path Length by Condition (Experiment 1)", 
-      x="Condition", y="Average Path Length (units)",
+    labs(
+      y="Average Path Length (units)",
       title = "Experiment 1") +
     guides(fill=guide_legend(title=NULL)) + 
     # move legend
     theme(legend.position = 'top', # adjust these values as needed
           legend.justification = c(0.5, 1),
           plot.title = element_text(size=text_size.title, hjust=0.5),         # Set title text size
-          axis.title.x = element_text(size=text_size.x_title),                    # Set x-axis label text size
+          axis.title.x = element_blank(),                    # Remove x-axis label
           axis.title.y = element_text(size=text_size.y_title),                     # Set y-axis label text size
           axis.text.x = element_text(size=text_size.x_text),                  # Set x-axis tick mark text size
           axis.text.y = element_text(size=text_size.y_text),
@@ -276,15 +285,15 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     geom_bar(stat="identity", position = position_dodge2(padding = 0.05)) +
     geom_errorbar(aes(ymin=mean-se, ymax=mean+se), position = position_dodge2(padding = 0.7), linewidth=1) +
     theme_classic() +
-    labs(#title="Average Velocity by Condition (Experiment 1)", 
-      x="Condition", y="Average Velocity (units/second)",
+    labs(
+      y="Average Velocity (units/second)",
       title = "Experiment 1") +
     guides(fill=guide_legend(title=NULL)) + 
     # move legend
     theme(legend.position = 'top', # adjust these values as needed
           legend.justification = c(0.5, 1),
           plot.title = element_text(size=text_size.title, hjust=0.5),         # Set title text size
-          axis.title.x = element_text(size=text_size.x_title),                    # Set x-axis label text size
+          axis.title.x = element_blank(),                    # Remove x-axis label
           axis.title.y = element_text(size=text_size.y_title),                     # Set y-axis label text size
           axis.text.x = element_text(size=text_size.x_text),                  # Set x-axis tick mark text size
           axis.text.y = element_text(size=text_size.y_text),
@@ -331,15 +340,15 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     geom_bar(stat="identity", position = position_dodge2(padding = 0.05)) +
     geom_errorbar(aes(ymin=mean-se, ymax=mean+se), position = position_dodge2(padding = 0.7), linewidth=1) +
     theme_classic() +
-    labs(#title="Average Proximity by Condition (Experiment 1)", 
-      x="Condition", y="Average Proximity (units)",
+    labs(
+      y="Average Proximity (units)",
       title = "Experiment 1") +
     guides(fill=guide_legend(title=NULL)) + 
     # move legend
     theme(legend.position = 'top', # adjust these values as needed
           legend.justification = c(0.5, 1),
           plot.title = element_text(size=text_size.title, hjust=0.5),         # Set title text size
-          axis.title.x = element_text(size=text_size.x_title),                    # Set x-axis label text size
+          axis.title.x = element_blank(),                    # Remove x-axis label
           axis.title.y = element_text(size=text_size.y_title),                     # Set y-axis label text size
           axis.text.x = element_text(size=text_size.x_text),                  # Set x-axis tick mark text size
           axis.text.y = element_text(size=text_size.y_text),
@@ -384,15 +393,15 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     geom_bar(stat="identity", position = position_dodge2(padding = 0.05)) +
     geom_errorbar(aes(ymin=mean-se, ymax=mean+se), position = position_dodge2(padding = 0.7), linewidth=1) +
     theme_classic() +
-    labs(#title="Average Force by Condition (Experiment 1)", 
-      x="Condition", y="Average Force (N)",
+    labs(
+      y="Average Force (N)",
       title = "Experiment 1") +
     guides(fill=guide_legend(title=NULL)) + 
     # move legend
     theme(legend.position = 'top', # adjust these values as needed
           legend.justification = c(0.5, 1),
           plot.title = element_text(size=text_size.title, hjust=0.5),         # Set title text size
-          axis.title.x = element_text(size=text_size.x_title),                    # Set x-axis label text size
+          axis.title.x = element_blank(),                    # Remove x-axis label
           axis.title.y = element_text(size=text_size.y_title),                     # Set y-axis label text size
           axis.text.x = element_text(size=text_size.x_text),                  # Set x-axis tick mark text size
           axis.text.y = element_text(size=text_size.y_text),
@@ -412,10 +421,16 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
   ### Combine ###
   ###############
 
-  # Combine all the plots, putting them into a single png
-
-  g_combined <- grid.arrange(g1, g2, g3, g4, g5, ncol=2)
-  ggsave(g_combined, file = here('output', 'standard_figures', 'combined_exp_1.png'), width=12, height=20)
+  # # Combine all the plots, putting them into a single png using arrangeGrob and ggsave directly
+  # grid_combined <- arrangeGrob(
+  #   g1 + theme(legend.position = "none"),
+  #   g2 + theme(legend.position = "none"),
+  #   g3 + theme(legend.position = "none"),
+  #   g4 + theme(legend.position = "none"),
+  #   g5 + theme(legend.position = "none"),
+  #   legend
+  # )
+  # ggsave(grid_combined, file = here('output', 'standard_figures', 'combined_exp_1.png'), width=12, height=12)
 
   
   ################################################################################
@@ -452,28 +467,28 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     geom_bar(stat="identity", position = position_dodge2(padding = 0.05)) +
     geom_errorbar(aes(ymin=mean-se, ymax=mean+se), position = position_dodge2(padding = 0.7), linewidth=1) +
     theme_classic() +
-    labs(#title="Average Time Through Maze by Condition (Experiment 2)", 
-      x="Condition", y="Average Time Through Maze (seconds)",
-      title = "Experiment 2") +
+    labs(
+      y="Average Time (seconds)",
+      title = "Experiment 1") +
     guides(fill=guide_legend(title=NULL)) + 
-    # move legend
-    theme(legend.position = 'top', # adjust these values as needed
+    theme(legend.position = 'top',
           legend.justification = c(0.5, 1),
-          plot.title = element_text(size=text_size.title, hjust=0.5),         # Set title text size
-          axis.title.x = element_text(size=text_size.x_title),                    # Set x-axis label text size
-          axis.title.y = element_text(size=text_size.y_title),                     # Set y-axis label text size
-          axis.text.x = element_text(size=text_size.x_text),                  # Set x-axis tick mark text size
+          plot.title = element_text(size=text_size.title, hjust=0.5),
+          axis.title.x = element_blank(),                    # Remove x-axis label
+          axis.title.y = element_text(size=text_size.y_title),
+          axis.text.x = element_text(size=text_size.x_text),
           axis.text.y = element_text(size=text_size.y_text),
           legend.text = element_text(size=text_size.legend_text)
           ) +
-    # add scatter plot data on top of this
     geom_quasirandom(data=data, aes(x=visual_jitter, y=average_time_through_maze), 
                      alpha=0.7, cex=1.8, width = 0.15) +
     ylim(0, 400)
   
   print(g6)
-  
+
   ggsave(g6, file = here('output', 'standard_figures', 'average_time_through_maze_exp_2.png'), width=6, height=8)
+
+  legend2 <- get_legend(g6)  # for Exp 2
   
   
   
@@ -506,21 +521,19 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     geom_bar(stat="identity", position = position_dodge2(padding = 0.05)) +
     geom_errorbar(aes(ymin=mean-se, ymax=mean+se), position = position_dodge2(padding = 0.7), linewidth=1) +
     theme_classic() +
-    labs(#title="Average Path Length by Condition (Experiment 2)", 
-      x="Condition", y="Average Path Length (units)",
-      title = "Experiment 2") +
+    labs(
+      y="Average Path Length (units)",
+      title = "Experiment 1") +
     guides(fill=guide_legend(title=NULL)) + 
-    # move legend
-    theme(legend.position = 'top', # adjust these values as needed
+    theme(legend.position = 'top',
           legend.justification = c(0.5, 1),
-          plot.title = element_text(size=text_size.title, hjust=0.5),         # Set title text size
-          axis.title.x = element_text(size=text_size.x_title),                    # Set x-axis label text size
-          axis.title.y = element_text(size=text_size.y_title),                     # Set y-axis label text size
-          axis.text.x = element_text(size=text_size.x_text),                  # Set x-axis tick mark text size
+          plot.title = element_text(size=text_size.title, hjust=0.5),
+          axis.title.x = element_blank(),                    # Remove x-axis label
+          axis.title.y = element_text(size=text_size.y_title),
+          axis.text.x = element_text(size=text_size.x_text),
           axis.text.y = element_text(size=text_size.y_text),
           legend.text = element_text(size=text_size.legend_text)
           ) +
-    # add scatter plot data on top of this
     geom_quasirandom(data=data, aes(x=visual_jitter, y=average_path_length), 
                      alpha=0.7, cex=1.8, width = 0.15) +
     ylim(0, 60)
@@ -559,20 +572,18 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     geom_bar(stat="identity", position = position_dodge2(padding = 0.05)) +
     geom_errorbar(aes(ymin=mean-se, ymax=mean+se), position = position_dodge2(padding = 0.7), linewidth=1) +
     theme_classic() +
-    labs(#title="Average Velocity by Condition (Experiment 2)", 
-      x="Condition", y="Average Velocity (units/second)",
-      title = "Experiment 2") +
+    labs(
+      y="Average Velocity (units/second)",
+      title = "Experiment 1") +
     guides(fill=guide_legend(title=NULL)) + 
-    # move legend
-    theme(legend.position = 'top', # adjust these values as needed
+    theme(legend.position = 'top',
           legend.justification = c(0.5, 1),
-          plot.title = element_text(size=text_size.title, hjust=0.5),         # Set title text size
-          axis.title.x = element_text(size=text_size.x_title),                    # Set x-axis label text size
-          axis.title.y = element_text(size=text_size.y_title),                     # Set y-axis label text size
-          axis.text.x = element_text(size=text_size.x_text),                  # Set x-axis tick mark text size
+          plot.title = element_text(size=text_size.title, hjust=0.5),
+          axis.title.x = element_blank(),                    # Remove x-axis label
+          axis.title.y = element_text(size=text_size.y_title),
+          axis.text.x = element_text(size=text_size.x_text),
           axis.text.y = element_text(size=text_size.y_text),
           legend.text = element_text(size=text_size.legend_text)) +
-    # add scatter plot data on top of this
     geom_quasirandom(data=data, aes(x=visual_jitter, y=average_velocity), 
                      alpha=0.7, cex=1.8, width = 0.15) +
     ylim(0, 1.2)
@@ -612,21 +623,19 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     geom_bar(stat="identity", position = position_dodge2(padding = 0.05)) +
     geom_errorbar(aes(ymin=mean-se, ymax=mean+se), position = position_dodge2(padding = 0.7), linewidth=1) +
     theme_classic() +
-    labs(#title="Average Proximity by Condition (Experiment 2)", 
-      x="Condition", y="Average Proximity (units)",
-      title = "Experiment 2") +
+    labs(
+      y="Average Proximity (units)",
+      title = "Experiment 1") +
     guides(fill=guide_legend(title=NULL)) + 
-    # move legend
-    theme(legend.position = 'top', # adjust these values as needed
+    theme(legend.position = 'top',
           legend.justification = c(0.5, 1),
-          plot.title = element_text(size=text_size.title, hjust=0.5),         # Set title text size
-          axis.title.x = element_text(size=text_size.x_title),                    # Set x-axis label text size
-          axis.title.y = element_text(size=text_size.y_title),                     # Set y-axis label text size
-          axis.text.x = element_text(size=text_size.x_text),                  # Set x-axis tick mark text size
+          plot.title = element_text(size=text_size.title, hjust=0.5),
+          axis.title.x = element_blank(),                    # Remove x-axis label
+          axis.title.y = element_text(size=text_size.y_title),
+          axis.text.x = element_text(size=text_size.x_text),
           axis.text.y = element_text(size=text_size.y_text),
           legend.text = element_text(size=text_size.legend_text)
           ) +
-    # add scatter plot data on top of this
     geom_quasirandom(data=data, aes(x=visual_jitter, y=average_proximity), 
                      alpha=0.7, cex=1.8, width = 0.15) +
     ylim(0, 1)
@@ -666,20 +675,18 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     geom_bar(stat="identity", position = position_dodge2(padding = 0.05)) +
     geom_errorbar(aes(ymin=mean-se, ymax=mean+se), position = position_dodge2(padding = 0.7), linewidth=1) +
     theme_classic() +
-    labs(#title="Average Force by Condition (Experiment 2)", 
-      x="Condition", y="Average Force (N)",
-      title = "Experiment 2") +
+    labs(
+      y="Average Force (N)",
+      title = "Experiment 1") +
     guides(fill=guide_legend(title=NULL)) + 
-    # move legend
-    theme(legend.position = 'top', # adjust these values as needed
+    theme(legend.position = 'top',
           legend.justification = c(0.5, 1),
-          plot.title = element_text(size=text_size.title, hjust=0.5),         # Set title text size
-          axis.title.x = element_text(size=text_size.x_title),                    # Set x-axis label text size
-          axis.title.y = element_text(size=text_size.y_title),                     # Set y-axis label text size
-          axis.text.x = element_text(size=text_size.x_text),                  # Set x-axis tick mark text size
+          plot.title = element_text(size=text_size.title, hjust=0.5),
+          axis.title.x = element_blank(),                    # Remove x-axis label
+          axis.title.y = element_text(size=text_size.y_title),
+          axis.text.x = element_text(size=text_size.x_text),
           axis.text.y = element_text(size=text_size.y_text),
           legend.text = element_text(size=text_size.legend_text)) +
-    # add scatter plot data on top of this
     geom_quasirandom(data=data, aes(x=visual_jitter, y=average_force), 
                      alpha=0.7, cex=1.8, width = 0.15) +
     ylim(0, 1.7)
@@ -693,11 +700,17 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
   ### Combine ###
   ###############
 
-  # Combine all the plots, putting them into a single png
+  # # Combine all the plots, putting them into a single png using arrangeGrob and ggsave directly
+  # grid_combined_exp2 <- arrangeGrob(
+  #   g6 + theme(legend.position = "none"),
+  #   g7 + theme(legend.position = "none"),
+  #   g8 + theme(legend.position = "none"),
+  #   g9 + theme(legend.position = "none"),
+  #   g10 + theme(legend.position = "none"),
+  #   legend2
+  # )
+  # ggsave(grid_combined_exp2, file = here('output', 'standard_figures', 'combined_exp_2.png'), width=12, height=12)
 
-  g_combined_exp2 <- grid.arrange(g6, g7, g8, g9, g10, ncol=2)
-  ggsave(g_combined_exp2, file = here('output', 'standard_figures', 'combined_exp_2.png'), width=12, height=20)
-  
   
   
   
@@ -855,15 +868,15 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     geom_bar(stat="identity", position = position_dodge2(padding = 0.05)) +
     geom_errorbar(aes(ymin=mean-se, ymax=mean+se), position = position_dodge2(padding = 0.7), linewidth=1) +
     theme_classic() +
-    labs(#title="Average Workload by Condition (Experiment 1)", 
-      x="Condition", y="Average Workload",
+    labs(
+      y="Average Workload",
       title = "Experiment 1") +
     guides(fill=guide_legend(title=NULL)) + 
     # move legend
     theme(legend.position = 'top', # adjust these values as needed
           legend.justification = c(0.5, 1),
           plot.title = element_text(size=text_size.title, hjust=0.5),         # Set title text size
-          axis.title.x = element_text(size=text_size.x_title),                    # Set x-axis label text size
+          axis.title.x = element_blank(),                    # Remove x-axis label
           axis.title.y = element_text(size=text_size.y_title),                     # Set y-axis label text size
           axis.text.x = element_text(size=text_size.x_text),                  # Set x-axis tick mark text size
           axis.text.y = element_text(size=text_size.y_text),
@@ -908,15 +921,15 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     geom_bar(stat="identity", position = position_dodge2(padding = 0.05)) +
     geom_errorbar(aes(ymin=mean-se, ymax=mean+se), position = position_dodge2(padding = 0.7), linewidth=1) +
     theme_classic() +
-    labs(#title="Average Workload by Condition (Experiment 2)", 
-      x="Condition", y="Average Workload",
+    labs(
+      y="Average Workload",
       title = "Experiment 2") +
     guides(fill=guide_legend(title=NULL)) + 
     # move legend
     theme(legend.position = 'top', # adjust these values as needed
           legend.justification = c(0.5, 1),
           plot.title = element_text(size=text_size.title, hjust=0.5),         # Set title text size
-          axis.title.x = element_text(size=text_size.x_title),                    # Set x-axis label text size
+          axis.title.x = element_blank(),                    # Remove x-axis label
           axis.title.y = element_text(size=text_size.y_title),                     # Set y-axis label text size
           axis.text.x = element_text(size=text_size.x_text),                  # Set x-axis tick mark text size
           axis.text.y = element_text(size=text_size.y_text),
@@ -930,12 +943,43 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
   print(g12)
   
   ggsave(g12, file = here('output', 'standard_figures', 'average_workload_exp_2.png'), width=6, height=8)
-  
-  
-  
-  
-  
 
+
+
+
+  ###############
+  ### Combine # 1 ###
+  ###############
+
+  # Combine all the plots, putting them into a single png using arrangeGrob and ggsave directly
+  grid_combined <- arrangeGrob(
+    g1 + theme(legend.position = "none"),
+    g2 + theme(legend.position = "none"),
+    g3 + theme(legend.position = "none"),
+    g4 + theme(legend.position = "none"),
+    g11 + theme(legend.position = "none"),
+    legend
+  )
+  ggsave(grid_combined, file = here('output', 'standard_figures', 'combined_exp_1.png'), width=12, height=12)
+
+  ###############
+  ### Combine #2 ###
+  ###############
+
+  # Combine all the plots, putting them into a single png using arrangeGrob and ggsave directly
+  grid_combined_exp2 <- arrangeGrob(
+    g6 + theme(legend.position = "none"),
+    g7 + theme(legend.position = "none"),
+    g8 + theme(legend.position = "none"),
+    g9 + theme(legend.position = "none"),
+    g12 + theme(legend.position = "none"),
+    legend2
+  )
+  ggsave(grid_combined_exp2, file = here('output', 'standard_figures', 'combined_exp_2.png'), width=12, height=12)
+
+  
+  
+  
 }
 
 
