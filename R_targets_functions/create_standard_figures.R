@@ -1,5 +1,8 @@
 # standard figures
 
+
+
+
 # # libraries
 # library(ggplot2)
 # library(here)
@@ -15,6 +18,17 @@
 
 create_standard_figures <- function(data, codes, codes_participant_conditions_exp1, codes_participant_conditions_exp2) {
   
+
+  # Set global figure dimensions for individual plots
+  fig_width <- 6
+  fig_height <- 4
+  # Set global legend position
+  legend_x <- 0.5
+  legend_y <- 1.06
+  # Set legend direction
+  legend_direction <- "horizontal"
+  # original sumbission is w6 and h8
+
   # transpose the codes
   codes <- t(codes)
   
@@ -170,11 +184,11 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     labs(
          y="Average Time (seconds)",
          title = "Experiment 1") +
-    guides(fill=guide_legend(title=NULL)) + 
+    guides(fill=guide_legend(title=NULL, direction=legend_direction)) + 
     # move legend
     # theme(legend.position = c(0.6, 0.8), # adjust these values as needed
     #       legend.justification = c(0, 1)) +
-    theme(legend.position = 'top', # adjust these values as needed
+    theme(legend.position = c(legend_x, legend_y), # adjust these values as needed
           legend.justification = c(0.5, 1),
           plot.title = element_text(size=text_size.title, hjust=0.5),         # Set title text size
           axis.title.x = element_blank(),                    # Remove x-axis label
@@ -191,7 +205,7 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
   print(g1)
 
   # save
-  ggsave(g1, file = here('output', 'standard_figures', 'average_time_through_maze_exp_1.png'), width=6, height=8)
+  ggsave(g1, file = here('output', 'standard_figures', 'average_time_through_maze_exp_1.png'), width=fig_width, height=fig_height)
 
   # Function to extract legend from a ggplot
   get_legend <- function(myplot) {
@@ -235,9 +249,9 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     labs(
       y="Average Path Length (units)",
       title = "Experiment 1") +
-    guides(fill=guide_legend(title=NULL)) + 
+    guides(fill=guide_legend(title=NULL, direction=legend_direction)) + 
     # move legend
-    theme(legend.position = 'top', # adjust these values as needed
+    theme(legend.position = c(legend_x, legend_y), # adjust these values as needed
           legend.justification = c(0.5, 1),
           plot.title = element_text(size=text_size.title, hjust=0.5),         # Set title text size
           axis.title.x = element_blank(),                    # Remove x-axis label
@@ -253,7 +267,7 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
   
   print(g2)
   
-  ggsave(g2, file = here('output', 'standard_figures', 'average_path_length_exp_1.png'), width=6, height=8)
+  ggsave(g2, file = here('output', 'standard_figures', 'average_path_length_exp_1.png'), width=fig_width, height=fig_height)
   
   
   ###############################
@@ -288,9 +302,9 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     labs(
       y="Average Velocity (units/second)",
       title = "Experiment 1") +
-    guides(fill=guide_legend(title=NULL)) + 
+    guides(fill=guide_legend(title=NULL, direction=legend_direction)) + 
     # move legend
-    theme(legend.position = 'top', # adjust these values as needed
+    theme(legend.position = c(legend_x, legend_y), # adjust these values as needed
           legend.justification = c(0.5, 1),
           plot.title = element_text(size=text_size.title, hjust=0.5),         # Set title text size
           axis.title.x = element_blank(),                    # Remove x-axis label
@@ -302,11 +316,11 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     # add scatter plot data on top of this
     geom_quasirandom(data=data, aes(x=visual_jitter, y=average_velocity), 
                      alpha=0.7, cex=1.8, width = 0.15) +
-    ylim(0, 1.2)
+    ylim(0, 1.3)
   
   print(g3)
   
-  ggsave(g3, file = here('output', 'standard_figures', 'average_velocity_exp_1.png'), width=6, height=8)
+  ggsave(g3, file = here('output', 'standard_figures', 'average_velocity_exp_1.png'), width=fig_width, height=fig_height)
   
   
   
@@ -343,9 +357,9 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     labs(
       y="Average Proximity (units)",
       title = "Experiment 1") +
-    guides(fill=guide_legend(title=NULL)) + 
+    guides(fill=guide_legend(title=NULL, direction=legend_direction)) + 
     # move legend
-    theme(legend.position = 'top', # adjust these values as needed
+    theme(legend.position = c(legend_x, legend_y), # adjust these values as needed
           legend.justification = c(0.5, 1),
           plot.title = element_text(size=text_size.title, hjust=0.5),         # Set title text size
           axis.title.x = element_blank(),                    # Remove x-axis label
@@ -360,7 +374,7 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
   
   print(g4)
   
-  ggsave(g4, file = here('output', 'standard_figures', 'average_proximity_exp_1.png'), width=6, height=8)
+  ggsave(g4, file = here('output', 'standard_figures', 'average_proximity_exp_1.png'), width=fig_width, height=fig_height)
   
   
   
@@ -396,9 +410,9 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     labs(
       y="Average Force (N)",
       title = "Experiment 1") +
-    guides(fill=guide_legend(title=NULL)) + 
+    guides(fill=guide_legend(title=NULL, direction=legend_direction)) + 
     # move legend
-    theme(legend.position = 'top', # adjust these values as needed
+    theme(legend.position = c(legend_x, legend_y), # adjust these values as needed
           legend.justification = c(0.5, 1),
           plot.title = element_text(size=text_size.title, hjust=0.5),         # Set title text size
           axis.title.x = element_blank(),                    # Remove x-axis label
@@ -414,7 +428,7 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
   
   print(g5)
   
-  ggsave(g5, file = here('output', 'standard_figures', 'average_force_exp_1.png'), width=6, height=8)
+  ggsave(g5, file = here('output', 'standard_figures', 'average_force_exp_1.png'), width=fig_width, height=fig_height)
 
 
   ###############
@@ -470,8 +484,8 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     labs(
       y="Average Time (seconds)",
       title = "Experiment 1") +
-    guides(fill=guide_legend(title=NULL)) + 
-    theme(legend.position = 'top',
+    guides(fill=guide_legend(title=NULL, direction=legend_direction)) + 
+    theme(legend.position = c(legend_x, legend_y),
           legend.justification = c(0.5, 1),
           plot.title = element_text(size=text_size.title, hjust=0.5),
           axis.title.x = element_blank(),                    # Remove x-axis label
@@ -486,7 +500,7 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
   
   print(g6)
 
-  ggsave(g6, file = here('output', 'standard_figures', 'average_time_through_maze_exp_2.png'), width=6, height=8)
+  ggsave(g6, file = here('output', 'standard_figures', 'average_time_through_maze_exp_2.png'), width=fig_width, height=fig_height)
 
   legend2 <- get_legend(g6)  # for Exp 2
   
@@ -524,8 +538,8 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     labs(
       y="Average Path Length (units)",
       title = "Experiment 1") +
-    guides(fill=guide_legend(title=NULL)) + 
-    theme(legend.position = 'top',
+    guides(fill=guide_legend(title=NULL, direction=legend_direction)) + 
+    theme(legend.position = c(legend_x, legend_y),
           legend.justification = c(0.5, 1),
           plot.title = element_text(size=text_size.title, hjust=0.5),
           axis.title.x = element_blank(),                    # Remove x-axis label
@@ -540,7 +554,7 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
   
   print(g7)
   
-  ggsave(g7, file = here('output', 'standard_figures', 'average_path_length_exp_2.png'), width=6, height=8)
+  ggsave(g7, file = here('output', 'standard_figures', 'average_path_length_exp_2.png'), width=fig_width, height=fig_height)
   
   
   ###############################
@@ -575,8 +589,8 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     labs(
       y="Average Velocity (units/second)",
       title = "Experiment 1") +
-    guides(fill=guide_legend(title=NULL)) + 
-    theme(legend.position = 'top',
+    guides(fill=guide_legend(title=NULL, direction=legend_direction)) + 
+    theme(legend.position = c(legend_x, legend_y),
           legend.justification = c(0.5, 1),
           plot.title = element_text(size=text_size.title, hjust=0.5),
           axis.title.x = element_blank(),                    # Remove x-axis label
@@ -586,11 +600,11 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
           legend.text = element_text(size=text_size.legend_text)) +
     geom_quasirandom(data=data, aes(x=visual_jitter, y=average_velocity), 
                      alpha=0.7, cex=1.8, width = 0.15) +
-    ylim(0, 1.2)
+    ylim(0, 1.3)
   
   print(g8)
   
-  ggsave(g8, file = here('output', 'standard_figures', 'average_velocity_exp_2.png'), width=6, height=8)
+  ggsave(g8, file = here('output', 'standard_figures', 'average_velocity_exp_2.png'), width=fig_width, height=fig_height)
   
   
   
@@ -626,8 +640,8 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     labs(
       y="Average Proximity (units)",
       title = "Experiment 1") +
-    guides(fill=guide_legend(title=NULL)) + 
-    theme(legend.position = 'top',
+    guides(fill=guide_legend(title=NULL, direction=legend_direction)) + 
+    theme(legend.position = c(legend_x, legend_y),
           legend.justification = c(0.5, 1),
           plot.title = element_text(size=text_size.title, hjust=0.5),
           axis.title.x = element_blank(),                    # Remove x-axis label
@@ -642,7 +656,7 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
   
   print(g9)
   
-  ggsave(g9, file = here('output', 'standard_figures', 'average_proximity_exp_2.png'), width=6, height=8)
+  ggsave(g9, file = here('output', 'standard_figures', 'average_proximity_exp_2.png'), width=fig_width, height=fig_height)
   
   
   
@@ -678,8 +692,8 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     labs(
       y="Average Force (N)",
       title = "Experiment 1") +
-    guides(fill=guide_legend(title=NULL)) + 
-    theme(legend.position = 'top',
+    guides(fill=guide_legend(title=NULL, direction=legend_direction)) + 
+    theme(legend.position = c(legend_x, legend_y),
           legend.justification = c(0.5, 1),
           plot.title = element_text(size=text_size.title, hjust=0.5),
           axis.title.x = element_blank(),                    # Remove x-axis label
@@ -693,7 +707,7 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
   
   print(g10)
   
-  ggsave(g10, file = here('output', 'standard_figures', 'average_force_exp_2.png'), width=6, height=8)
+  ggsave(g10, file = here('output', 'standard_figures', 'average_force_exp_2.png'), width=fig_width, height=fig_height)
 
 
   ###############
@@ -871,9 +885,9 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     labs(
       y="Average Workload",
       title = "Experiment 1") +
-    guides(fill=guide_legend(title=NULL)) + 
+    guides(fill=guide_legend(title=NULL, direction=legend_direction)) + 
     # move legend
-    theme(legend.position = 'top', # adjust these values as needed
+    theme(legend.position = c(legend_x, legend_y), # adjust these values as needed
           legend.justification = c(0.5, 1),
           plot.title = element_text(size=text_size.title, hjust=0.5),         # Set title text size
           axis.title.x = element_blank(),                    # Remove x-axis label
@@ -888,7 +902,7 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
   
   print(g11)
   
-  ggsave(g11, file = here('output', 'standard_figures', 'average_workload_exp_1.png'), width=6, height=8)
+  ggsave(g11, file = here('output', 'standard_figures', 'average_workload_exp_1.png'), width=fig_width, height=fig_height)
   
   
   
@@ -924,9 +938,9 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
     labs(
       y="Average Workload",
       title = "Experiment 2") +
-    guides(fill=guide_legend(title=NULL)) + 
+    guides(fill=guide_legend(title=NULL, direction=legend_direction)) + 
     # move legend
-    theme(legend.position = 'top', # adjust these values as needed
+    theme(legend.position = c(legend_x, legend_y), # adjust these values as needed
           legend.justification = c(0.5, 1),
           plot.title = element_text(size=text_size.title, hjust=0.5),         # Set title text size
           axis.title.x = element_blank(),                    # Remove x-axis label
@@ -942,7 +956,7 @@ create_standard_figures <- function(data, codes, codes_participant_conditions_ex
   
   print(g12)
   
-  ggsave(g12, file = here('output', 'standard_figures', 'average_workload_exp_2.png'), width=6, height=8)
+  ggsave(g12, file = here('output', 'standard_figures', 'average_workload_exp_2.png'), width=fig_width, height=fig_height)
 
 
 

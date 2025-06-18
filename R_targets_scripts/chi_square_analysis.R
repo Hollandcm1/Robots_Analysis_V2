@@ -78,14 +78,14 @@ g <- ggplot(average_by_trial, aes(x = condition_nums, fill = collaborative, grou
   labs(title = "",
        x = "",
        y = "Percent of Trials") +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(axis.text.x = element_text(angle = 0, hjust = 0)) +
   # relabel legend title to "Behaviour"
-  scale_fill_discrete(name = "Behaviour") + 
+  scale_fill_discrete(name = "Behaviour") +
   theme(
-        plot.title = element_text(size=text_size.title, hjust=0.5),         # Set title text size
+        plot.title = element_text(size=text_size.title, hjust=0),         # Set title text size
         axis.title.x = element_text(size=text_size.x_title),                    # Set x-axis label text size
         axis.title.y = element_text(size=text_size.y_title),                     # Set y-axis label text size
-        axis.text.x = element_text(size=text_size.x_text),                  # Set x-axis tick mark text size
+        axis.text.x = element_text(size=text_size.x_text, hjust=0.5),                  # Set x-axis tick mark text size
         axis.text.y = element_text(size=text_size.y_text),
         legend.text = element_text(size=text_size.legend_text),  # Set y-axis tick mark text size
         legend.title = element_text(size=text_size.legend_text)  # Set y-axis tick mark text size
@@ -94,7 +94,7 @@ g <- ggplot(average_by_trial, aes(x = condition_nums, fill = collaborative, grou
 print(g)
 
 # save
-ggsave(g, file = here('output', 'standard_figures', 'chi_square_analysis.png'), width=6, height=8)
+ggsave(g, file = here('output', 'standard_figures', 'chi_square_analysis.png'), width=6, height=4)
 
 
 
