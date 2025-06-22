@@ -1,5 +1,6 @@
 # chi_square analysis 
 
+library(targets)
 library(tidyverse)
 
 data <- tar_read(strategic_data_appended)
@@ -97,7 +98,16 @@ print(g)
 ggsave(g, file = here('output', 'standard_figures', 'chi_square_analysis.png'), width=6, height=4)
 
 
-
+# get exact values being presented in the figure
+collaborative_counts <- average_by_trial %>%
+  group_by(condition_nums, collaborative) %>%
+  summarise(count = n())
+print(collaborative_counts)
+# convert to percentage
+collaborative_counts <- collaborative_counts %>%
+  group_by(condition_nums) %>%
+  mutate(percentage = count / sum(count) * 100)
+print(collaborative_counts)
 
 # count total of strategic_agreement compared to all trials
 total_agreement <- sum(average_by_trial$strategic_agreement)
